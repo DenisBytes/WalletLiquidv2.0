@@ -1,0 +1,239 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background-color: 214, 219, 220;
+  --primary-color: #C72893;
+  --color-text: #121212;
+  --nav-links: rgba(31, 4, 20, 0.65);
+  --home-links: black;
+  --home-links-gradient: rgba(223,154,222,1);
+  --components-background: white;
+  --text-color-buttons: white;
+}
+
+
+[class="dark"]:root {
+  --background-color: #121212;
+  --primary-color: #fbd3fb;
+  --color-text: white;
+  --nav-links: #b4a6ae;
+  --home-links: white;
+  --home-links-gradient: #fcdcfc;
+  --components-background: #242425;
+  --text-color-buttons: #121212;
+}
+
+.nav-links{
+  color: var(--nav-links)
+}
+[class="dark"]:root .nav-links{
+  color: var(--nav-links);
+}
+
+.nav-button{
+  background-color: var(--primary-color);
+  color: white;
+}
+
+[class="dark"]:root .nav-button{
+  background-color: var(--primary-color);
+  color: #121212;
+}
+
+body {
+  color: var(--color-text);
+  background:rgb(var(--background-color));
+  background-image: url("/background.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  overflow-x: hidden;
+}
+
+[class="dark"]:root body {
+  color: var(--color-text);
+  background:rgb(var(--background-color));
+  background-image: url("/backgrounddark.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  overflow-x: hidden;
+}
+
+.home-logo{
+  width: 200px;
+  height:200px;
+  background: url("/logo.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  animation: rotate 15s linear infinite;
+}
+[class="dark"]:root .home-logo{
+  width: 200px;
+  height: 200px;
+  background: url("/logodark.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  animation: rotate 15s linear infinite;
+}
+
+.nav-logo{
+  width: 196px;
+  height:32px;
+  background: url("/logonameblack.svg");
+}
+[class="dark"]:root .nav-logo{
+  width: 196px;
+  height:32px;
+  background: url("/logoname.svg");
+}
+
+
+.nav-link-border{
+  border-bottom: 4px solid var(--primary-color);
+}
+
+
+.home-links{
+  color:var(--home-links);
+  font-weight: 700;
+  font-size: 110px;
+}
+
+.home-links:hover{
+  background: linear-gradient(0deg, var(--home-links-gradient),  var(--primary-color));
+  -webkit-background-clip: text; /* Clip the text */
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+  font-size: 110px;
+}
+
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg); /* Starting position */
+  }
+  to {
+    transform: rotate(360deg); /* Ending position */
+  }
+}
+
+
+@media (min-width: 768px) and (max-width: 1200px) {
+  .links-container {
+    /* Using TailwindCSS syntax for responsive classes */
+    display: flex;
+    flex-direction: column;
+  }
+
+  .links-container > * {
+    /* Optional: To center items horizontally when in column layout */
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+
+.link-container{
+	position: relative;
+	width: auto;
+	height: 50px;
+	background: transparent;
+	font-size: 0;
+}
+.link-container .link{
+	font-size: 15px;
+	text-transform: uppercase;
+	text-decoration: none;
+	line-height: 50px;
+	position: relative;
+	z-index: 1;
+	display: inline-block;
+	text-align: center;
+}
+.link-container .animation{
+	position: absolute;
+	height: 5px;
+	/* height: 5px; */
+	bottom: 0;
+	/* bottom: 0; */
+	z-index: 0;
+	background: var(--primary-color);
+	border-radius: 8px;
+	transition: all .5s ease 0s;
+}
+.link-container .link:nth-child(1){
+	width: 197px;
+}
+.link-container .start-home, .link:nth-child(1):hover~.animation{
+	width: 197px;
+	left: 0;
+}
+.link-container .link:nth-child(2){
+	width: 110px;
+}
+.link-container .link:nth-child(2):hover~.animation{
+	width: 110px;
+	left: 215px;
+}
+.link-container .link:nth-child(3){
+	width: 100px;
+}
+.link-container .link:nth-child(3):hover~.animation{
+	width: 100px;
+	left: 325px;
+}
+
+.futures-form{
+  background-color: var(--components-background);
+  border: 1px solid rgba(255, 255, 255, 0.23);
+  box-shadow: #121212 0px 2px 4px 0px, rgba(255, 255, 255, 0.23) 0px 2px 16px 0px;
+  border-radius: 0.5rem;
+  padding: 1rem 0;
+
+}
+
+.symbol-button:nth-child(1){
+  padding: 0.75rem 15%;  
+  border: 1px solid orange;
+  border-radius: 0.5rem;
+}
+
+.symbol-button:nth-child(2){
+  padding: 0.75rem 15%;  
+  border: 1px solid blue;
+  border-radius: 0.5rem;
+}
+
+.side-label{  
+  border: 1px solid var(--primary-color);
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+
+.side-input:checked + .side-label{
+  background-color: var(--primary-color);
+  border: 1px solid var(--nav-links);
+  box-shadow: 0 0 0 2px var(--nav-links);
+  color: var(--text-color-buttons);
+}
+
+.side-input[type="radio"] {
+  display: none;
+}
+
+.type-select{
+  border: 1px solid var(--primary-color);
+  background-color: var(--components-background);
+  color: var(--color-text)
+}
+
