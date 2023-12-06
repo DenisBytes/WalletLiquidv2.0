@@ -20,7 +20,7 @@ async function createUserTable(client){
             username VARCHAR(255) NOT NULL,
             email TEXT NOT NULL UNIQUE,
             password TEXT NOT NULL,
-            usdc NUMERIC DEFAULT 10000, -- Setting the default value for usdc to 10000
+            usdc NUMERIC DEFAULT 100000, -- Setting the default value for usdc to 10000
             options_progress NUMERIC[] DEFAULT ARRAY[]::NUMERIC[], -- Empty array as default for options_progress
             futures_progress NUMERIC[] DEFAULT ARRAY[]::NUMERIC[] -- Empty array as default for futures_progress
         );

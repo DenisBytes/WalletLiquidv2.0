@@ -1,7 +1,16 @@
-"use client";
 import { useFormState } from "react-dom";
-export function FuturesForm() {
+import { getUser } from "@/app/lib/data";
+import { auth } from "@/auth";
+import { User } from "@/app/lib/definitions";
+import { Suspense } from "react";
 
+
+export default async function FuturesForm() {  
+
+    let user: User | undefined;
+    const session = await auth();
+    if(!session || !session.user) return null;
+    user = await getUser(session.user.email);
     return (
         <form className="lg:w-1/4 w-1/2 futures-form p-2">
             <input type="hidden" name="symbol" value="BTC" />
@@ -21,6 +30,9 @@ export function FuturesForm() {
                     <option value={"MARKET"}>MARKET</option>
                     <option value={"LIMIT"}>LIMIT</option>
                 </select>
+            </div>
+            <div>
+                {user?.username}
             </div>
         
         </form>

@@ -1,14 +1,14 @@
 "use client"
 import { useState } from "react";
 
-export function BTCETHButtons() {
+export default function BTCETHButtons() {
     const [symbol, setSymbol] = useState('BTC');
     const handleButtonClick = (e: React.MouseEvent<HTMLButtonElement>, symbol: string) => {
         e.preventDefault();
         setSymbol(symbol);
     };
     return (
-        <div className="flex items-center justify-around w-52">
+        <div className="flex items-center justify-around w-52 px-4">
                 <button
                     className={`symbol-button`}
                     style={{

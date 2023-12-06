@@ -1,9 +1,7 @@
-"use client";
-
-import { FuturesForm } from "../../ui/trade/FuturesForm"
+import FuturesForm from "../../ui/trade/FuturesForm"
 import TradingViewWidget from "../../ui/trade/TradingViewWidget"
 import FuturesOrderBook from "../../ui/trade/FuturesOrderBook"
-import { BTCETHButtons } from "./BTCETHButtons";
+import BTCETHButtons from "./BTCETHButtons";
 
 export default function FuturesPage() {
     return (
@@ -11,7 +9,7 @@ export default function FuturesPage() {
             <BTCETHButtons /> 
             <div className="flex p-1 m-1 justify-between" style={{width:"98%"}}>
                 <TradingViewWidget />
-                <FuturesOrderBook/>
+                <FuturesOrderBook />
                 <FuturesForm />
             </div>
         </div>

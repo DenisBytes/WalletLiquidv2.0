@@ -1,5 +1,5 @@
+"use client";
 import React, { useEffect, useRef } from 'react';
-
 declare global {
     interface Window {
         TradingView: any; // Define the type for TradingView here, 'any' is used as an example
@@ -69,7 +69,7 @@ export default function TradingViewWidget(): JSX.Element {
     }, []);
 
     return (
-        <div className="tradingview-widget-container" style={{ height: '100%', width: '50%' }}>
+        <div className="tradingview-widget-container" style={{ height: '10rem', width: '50%' }}>
             <div id="tradingview_138dc" style={{ height: '100%', width: '100%', minHeight: '500px' }} />
         </div>
     );

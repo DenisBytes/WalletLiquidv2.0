@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 
-export default function FuturesOrderBook({ symbol }: { symbol?: 'btc' | 'eth' }) {
+export default function FuturesOrderBook({ symbol }: { symbol?: "btc" | "eth" }) {
     const [bids, setBids] = useState<{ price: string; quantity: string }[]>([]);
     const [asks, setAsks] = useState<{ price: string; quantity: string }[]>([]);
     const pathname = usePathname();
@@ -10,7 +10,7 @@ export default function FuturesOrderBook({ symbol }: { symbol?: 'btc' | 'eth' })
     useEffect(() => {
         let websocket: WebSocket | null = null;
 
-        const handleWebSocketMessage = (event: MessageEvent) => {
+        const handleWebSocketMessage = (event: MessageEvent) => {   
             const data = JSON.parse(event.data);
 
             if (data && data.e === 'depthUpdate' && data.s === `${symbol?.toUpperCase()}USDT`) {
@@ -31,7 +31,7 @@ export default function FuturesOrderBook({ symbol }: { symbol?: 'btc' | 'eth' })
 
         const isLgScreen = window.innerWidth >= 1024;
 
-        if (symbol && pathname === "/trade/futures" && isLgScreen) {
+        if (symbol && pathname === "/home/trade/futures" && isLgScreen) {
             const websocketUrl = `wss://stream.binance.com:9443/ws/${symbol}usdt@depth`;
             websocket = new WebSocket(websocketUrl);
 
