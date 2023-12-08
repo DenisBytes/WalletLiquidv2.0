@@ -59,7 +59,7 @@ async function createFuturesOrderTable(client) {
                 price NUMERIC NOT NULL,
                 leverage NUMERIC NOT NULL,
                 liquidation_price NUMERIC NOT NULL,
-                usdc VARCHAR(50) NOT NULL,
+                usdc NUMERIC NOT NULL,
                 time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
                 pnl NUMERIC -- This column is optional and can be NULL
             );

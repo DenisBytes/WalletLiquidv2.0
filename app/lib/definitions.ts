@@ -19,7 +19,7 @@ export type FuturesOrder = {
   price: number;
   leverage: number;
   liquidation_price: number;
-  usdc: string;
+  usdcSize: number;
   time: Date;
   pnl?: number;
 }

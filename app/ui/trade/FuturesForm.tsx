@@ -2,15 +2,15 @@ import { useFormState } from "react-dom";
 import { getUser } from "@/app/lib/data";
 import { auth } from "@/auth";
 import { User } from "@/app/lib/definitions";
-import { Suspense } from "react";
-
 
 export default async function FuturesForm() {  
 
     let user: User | undefined;
     const session = await auth();
-    if(!session || !session.user) return null;
-    user = await getUser(session.user.email);
+    if(!!session || !!session.user){
+        user = await getUser(session.user.email);
+    }
+
     return (
         <form className="lg:w-1/4 w-1/2 futures-form p-2">
             <input type="hidden" name="symbol" value="BTC" />
@@ -31,8 +31,22 @@ export default async function FuturesForm() {
                     <option value={"LIMIT"}>LIMIT</option>
                 </select>
             </div>
+            <div className="p-2">
+                <input type="number" name="price" min="10" max="100" step="1" defaultValue={1} className="w-full"/>
+            </div>
+            <div className="p-2 flex justify-between w-full">
+                <fieldset className="w-3/5">
+                    <legend>AMOUNT (USDC)</legend>
+                    <input type="number" name="usdcSize" min="10" max={user?.usdc} step="1" defaultValue={1} className="w-full"/>
+                    <p style={{ fontSize: "12px" }}>(BALANCE: {user?.usdc} USDC)</p>
+                </fieldset>
+                <fieldset className=" w-1/4">
+                    <legend>LEVERAGE</legend>
+                    <input type="number" name="leverage" min="1" max="100" step="1" defaultValue={1} className="w-full" />
+                </fieldset>
+            </div>
             <div>
-                {user?.username}
+                <input type="submit" value="Submit" className="w-full"/>
             </div>
         
         </form>
