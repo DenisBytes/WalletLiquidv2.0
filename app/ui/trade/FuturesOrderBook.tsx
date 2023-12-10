@@ -1,11 +1,12 @@
-"use client";
-import React, { useState, useEffect } from 'react';
+"use client"
+import  { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 
-export default function FuturesOrderBook({ symbol }: { symbol?: "btc" | "eth" }) {
+export default function FuturesOrderBook() {
     const [bids, setBids] = useState<{ price: string; quantity: string }[]>([]);
     const [asks, setAsks] = useState<{ price: string; quantity: string }[]>([]);
     const pathname = usePathname();
+    const symbol = pathname.substring(pathname.length -3);
 
     useEffect(() => {
         let websocket: WebSocket | null = null;
@@ -27,29 +28,35 @@ export default function FuturesOrderBook({ symbol }: { symbol?: "btc" | "eth" })
                 setBids(updatedBids);
                 setAsks(updatedAsks);
             }
-        };
+        };  
 
-        const isLgScreen = window.innerWidth >= 1024;
+        const isLgScreen = window.matchMedia('(min-width: 1024px)').matches;
 
-        if (symbol && pathname === "/home/trade/futures" && isLgScreen) {
-            const websocketUrl = `wss://stream.binance.com:9443/ws/${symbol}usdt@depth`;
+        if (isLgScreen) {
+            const websocketUrl = `wss://stream.binance.com:9443/ws/${symbol.toLocaleLowerCase()}usdt@depth`;
             websocket = new WebSocket(websocketUrl);
 
             websocket.addEventListener('open', () => {
-                console.log('WebSocket connected');
+                console.log('OrderBook WebSocket connected');
+            
             });
 
             websocket.addEventListener('message', handleWebSocketMessage);
+        }
+
+        if (!isLgScreen && websocket){
+            websocket.close();
+            console.log('OrderBook WebSocket closed');
         }
 
     
         return () => {
             if (websocket) {
                 websocket.close();
-                console.log('WebSocket closed');
+                console.log('OrderBook WebSocket closed');
             }
         };
-    }, [symbol, pathname]);
+    }, [symbol]);
 
     if (!symbol) {
         return <div className='lg:block hidden'>Complete form before</div>;
@@ -57,30 +64,9 @@ export default function FuturesOrderBook({ symbol }: { symbol?: "btc" | "eth" })
 
 
     return (
-        <div className='lg:block hidden w-1/4'>
-            <h2>Order Book</h2>
-            <p>{symbol} price: </p>
+        <div className='lg:flex w-1/4 flex-col justify-center items-center border border-gray-600 rounded'>
+            <h2>ORDER BOOK</h2>
             <div>
-                <h3>Bids</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Price</th>
-                            <th>Quantity</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {bids.slice(0, 5).map((bid, index) => (
-                            <tr key={`bid-${index}`}>
-                            <td>{parseFloat(bid.price).toFixed(2)}</td>
-                            <td>{parseFloat(bid.quantity).toFixed(5)}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
-            <div>
-                <h3>Asks</h3>
                 <table>
                     <thead>
                         <tr>
@@ -93,6 +79,24 @@ export default function FuturesOrderBook({ symbol }: { symbol?: "btc" | "eth" })
                             <tr key={`ask-${index}`}>
                             <td>{parseFloat(ask.price).toFixed(2)}</td>
                             <td>{parseFloat(ask.quantity).toFixed(5)}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {bids.slice(0, 5).map((bid, index) => (
+                            <tr key={`bid-${index}`}>
+                            <td>{parseFloat(bid.price).toFixed(2)}</td>
+                            <td>{parseFloat(bid.quantity).toFixed(5)}</td>
                             </tr>
                         ))}
                     </tbody>

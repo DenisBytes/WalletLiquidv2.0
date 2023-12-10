@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 import clsx from 'clsx';
 
 const links = [
-    { name: 'rade', firstLetter: 'T', href: '/home/trade/futures'},
+    { name: 'rade', firstLetter: 'T', href: '/home/trade/futures/BTC'},
     { name: 'earn', firstLetter: 'L', href: '/home/learn'},
 ];
 

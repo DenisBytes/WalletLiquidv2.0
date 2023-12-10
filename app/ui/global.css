@@ -239,3 +239,22 @@ body {
   color: var(--color-text)
 }
 
+
+.futures-input{
+  width: 100%;
+  border: 1px solid var(--primary-color);
+  background-color: var(--components-background);
+}
+
+.futures-submit{
+  width: 50%;
+  padding: 0.5rem;
+  border: 1px solid var(--primary-color);
+  border-radius: 0.5rem;
+}
+
+.futures-submit:hover{
+  background-color: var(--primary-color);
+  box-shadow: 0 0 0 2px var(--nav-links);
+  color: var(--text-color-buttons);
+}

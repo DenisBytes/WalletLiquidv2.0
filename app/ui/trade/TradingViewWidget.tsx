@@ -1,5 +1,6 @@
 "use client";
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
+import { usePathname } from 'next/navigation';
 declare global {
     interface Window {
         TradingView: any; // Define the type for TradingView here, 'any' is used as an example
@@ -8,9 +9,10 @@ declare global {
 
 let tvScriptLoadingPromise: Promise<Event> | undefined;
 
-export default function TradingViewWidget(): JSX.Element {
+export default function TradingViewWidget() {
     const onLoadScriptRef = useRef<(() => void) | null>(null);
-
+    const pathname = usePathname();
+    const symbol = pathname.substring(pathname.length - 3);
     useEffect(() => {
         onLoadScriptRef.current = createWidget;
 
@@ -39,7 +41,7 @@ export default function TradingViewWidget(): JSX.Element {
 
                 const widget = new window.TradingView.widget({
                     autosize: true,
-                    symbol: 'BTCUSDT',
+                    symbol: `${symbol}USDT`,
                     interval: 'D',
                     timezone: 'Etc/UTC',
                     theme: 'light',
@@ -66,7 +68,7 @@ export default function TradingViewWidget(): JSX.Element {
                 });
             }
         }
-    }, []);
+    }, [symbol]);
 
     return (
         <div className="tradingview-widget-container" style={{ height: '10rem', width: '50%' }}>

@@ -1,19 +1,36 @@
+"use client";
 import { useFormState } from "react-dom";
-import { getUser } from "@/app/lib/data";
-import { auth } from "@/auth";
-import { User } from "@/app/lib/definitions";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
-export default async function FuturesForm() {  
+export default function FuturesForm({user}: {user:any}) {
+    const pathname = usePathname();
+    const symbol = pathname.substring(pathname.length -3);
+    const [price, setPrice] = useState<number>();
+    useEffect(() => {
+        let websocket: WebSocket | null = null;
 
-    let user: User | undefined;
-    const session = await auth();
-    if(!!session || !!session.user){
-        user = await getUser(session.user.email);
-    }
+        const handleWebSocketMessage = (event: MessageEvent) => {
+            const data = JSON.parse(event.data);
+            if (data && data.e === 'avgPrice' && data.s === `${symbol?.toUpperCase()}USDT`) {
+                const tempPrice: number = +data.w;
+                const twoDecimals: number= Math.round(tempPrice * 100) / 100;
+                setPrice(twoDecimals);
+            }
+        }
+        const websocketUrl = `wss://stream.binance.com:9443/ws/${symbol.toLocaleLowerCase()}usdt@avgPrice`;
+        websocket = new WebSocket(websocketUrl);
 
+        websocket.addEventListener('open', () => {
+            console.log('CurrentPrice WebSocket connected');
+        
+        });
+        websocket.addEventListener("message", handleWebSocketMessage);
+    })
+    
     return (
         <form className="lg:w-1/4 w-1/2 futures-form p-2">
-            <input type="hidden" name="symbol" value="BTC" />
+            <input type="hidden" name="symbol" value={symbol} />
             <div className="flex items-center justify-around mb-6">
                 <input id="long" className="side-input" style={{ fontSize: "10px" }} type="radio" name="side" value={"LONG"} defaultChecked/>
                 <label htmlFor="long" className="side-label py-3 lg:px-7 xl:px-11 md:px-14">
@@ -32,21 +49,23 @@ export default async function FuturesForm() {
                 </select>
             </div>
             <div className="p-2">
-                <input type="number" name="price" min="10" max="100" step="1" defaultValue={1} className="w-full"/>
+                <label>PRICE</label>
+                <input type="number" name="price" className="futures-input"/>
+                <p style={{ fontSize: "12px" }}>CURRENT PRICE: {price}</p>
             </div>
             <div className="p-2 flex justify-between w-full">
                 <fieldset className="w-3/5">
                     <legend>AMOUNT (USDC)</legend>
-                    <input type="number" name="usdcSize" min="10" max={user?.usdc} step="1" defaultValue={1} className="w-full"/>
+                    <input type="number" name="usdcSize" min="10" max={user?.usdc} step="1" defaultValue={1} className="futures-input"/>
                     <p style={{ fontSize: "12px" }}>(BALANCE: {user?.usdc} USDC)</p>
                 </fieldset>
                 <fieldset className=" w-1/4">
                     <legend>LEVERAGE</legend>
-                    <input type="number" name="leverage" min="1" max="100" step="1" defaultValue={1} className="w-full" />
+                    <input type="number" name="leverage" min="1" max="100" step="1" defaultValue={1} className="futures-input" />
                 </fieldset>
             </div>
-            <div>
-                <input type="submit" value="Submit" className="w-full"/>
+            <div className="p-2 flex justify-center">
+                <input type="submit" value="SUBMIT" className="futures-submit"/>
             </div>
         
         </form>

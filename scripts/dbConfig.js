@@ -13,17 +13,16 @@ const users = [
 async function createUserTable(client){
     try{
         await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
-    // Create the "users" table if it doesn't exist
-    const createTable = await client.sql`
-        CREATE TABLE IF NOT EXISTS users (
-            id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
-            username VARCHAR(255) NOT NULL,
-            email TEXT NOT NULL UNIQUE,
-            password TEXT NOT NULL,
-            usdc NUMERIC DEFAULT 100000, -- Setting the default value for usdc to 10000
-            options_progress NUMERIC[] DEFAULT ARRAY[]::NUMERIC[], -- Empty array as default for options_progress
-            futures_progress NUMERIC[] DEFAULT ARRAY[]::NUMERIC[] -- Empty array as default for futures_progress
-        );
+        const createTable = await client.sql`
+            CREATE TABLE IF NOT EXISTS users (
+                id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+                username VARCHAR(255) NOT NULL,
+                email TEXT NOT NULL UNIQUE,
+                password TEXT NOT NULL,
+                usdc NUMERIC DEFAULT 100000, -- Setting the default value for usdc to 10000
+                options_progress NUMERIC[] DEFAULT ARRAY[]::NUMERIC[], -- Empty array as default for options_progress
+                futures_progress NUMERIC[] DEFAULT ARRAY[]::NUMERIC[] -- Empty array as default for futures_progress
+            );
     `;
 
     console.log(`Created "users" table`);
@@ -43,6 +42,7 @@ async function createUserTable(client){
         throw error;
     }
 }
+
 
 async function createFuturesOrderTable(client) {
     try {
