@@ -258,3 +258,24 @@ body {
   box-shadow: 0 0 0 2px var(--nav-links);
   color: var(--text-color-buttons);
 }
+
+.orderbook-div{
+  background-color: var(--components-background);
+  box-shadow: #121212 0px 2px 4px 0px, rgba(255, 255, 255, 0.23) 0px 2px 16px 0px;
+  border: 1px solid rgba(255, 255, 255, 0.23);
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+.square{
+  width: 15px;
+  height: 15px;
+  margin: 5% ;
+  background-color: var(--components-background);
+  border: 1px solid var(--primary-color);
+}
+
+.square-clicked{
+  background-color: var(--primary-color);
+  box-shadow: 0 0 0 2px var(--nav-links);
+}

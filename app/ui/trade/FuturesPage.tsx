@@ -14,7 +14,7 @@ export default async function FuturesPage() {
     return (
         <div className="md:block hidden px-1">
             <BTCETHButtons />
-            <div className="flex p-1 m-3 justify-between" style={{width:"98%"}}>
+            <div className="flex p-1 mx-10 my-5 justify-between" style={{width:"95%"}}>
                 <TradingViewWidget />
                 <FuturesOrderBook/>
                 <FuturesForm user={user}/>

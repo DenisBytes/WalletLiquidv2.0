@@ -22,4 +22,6 @@ export type FuturesOrder = {
   usdcSize: number;
   time: Date;
   pnl?: number;
+  takeProfit?: number;
+  stopLoss?: number;
 }

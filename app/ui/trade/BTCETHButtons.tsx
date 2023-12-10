@@ -7,7 +7,7 @@ export default function BTCETHButtons() {
     const pathname = usePathname();
 
     return (
-        <div className="flex items-center justify-around w-52 px-4">
+        <div className="flex items-center justify-around w-52 px-4 mx-10 my-5">
             <Link
                 className={`symbol-button`}
                 href="/home/trade/futures/BTC"

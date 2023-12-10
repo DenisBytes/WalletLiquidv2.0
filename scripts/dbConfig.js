@@ -61,7 +61,9 @@ async function createFuturesOrderTable(client) {
                 liquidation_price NUMERIC NOT NULL,
                 usdc NUMERIC NOT NULL,
                 time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-                pnl NUMERIC -- This column is optional and can be NULL
+                pnl NUMERIC,
+                take_profit NUMERIC,
+                stop_loss NUMERIC
             );
         `;
 
