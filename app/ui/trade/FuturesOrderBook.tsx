@@ -38,7 +38,6 @@ export default function FuturesOrderBook() {
 
             websocket.addEventListener('open', () => {
                 console.log('OrderBook WebSocket connected');
-            
             });
 
             websocket.addEventListener('message', handleWebSocketMessage);
@@ -49,13 +48,6 @@ export default function FuturesOrderBook() {
             console.log('OrderBook WebSocket closed');
         }
 
-    
-        return () => {
-            if (websocket) {
-                websocket.close();
-                console.log('OrderBook WebSocket closed');
-            }
-        };
     }, [symbol]);
 
     if (!symbol) {
@@ -64,39 +56,39 @@ export default function FuturesOrderBook() {
 
 
     return (
-        <div className='lg:flex w-1/6 flex-col justify-center items-center orderbook-div h-full hidden'>
+        <div className='xl:flex w-1/6 flex-col justify-center items-center orderbook-div h-full hidden'>
             <h2>ORDER BOOK</h2>
-            <div className='w-10/12 flex flex-col justify-between'>
+            <div className='flex flex-col justify-between'>
                 <table>
                     <thead>
                         <tr style={{fontSize: "10px", fontWeight: 400}}> 
-                            <th className='items-start'>PRICE</th>
-                            <th className='items-end'>QUANTITY ({symbol})</th>
+                            <th>PRICE</th>
+                            <th>QUANTITY ({symbol})</th>
                         </tr>
                     </thead>
-                    <tbody className='items-start'>
+                    <tbody>
                         {asks.slice(0,5).reverse().map((ask) => (
                             <tr key={`ask-${ask}`} className='text-red-500'>
-                                <td className='items-start'>{parseFloat(ask.price).toFixed(2)}</td>
-                                <td className='items-end'>{parseFloat(ask.quantity).toFixed(5)}</td>
+                                <td>{parseFloat(ask.price).toFixed(2)}</td>
+                                <td>{parseFloat(ask.quantity).toFixed(5)}</td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
             </div>
-            <div className='w-10/12 flex flex-col justify-between'>
+            <div className='flex flex-col justify-between'>
                 <table>
                     <thead>
                         <tr style={{fontSize: "10px", fontWeight: 400}}>
-                            <th>&nbsp;</th>
-                            <th>&nbsp;</th>
+                            <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                            <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
                         </tr>
                     </thead>
                     <tbody>
                         {bids.slice(0, 5).map((bid) => (
                             <tr key={`bid-${bid}`} className='text-green-500'>
-                                <td className='items-start'>{parseFloat(bid.price).toFixed(2)}</td>
-                                <td className='items-end'>{parseFloat(bid.quantity).toFixed(5)}</td>
+                                <td>{parseFloat(bid.price).toFixed(2)}</td>
+                                <td>{parseFloat(bid.quantity).toFixed(5)}</td>
                             </tr>
                         ))}
                     </tbody>

@@ -7,6 +7,12 @@ const users = [
         username: 'Cool',
         email: 'user2@nextmail.com',
         password: '123456',
+    },
+    {
+        id: '410544b2-4001-4271-9855-fec4b6a6442c',
+        username: 'Cooler',
+        email: 'user3@nextmail.com',
+        password: '123456',
     }
 ];
 
@@ -20,6 +26,7 @@ async function createUserTable(client){
                 email TEXT NOT NULL UNIQUE,
                 password TEXT NOT NULL,
                 usdc NUMERIC DEFAULT 100000, -- Setting the default value for usdc to 10000
+                futuresPageLastLogin TIMESTAMPTZ,
                 options_progress NUMERIC[] DEFAULT ARRAY[]::NUMERIC[], -- Empty array as default for options_progress
                 futures_progress NUMERIC[] DEFAULT ARRAY[]::NUMERIC[] -- Empty array as default for futures_progress
             );
@@ -59,11 +66,13 @@ async function createFuturesOrderTable(client) {
                 price NUMERIC NOT NULL,
                 leverage NUMERIC NOT NULL,
                 liquidation_price NUMERIC NOT NULL,
-                usdc NUMERIC NOT NULL,
+                usdc_size NUMERIC NOT NULL,
                 time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
                 pnl NUMERIC,
                 take_profit NUMERIC,
-                stop_loss NUMERIC
+                stop_loss NUMERIC,
+                close_price NUMERIC, -- Added close_price column
+                closed_time TIMESTAMP -- Added closed_time column   
             );
         `;
 

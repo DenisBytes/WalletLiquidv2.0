@@ -1,14 +1,18 @@
 "use client";
-import { useFormState } from "react-dom";
+
 import { usePathname } from "next/navigation";
-import { useEffect, useState, FormEvent } from "react";
+import { useEffect, useState } from "react";
 import clsx from "clsx";
+import { createFuturesOrder } from "@/app/lib/actions";
 
 export default function FuturesForm({user}: {user:any}) {
     const pathname = usePathname();
     const symbol = pathname.substring(pathname.length -3);
     const [price, setPrice] = useState<number>();
     const [typeValue, setTypeValue] = useState("MARKET");
+    const [isChecked, setIsChecked] = useState(false);
+    //const [state, dispatch] = useFormState(createFuturesOrder, undefined)
+
     useEffect(() => {
         let websocket: WebSocket | null = null;
 
@@ -30,17 +34,19 @@ export default function FuturesForm({user}: {user:any}) {
         websocket.addEventListener("message", handleWebSocketMessage);
     })
 
+
     return (
-        <form className="lg:w-1/4 w-1/2 futures-form p-2 h-full">
+        <form className="w-2/5 xl:w-1/4 ml-2 futures-form p-2 h-full" action={createFuturesOrder}>
             <input type="hidden" name="symbol" value={symbol} />
+            <input type="hidden" name="user-id" value={user?.id} />
             <div className="flex items-center justify-around mb-6">
                 <input id="long" className="side-input" style={{ fontSize: "10px" }} type="radio" name="side" value={"LONG"} defaultChecked/>
-                <label htmlFor="long" className="side-label py-3 lg:px-7 xl:px-11 md:px-14">
+                <label htmlFor="long" className="side-label py-3 lg:px-10 xl:px-11 md:px-10">
                         LONG
                 </label>
                 
                 <input id="short" className="side-input" style={{ fontSize: "10px" }} type="radio" name="side" value={"SHORT"} />
-                <label htmlFor="short" className="side-label py-3 lg:px-7 xl:px-11 md:px-14">
+                <label htmlFor="short" className="side-label py-3 lg:px-10 xl:px-11 md:px-10">
                         SHORT
                 </label>
             </div>
@@ -52,32 +58,34 @@ export default function FuturesForm({user}: {user:any}) {
             </div>
             <div className={clsx("p-2", typeValue === "MARKET" ? "hidden" : "")}>
                 <label>PRICE</label>
-                <input type="number" name="price" className="futures-input"/>
+                <input type="number" name="price" defaultValue={price} className="futures-input"/>
                 <p style={{ fontSize: "12px" }}>CURRENT PRICE: {price}</p>
             </div>
             <div className="p-2 flex justify-between w-full">
                 <fieldset className="w-3/5">
                     <legend>AMOUNT</legend>
-                    <input type="number" name="usdcSize" min="10" max={user?.usdc} step="1" defaultValue={1} className="futures-input"/>
+                    <input type="number" name="usdcSize" min="10" max={user?.usdc} step="1" defaultValue={1} placeholder="MIN: 10" className="futures-input"/>
                     <p style={{ fontSize: "12px" }}>(BALANCE: {user?.usdc} USDC)</p>
                 </fieldset>
                 <fieldset className=" w-1/4">
                     <legend>LEVERAGE</legend>
-                    <input type="number" name="leverage" min="1" max="100" step="1" defaultValue={1} className="futures-input" />
+                    <input type="number" name="leverage" min="1" max="100" step="1" defaultValue={1} placeholder="MAX: 100" className="futures-input" />
                 </fieldset>
             </div>
-            {
-                /*
-                <input type="checkbox" className="square"/>
+            <div className="flex items-center">
+                <input type="checkbox" className="square" checked={isChecked} onChange={()=>setIsChecked(!isChecked)}/>
+                <p style={{ fontSize: "10px" }}>Advanced</p>
+            </div>
+            {isChecked ? (
                 <div className="p-2">
-                    <label>TAKE PROFIT</label>
-                    <input type="number" id="take-profit" name="takeProfit" className="futures-input" />
-                    <label>STOP LOSS</label>
-                    <input type="number" id="stop-loss" name="stopLoss" className="futures-input" />
+                    <div className="p-2">
+                        <label>TAKE PROFIT</label>
+                        <input type="number" id="take-profit" name="takeProfit" defaultValue={0} className="futures-input" />
+                        <label>STOP LOSS</label>
+                        <input type="number" id="stop-loss" name="stopLoss" defaultValue={0} className="futures-input" />
+                    </div>
                 </div>
-                 */
-            }
-                
+            ) : null}
             <div className="p-2 flex justify-center">
                 <input type="submit" value="SUBMIT" className="futures-submit"/>
             </div>

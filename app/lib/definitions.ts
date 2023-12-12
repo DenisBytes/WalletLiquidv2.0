@@ -4,6 +4,7 @@ export type User = {
   email: string;
   password: string;
   usdc: number;
+  futuresPageLastLogin?: Date;
   options_progress: Array<number>;
   futures_progress: Array<number>;
 };
@@ -20,8 +21,10 @@ export type FuturesOrder = {
   leverage: number;
   liquidation_price: number;
   usdcSize: number;
-  time: Date;
-  pnl?: number;
   takeProfit?: number;
   stopLoss?: number;
+  pnl?: number;
+  closePrice?: number;
+  time: Date;
+  closedTime?: Date;
 }

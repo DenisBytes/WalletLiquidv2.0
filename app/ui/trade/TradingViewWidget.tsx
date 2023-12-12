@@ -71,7 +71,7 @@ export default function TradingViewWidget() {
     }, [symbol]);
 
     return (
-        <div className="tradingview-widget-container" style={{ height: '10rem', width: '50%' }}>
+        <div className="tradingview-widget-container xl:w-1/2 w-3/5 mr-2" style={{ height: '10rem' }}>
             <div id="tradingview_138dc" style={{ height: '100%', width: '100%', minHeight: '500px' }} />
         </div>
     );

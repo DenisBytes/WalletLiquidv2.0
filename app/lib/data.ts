@@ -1,5 +1,5 @@
 import { sql } from '@vercel/postgres';
-import { User } from './definitions';
+import { User, FuturesOrder } from './definitions';
 import { unstable_noStore as noStore } from 'next/cache';
 
 export async function getUser(email: string): Promise<User | undefined> {
@@ -12,3 +12,14 @@ export async function getUser(email: string): Promise<User | undefined> {
         throw new Error('Failed to fetch user.');
     }
 }   
+
+export async function getFuturesOrders(user_id: string): Promise<FuturesOrder[] | undefined> {
+    noStore();
+    try {
+        const futuresOrders = await sql<FuturesOrder[]>`SELECT * FROM futures_orders WHERE user_id=${user_id}`;
+        return futuresOrders.rows[0];
+    } catch (error) {
+        console.error('Failed to fetch futures orders:', error);
+        throw new Error('Failed to fetch futures orders.');
+    }
+}
