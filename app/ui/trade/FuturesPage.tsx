@@ -4,13 +4,16 @@ import FuturesOrderBook from "../../ui/trade/FuturesOrderBook"
 import BTCETHButtons from "./BTCETHButtons";
 import { getUser, getFuturesOrders } from "@/app/lib/data";
 import { auth } from "@/auth";
-import { User } from "@/app/lib/definitions";
+import { User, FuturesOrder } from "@/app/lib/definitions";
 
 export default async function FuturesPage() {
     let user: User | undefined;
     const session = await auth();
-    user = await getUser(session.user.email);
-    const futuresOrders = await getFuturesOrders(user.id);
+    let futuresOrders: FuturesOrder[] | undefined;
+    if (session!==null && session.user !== undefined) {
+        user = await getUser(session.user.email);
+        futuresOrders = await getFuturesOrders(user?.id);
+    }
 
     return (
         <div className="md:block hidden px-1">

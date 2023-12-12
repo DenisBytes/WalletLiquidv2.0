@@ -2,7 +2,7 @@ import { sql } from '@vercel/postgres';
 import { User, FuturesOrder } from './definitions';
 import { unstable_noStore as noStore } from 'next/cache';
 
-export async function getUser(email: string): Promise<User | undefined> {
+export async function getUser(email: string | undefined | null): Promise<User | undefined> {
     noStore();
     try {
         const user = await sql<User>`SELECT * FROM users WHERE email=${email}`;
@@ -13,7 +13,7 @@ export async function getUser(email: string): Promise<User | undefined> {
     }
 }   
 
-export async function getFuturesOrders(user_id: string): Promise<FuturesOrder[] | undefined> {
+export async function getFuturesOrders(user_id: string | undefined): Promise<FuturesOrder[] | undefined> {
     noStore();
     try {
         const futuresOrders = await sql<FuturesOrder[]>`SELECT * FROM futures_orders WHERE user_id=${user_id}`;
