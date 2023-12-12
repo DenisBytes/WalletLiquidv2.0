@@ -1,6 +1,7 @@
 import { sql } from '@vercel/postgres';
 import { User, FuturesOrder } from './definitions';
 import { unstable_noStore as noStore } from 'next/cache';
+import { redirect } from 'next/navigation';
 
 export async function getUser(email: string | undefined | null): Promise<User | undefined> {
     noStore();
@@ -10,6 +11,7 @@ export async function getUser(email: string | undefined | null): Promise<User | 
     } catch (error) {
         console.error('Failed to fetch user:', error);
         throw new Error('Failed to fetch user.');
+        redirect("/");
     }
 }   
 

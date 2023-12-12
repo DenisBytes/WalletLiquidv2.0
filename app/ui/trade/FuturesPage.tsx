@@ -14,6 +14,7 @@ export default async function FuturesPage() {
         user = await getUser(session.user.email);
         futuresOrders = await getFuturesOrders(user?.id);
     }
+    console.log(futuresOrders);
 
     return (
         <div className="md:block hidden px-1">
@@ -23,23 +24,6 @@ export default async function FuturesPage() {
                 <FuturesOrderBook/>
                 <FuturesForm user={user}/>
             </div>
-            <p>
-                {futuresOrders?.map((order) => (
-                    <div key={order.id}>
-                        <p>ID:  {order.id}</p>
-                        <p>Symbol:  {order.symbol}</p>
-                        <p>Type:  {order.type}</p>
-                        <p>Status:  {order.status}</p>
-                        <p>Side:  {order.side}</p>
-                        <p>Price:  {order.price}</p>
-                        <p>Leverage:  {order.leverage}</p>
-                        <p>Amount:  {order.usdcSize}</p>
-                        <p>Liquidation Price:  {order.liquidation_price}</p>
-                        <p>Created At:  {order.time.toISOString()}</p>
-                    </div>
-                ))}
-            </p>
-
         </div>
     )
 }

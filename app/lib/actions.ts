@@ -77,7 +77,7 @@ export async function createFuturesOrder(formData: FormData) {
     }
 
     await sql`
-        INSERT INTO futures_orders (user_id, symbol, type, status, side, price, leverage, liquidation_price, usdc, take_profit, stop_loss, time)
+        INSERT INTO futures_orders (user_id, symbol, type, status, side, price, leverage, liquidation_price, usdc_size, take_profit, stop_loss, time)
         VALUES (${user_id}, ${symbol}, ${type}, ${status}, ${side}, ${priceInCents}, ${leverage}, ${liquidation_priceInCents}, ${usdcSizeInCents}, ${takeProfitInCents}, ${stopLossInCents}, ${time})
         `;
 
