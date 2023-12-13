@@ -5,34 +5,12 @@ import { useEffect, useState } from "react";
 import clsx from "clsx";
 import { createFuturesOrder } from "@/app/lib/actions";
 
-export default function FuturesForm({user}: {user:any}) {
+export default function FuturesForm({user, price}: {user:any, price:number}) {
     const pathname = usePathname();
     const symbol = pathname.substring(pathname.length -3);
-    const [price, setPrice] = useState<number>();
     const [typeValue, setTypeValue] = useState("MARKET");
     const [isChecked, setIsChecked] = useState(false);
-    //const [state, dispatch] = useFormState(createFuturesOrder, undefined)
 
-    useEffect(() => {
-        let websocket: WebSocket | null = null;
-
-        const handleWebSocketMessage = (event: MessageEvent) => {
-            const data = JSON.parse(event.data);
-            if (data && data.e === 'avgPrice' && data.s === `${symbol?.toUpperCase()}USDT`) {
-                const tempPrice: number = +data.w;
-                const twoDecimals: number= Math.round(tempPrice * 100) / 100;
-                setPrice(twoDecimals);
-            }
-        }
-        const websocketUrl = `wss://stream.binance.com:9443/ws/${symbol.toLocaleLowerCase()}usdt@avgPrice`;
-        websocket = new WebSocket(websocketUrl);
-
-        websocket.addEventListener('open', () => {
-            console.log('CurrentPrice WebSocket connected');
-        
-        });
-        websocket.addEventListener("message", handleWebSocketMessage);
-    })
 
 
     return (

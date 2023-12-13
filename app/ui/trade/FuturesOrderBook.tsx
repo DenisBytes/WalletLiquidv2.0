@@ -67,8 +67,8 @@ export default function FuturesOrderBook() {
                         </tr>
                     </thead>
                     <tbody>
-                        {asks.slice(0,5).reverse().map((ask) => (
-                            <tr key={`ask-${ask}`} className='text-red-500'>
+                        {asks.slice(0,5).reverse().map((ask, index) => (
+                            <tr key={`ask-${ask}${index}`} className='text-red-500'>
                                 <td>{parseFloat(ask.price).toFixed(2)}</td>
                                 <td>{parseFloat(ask.quantity).toFixed(5)}</td>
                             </tr>
@@ -85,8 +85,8 @@ export default function FuturesOrderBook() {
                         </tr>
                     </thead>
                     <tbody>
-                        {bids.slice(0, 5).map((bid) => (
-                            <tr key={`bid-${bid}`} className='text-green-500'>
+                        {bids.slice(0, 5).map((bid, index) => (
+                            <tr key={`bid-${bid}${index}`} className='text-green-500'>
                                 <td>{parseFloat(bid.price).toFixed(2)}</td>
                                 <td>{parseFloat(bid.quantity).toFixed(5)}</td>
                             </tr>

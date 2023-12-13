@@ -10,7 +10,7 @@ export default function Home() {
                 <div className='home-logo'></div>
             </div>
             <div className='externals'>
-                <Link href='/home/learn' className='home-links border border-transparent '>Learn</Link>
+                <Link href='/home/learn' className='home-links border border-transparent'>Learn</Link>
             </div>
         </div>
     )

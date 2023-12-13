@@ -81,6 +81,8 @@ export async function createFuturesOrder(formData: FormData) {
         VALUES (${user_id}, ${symbol}, ${type}, ${status}, ${side}, ${priceInCents}, ${leverage}, ${liquidation_priceInCents}, ${usdcSizeInCents}, ${takeProfitInCents}, ${stopLossInCents}, ${time})
         `;
 
+    await sql` UPDATE users SET usdc_balance = usdc_balance - ${usdcSizeInCents} WHERE id = ${user_id}`;
+
         revalidatePath(`/home/trade/futures/${symbol}`);
         redirect(`/home/trade/futures/${symbol}`);
 }
