@@ -1,5 +1,6 @@
 import { fontSyncopate } from "./ui/Fonts"
 import './ui/global.css'
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export default function RootLayout({
   children,
@@ -12,6 +13,7 @@ export default function RootLayout({
         <main className="hidden md:block">
           {children}
         </main>
+        <SpeedInsights />
       </body>
     </html>
   )
