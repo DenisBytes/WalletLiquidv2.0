@@ -1,4 +1,4 @@
-import FuturesPage from "@/app/ui/trade/FuturesPAge";
+import FuturesPage from "@/app/ui/trade/FuturesPage";
 import type { User, FuturesOrder } from "@/app/lib/definitions";
 import { auth } from "@/auth";
 import { getUser, getFuturesOrders } from "@/app/lib/data";
