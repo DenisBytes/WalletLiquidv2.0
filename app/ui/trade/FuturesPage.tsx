@@ -6,14 +6,15 @@ import FuturesOrderBook from "./FuturesOrderBook";
 import FuturesForm from "./FuturesForm";
 import TradingViewWidget from "./TradingViewWidget";
 import type { User, FuturesOrder } from "@/app/lib/definitions";
+import TickerInfo from "./TickerInfo";
+import Link from "next/link";
 
-export default function FuturesPage({user, futuresOrders}: {user:User  | undefined, futuresOrders:FuturesOrder[] | undefined;}) {
+export default function FuturesPage({user, futuresOrders}: {user:User  | undefined, futuresOrders:FuturesOrder[][] | undefined;}) {
     const pathname = usePathname();
     const symbol = pathname.substring(pathname.length - 3);
     const [markPrice, setMarkPrice] = useState(0);
     const [indexPrice, setIndexPrice] = useState(0);
     const [fundingRate, setFundingRate] = useState(0);
-    const [nextFundingRate, setNextFundingRate] = useState(0);
     const [openInterest, setOpenInterest] = useState(0);
 
     useEffect(() => {
@@ -22,10 +23,9 @@ export default function FuturesPage({user, futuresOrders}: {user:User  | undefin
         const handleWebSocketMessage = (event: MessageEvent) => {
             const data = JSON.parse(event.data);
             if(data){
-                setMarkPrice(data.p);
-                setIndexPrice(data.i);
-                setFundingRate(data.r);
-                setNextFundingRate(data.T);
+                setMarkPrice(parseFloat(data.p));
+                setIndexPrice(parseFloat(data.i));
+                setFundingRate(data.r*100);
             }
         }
         const websocketUrl = `wss://fstream.binance.com/ws/${symbol.toLocaleLowerCase()}usdt@markPrice`;
@@ -42,7 +42,7 @@ export default function FuturesPage({user, futuresOrders}: {user:User  | undefin
                 if (response.ok) {
                     const openInterestData = await response.json();
                     console.log("Open Interest: ", openInterestData.openInterest);
-                    setOpenInterest(openInterestData.openInterest);
+                    setOpenInterest(parseFloat(openInterestData.openInterest));
                 } else {
                     console.error('Failed to fetch open interest');
                 }
@@ -56,30 +56,12 @@ export default function FuturesPage({user, futuresOrders}: {user:User  | undefin
 
     return (
         <div className="md:block hidden px-1">
-            <div className="w-100 flex">
-                <BTCETHButtons />
+            <div className="w-100 flex justify-between px-20">
                 <div className="flex">
-                    <div className="items-center">
-                        <p style={{fontSize: "16px"}}>MARK PRICE:</p>
-                        <p style={{fontSize: "16px"}}>{markPrice}</p>
-                    </div>
-                    <div className="items-center">
-                        <p style={{fontSize: "16px"}}>INDEX PRICE:</p>
-                        <p style={{fontSize: "16px"}}>{indexPrice}</p>
-                    </div>
-                    <div className="items-center">
-                        <p style={{fontSize: "16px"}}>FUNDING RATE:</p>
-                        <p style={{fontSize: "16px"}}>{fundingRate}</p>
-                    </div>
-                    <div className="items-center">
-                        <p style={{fontSize: "16px"}}>NEXT FUNDING RATE:</p>
-                        <p style={{fontSize: "16px"}}>{nextFundingRate}</p>
-                    </div>
-                    <div className="items-center">
-                        <p style={{fontSize: "16px"}}>OPEN INTEREST:</p>
-                        <p style={{fontSize: "16px"}}>{openInterest}</p>
-                    </div>
+                    <BTCETHButtons />
+                    <TickerInfo markPrice={markPrice} indexPrice={indexPrice} fundingRate={fundingRate} openInterest={openInterest} />
                 </div>
+                <Link className="derivatives-button py-3 px-6 items-center align-middle" href={"/home/options"}>Options</Link>
             </div>
             <div className="flex p-1 mx-10 my-5 justify-between" style={{width:"95%"}}>
                 <TradingViewWidget />
@@ -88,6 +70,14 @@ export default function FuturesPage({user, futuresOrders}: {user:User  | undefin
             </div>
             <div className="mt-60">
                 <h1>Futures order</h1>
+                {futuresOrders?.map((futuresOrder) => (
+                    <div key={futuresOrder?.id}>
+                        <p>{futuresOrder?.id}</p>
+                        <p>{futuresOrder?.side}</p>
+                        <p>{futuresOrder?.type}</p>
+                        <p>{futuresOrder?.price}</p>
+                    </div>
+                ))}
             </div>
         </div>
     )

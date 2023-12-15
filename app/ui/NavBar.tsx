@@ -17,7 +17,7 @@ export default async function NavBar () {
             {/* Right Section */}
             <div className="flex items-center space-x-4">
                 {/* Login Button */}
-                <button className="nav-button py-3 px-6 r ounded font-sans font-semibold rounded" style={{fontSize: "18px"}}>Profile</button>
+                <button className="nav-button py-3 px-6 font-sans font-semibold rounded" style={{fontSize: "18px"}}>Profile</button>
                 <form
                     action={async () => {
                         'use server';
