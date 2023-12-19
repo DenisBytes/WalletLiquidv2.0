@@ -47,7 +47,6 @@ export default function FuturesOrderBook() {
             websocket.close();
             console.log('OrderBook WebSocket closed');
         }
-
     }, [symbol]);
 
     if (!symbol) {

@@ -15,12 +15,11 @@ export async function getUser(email: string | undefined | null): Promise<User | 
     }
 }   
 
-export async function getFuturesOrders(user_id: string | undefined): Promise<FuturesOrder[][] | undefined> {
+export async function getFuturesOrders(user_id: string | undefined) {
     noStore();
     try {
-        const futuresOrdersResult: QueryResult<FuturesOrder[]> = await sql<FuturesOrder[]>`SELECT * FROM futures_orders WHERE user_id=${user_id}`;
-        const futuresOrders: FuturesOrder[][] = futuresOrdersResult.rows;  
-        return futuresOrders;
+        const futuresOrders= await sql<FuturesOrder>`SELECT * FROM futures_orders WHERE user_id=${user_id}`;
+        return futuresOrders.rows;
     } catch (error) {
         console.error('Failed to fetch futures orders:', error);
         throw new Error('Failed to fetch futures orders.');

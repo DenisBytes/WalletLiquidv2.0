@@ -6,7 +6,8 @@ import { getUser, getFuturesOrders } from "@/app/lib/data";
 export default async function Page() {
     let user: User | undefined;
     const session = await auth();
-    let futuresOrders: FuturesOrder[][] | undefined;
+    let futuresOrders;
+    
     if (session!==null && session.user !== undefined) {
         user = await getUser(session.user.email);
         futuresOrders = await getFuturesOrders(user?.id);

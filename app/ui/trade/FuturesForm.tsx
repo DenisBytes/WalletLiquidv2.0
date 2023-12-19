@@ -36,13 +36,13 @@ export default function FuturesForm({user, price}: {user:any, price:number}) {
             </div>
             <div className={clsx("p-2", typeValue === "MARKET" ? "hidden" : "")}>
                 <label>PRICE</label>
-                <input type="number" name="price" defaultValue={price} className="futures-input"/>
-                <p style={{ fontSize: "12px" }}>CURRENT PRICE: {price}</p>
+                <input type="number" name="price" defaultValue={price.toFixed(2)} className="futures-input"/>
+                <p style={{ fontSize: "12px" }}>CURRENT PRICE: {price.toFixed(2)}</p>
             </div>
             <div className="p-2 flex justify-between w-full">
                 <fieldset className="w-3/5">
                     <legend>AMOUNT</legend>
-                    <input type="number" name="usdcSize" min="10" max={user?.usdc} step="1" defaultValue={1} placeholder="MIN: 10" className="futures-input"/>
+                    <input type="number" name="usdc-size" min="10" max={user?.usdc} step="1" defaultValue={1} placeholder="MIN: 10" className="futures-input"/>
                     <p style={{ fontSize: "12px" }}>(BALANCE: {user?.usdc} USDC)</p>
                 </fieldset>
                 <fieldset className=" w-1/4">

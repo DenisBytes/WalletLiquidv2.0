@@ -48,7 +48,7 @@ export async function createFuturesOrder(formData: FormData) {
         side: formData.get('side'),
         type: formData.get('type'),
         price: formData.get('price'),
-        usdcSize: formData.get('usdcSize'),
+        usdcSize: formData.get('usdc-size'),
         leverage:formData.get('leverage'),
         takeProfit: formData.get('takeProfit'),
         stopLoss: formData.get('stopLoss')
@@ -81,7 +81,7 @@ export async function createFuturesOrder(formData: FormData) {
         VALUES (${user_id}, ${symbol}, ${type}, ${status}, ${side}, ${priceInCents}, ${leverage}, ${liquidation_priceInCents}, ${usdcSizeInCents}, ${takeProfitInCents}, ${stopLossInCents}, ${time})
         `;
 
-    await sql` UPDATE users SET usdc_balance = usdc_balance - ${usdcSizeInCents} WHERE id = ${user_id}`;
+    await sql` UPDATE users SET usdc = usdc - ${usdcSize} WHERE id = ${user_id}`;
 
         revalidatePath(`/home/trade/futures/${symbol}`);
         redirect(`/home/trade/futures/${symbol}`);

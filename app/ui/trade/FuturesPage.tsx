@@ -8,8 +8,9 @@ import TradingViewWidget from "./TradingViewWidget";
 import type { User, FuturesOrder } from "@/app/lib/definitions";
 import TickerInfo from "./TickerInfo";
 import Link from "next/link";
+import FuturesOrders from "./FuturesOrders";
 
-export default function FuturesPage({user, futuresOrders}: {user:User  | undefined, futuresOrders:FuturesOrder[][] | undefined;}) {
+export default function FuturesPage({user, futuresOrders}: {user:User  | undefined, futuresOrders:FuturesOrder[] | undefined;}) {
     const pathname = usePathname();
     const symbol = pathname.substring(pathname.length - 3);
     const [markPrice, setMarkPrice] = useState(0);
@@ -56,29 +57,17 @@ export default function FuturesPage({user, futuresOrders}: {user:User  | undefin
 
     return (
         <div className="md:block hidden px-1">
-            <div className="w-100 flex justify-between px-20">
-                <div className="flex">
-                    <BTCETHButtons />
-                    <TickerInfo markPrice={markPrice} indexPrice={indexPrice} fundingRate={fundingRate} openInterest={openInterest} />
-                </div>
-                <Link className="derivatives-button py-3 px-6 items-center align-middle" href={"/home/options"}>Options</Link>
+            <div className="w-100 flex px-5">
+                <BTCETHButtons />
+                <TickerInfo markPrice={markPrice} indexPrice={indexPrice} fundingRate={fundingRate} openInterest={openInterest} />
+                <Link href={"/home"} className=""></Link>
             </div>
             <div className="flex p-1 mx-10 my-5 justify-between" style={{width:"95%"}}>
                 <TradingViewWidget />
                 <FuturesOrderBook/>
                 <FuturesForm user={user} price={markPrice} />
             </div>
-            <div className="mt-60">
-                <h1>Futures order</h1>
-                {futuresOrders?.map((futuresOrder) => (
-                    <div key={futuresOrder?.id}>
-                        <p>{futuresOrder?.id}</p>
-                        <p>{futuresOrder?.side}</p>
-                        <p>{futuresOrder?.type}</p>
-                        <p>{futuresOrder?.price}</p>
-                    </div>
-                ))}
-            </div>
+            <FuturesOrders futuresOrders={futuresOrders} markPrice={markPrice} />
         </div>
     )
 }
