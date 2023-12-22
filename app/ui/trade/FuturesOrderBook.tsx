@@ -37,7 +37,6 @@ export default function FuturesOrderBook() {
             websocket = new WebSocket(websocketUrl);
 
             websocket.addEventListener('open', () => {
-                console.log('OrderBook WebSocket connected');
             });
 
             websocket.addEventListener('message', handleWebSocketMessage);
@@ -46,6 +45,14 @@ export default function FuturesOrderBook() {
         if (!isLgScreen && websocket){
             websocket.close();
             console.log('OrderBook WebSocket closed');
+        }
+        if(!isLgScreen || websocket) {
+            return () => {
+                if (websocket) {
+                    websocket.close();
+                    console.log('OrderBook WebSocket closed');
+                }
+            };
         }
     }, [symbol]);
 

@@ -290,3 +290,17 @@ body {
   background-color: var(--primary-color);
   color: var(--text-color-buttons);
 }
+
+footer{
+  width: 94%;
+  background-color: var(--components-background);
+  border: 1px solid rgba(255, 255, 255, 0.23);
+  box-shadow: #121212 0px 2px 4px 0px, rgba(255, 255, 255, 0.23) 0px 2px 16px 0px;
+  border-radius: 0.5rem;
+}
+
+.order-button{
+  background-color: var(--primary-color);
+  color: var(--text-color-buttons);
+  border: 1px solid var(--primary-color);
+}

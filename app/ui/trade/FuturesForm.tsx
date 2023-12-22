@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import clsx from "clsx";
 import { createFuturesOrder } from "@/app/lib/actions";
 
@@ -36,7 +36,7 @@ export default function FuturesForm({user, price}: {user:any, price:number}) {
             </div>
             <div className={clsx("p-2", typeValue === "MARKET" ? "hidden" : "")}>
                 <label>PRICE</label>
-                <input type="number" name="price" defaultValue={price.toFixed(2)} className="futures-input"/>
+                <input type="number" name="price" defaultValue={typeValue === "MARKET" ? price.toFixed(2) : ""} min={0} placeholder={price.toFixed(2)} className="futures-input"/>
                 <p style={{ fontSize: "12px" }}>CURRENT PRICE: {price.toFixed(2)}</p>
             </div>
             <div className="p-2 flex justify-between w-full">
@@ -58,9 +58,9 @@ export default function FuturesForm({user, price}: {user:any, price:number}) {
                 <div className="p-2">
                     <div className="p-2">
                         <label>TAKE PROFIT</label>
-                        <input type="number" id="take-profit" name="takeProfit" defaultValue={0} className="futures-input" />
+                        <input type="number" id="take-profit" name="take_profit" defaultValue={0} className="futures-input" />
                         <label>STOP LOSS</label>
-                        <input type="number" id="stop-loss" name="stopLoss" defaultValue={0} className="futures-input" />
+                        <input type="number" id="stop-loss" name="stop_loss" defaultValue={0} className="futures-input" />
                     </div>
                 </div>
             ) : null}

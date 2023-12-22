@@ -32,33 +32,32 @@ const FuturesOrderSchema = z.object({
     side: z.enum(['LONG', 'SHORT']),
     type: z.enum(['MARKET', 'LIMIT']),
     price: z.coerce.number(),
-    usdcSize: z.coerce.number(),
+    usd_size: z.coerce.number(),
     leverage: z.coerce.number(),
-    takeProfit: z.coerce.number(),
-    stopLoss: z.coerce.number(),
+    take_profit: z.coerce.number(),
+    stop_loss: z.coerce.number(),
 })
 
 const CreateFuturesOrder = FuturesOrderSchema.omit({id: true});
 
 export async function createFuturesOrder(formData: FormData) {
     
-    const {user_id, symbol, side, type, price, usdcSize, leverage, takeProfit, stopLoss} = CreateFuturesOrder.parse({
+    const {user_id, symbol, side, type, price, usd_size, leverage, take_profit, stop_loss} = CreateFuturesOrder.parse({
         user_id: formData.get('user-id'),
         symbol: formData.get('symbol'),
         side: formData.get('side'),
         type: formData.get('type'),
         price: formData.get('price'),
-        usdcSize: formData.get('usdc-size'),
+        usd_size: formData.get('usdc-size'),
         leverage:formData.get('leverage'),
-        takeProfit: formData.get('takeProfit'),
-        stopLoss: formData.get('stopLoss')
+        take_profit: formData.get('take_profit'),
+        stop_loss: formData.get('stop_loss')
     });
 
-
     const priceInCents = price * 100;
-    const usdcSizeInCents = usdcSize * 100;
-    const takeProfitInCents =  takeProfit !== 0 ? takeProfit * 100 : null;
-    const stopLossInCents =  stopLoss !== 0 ? stopLoss * 100 : null;
+    const usd_sizeInCents = usd_size * 100;
+    const take_profitInCents =  take_profit !== 0 ? take_profit * 100 : null;
+    const stop_lossInCents =  stop_loss !== 0 ? stop_loss * 100 : null;
     const time = new Date().toISOString().split('T')[0];
     const maintainMargin = 0.906;
     let liquidation_price:number=0;
@@ -78,13 +77,13 @@ export async function createFuturesOrder(formData: FormData) {
 
     await sql`
         INSERT INTO futures_orders (user_id, symbol, type, status, side, price, leverage, liquidation_price, usdc_size, take_profit, stop_loss, time)
-        VALUES (${user_id}, ${symbol}, ${type}, ${status}, ${side}, ${priceInCents}, ${leverage}, ${liquidation_priceInCents}, ${usdcSizeInCents}, ${takeProfitInCents}, ${stopLossInCents}, ${time})
+        VALUES (${user_id}, ${symbol}, ${type}, ${status}, ${side}, ${priceInCents}, ${leverage}, ${liquidation_priceInCents}, ${usd_sizeInCents}, ${take_profitInCents}, ${stop_lossInCents}, ${time})
         `;
 
-    await sql` UPDATE users SET usdc = usdc - ${usdcSize} WHERE id = ${user_id}`;
+    await sql` UPDATE users SET usdc = usdc - ${usd_size} WHERE id = ${user_id}`;
 
-        revalidatePath(`/home/trade/futures/${symbol}`);
-        redirect(`/home/trade/futures/${symbol}`);
+    revalidatePath(`/home/trade/futures/${symbol}`);
+    redirect(`/home/trade/futures/${symbol}`);
 }
 
 

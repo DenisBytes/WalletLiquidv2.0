@@ -20,11 +20,11 @@ export type FuturesOrder = {
   price: number;
   leverage: number;
   liquidation_price: number;
-  usdcSize: number;
-  takeProfit?: number;
-  stopLoss?: number;
+  usdc_size: number;
+  take_profit?: number;
+  stop_loss?: number;
   pnl?: number;
-  closePrice?: number;
+  close_price?: number;
   time: Date;
-  closedTime?: Date;
+  closed_time?: Date;
 }

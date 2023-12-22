@@ -14,7 +14,7 @@ export default function TickerInfo({markPrice, indexPrice, fundingRate, openInte
             </div>
             <div className="flex flex-col items-center">
                 <p style={{fontSize: "14px"}}>FUNDING RATE:</p>
-                <p style={{fontSize: "14px"}}>{fundingRate}%</p>
+                <p style={{fontSize: "14px"}}>{fundingRate.toFixed(2)}%</p>
             </div>
             <div className="flex flex-col items-center">
                 <p style={{fontSize: "14px"}}>OPEN INTEREST:</p>
