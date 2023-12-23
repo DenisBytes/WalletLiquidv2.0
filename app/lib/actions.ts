@@ -83,10 +83,9 @@ export async function createFuturesOrder(formData: FormData) {
         await sql` UPDATE users SET usdc = usdc - ${usd_size} WHERE id = ${user_id}`;
 
         revalidatePath(`/home/trade/futures/${symbol}`);
-        redirect(`/home/trade/futures/${symbol}`);
     }
-    catch{
-        console.log("Error creating futures order");
+    catch(error){
+        console.log("Error creating futures order", error);
     }
 
 }
@@ -95,10 +94,10 @@ export async function createFuturesOrder(formData: FormData) {
 export async function updateLastLogin(user_id: string | undefined) {
     try{
         await sql`UPDATE users SET futures_page_last_login = CURRENT_TIMESTAMP WHERE id = ${user_id}`;
+        console.log("Updated futures_page_last_login");
     }catch(error){
         console.log("Error updating futures_page_last_login", error);
     }
     revalidatePath(`/home/trade/futures/BTC}`);
-    redirect(`/home/trade/futures/BTC`);
 }
 

@@ -7,8 +7,12 @@ import { updateLastLogin } from "@/app/lib/actions";
 export default async function Page() {
     let user: User | undefined;
     const session = await auth();
-    await updateLastLogin(session?.user?.id);
-    
+    /*
+    async function updateLastLoginFunction() {
+        await updateLastLogin(user?.id);
+    }
+    updateLastLoginFunction();
+    */
     let futuresOrders;
     
     if (session!==null && session.user !== undefined) {

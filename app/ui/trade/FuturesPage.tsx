@@ -19,8 +19,6 @@ export default function FuturesPage({user, futuresOrders}: {user:User  | undefin
     const [openInterest, setOpenInterest] = useState(0);
     const [otherMarkPrice, setOtherMarkPrice] = useState(0);
 
-    console.log(markPrice)
-
     useEffect(() => {
         let websocket: WebSocket | null = null;
 

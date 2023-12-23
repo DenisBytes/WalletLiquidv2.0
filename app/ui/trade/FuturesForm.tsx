@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import clsx from "clsx";
 import { createFuturesOrder } from "@/app/lib/actions";
 
@@ -10,21 +10,20 @@ export default function FuturesForm({user, price}: {user:any, price:number}) {
     const symbol = pathname.substring(pathname.length -3);
     const [typeValue, setTypeValue] = useState("MARKET");
     const [isChecked, setIsChecked] = useState(false);
-
-
+    const [sideValue, setSideValue] = useState("LONG");
 
     return (
-        <form className="w-2/5 xl:w-1/4 ml-2 futures-form p-2 h-full" action={createFuturesOrder}>
+        <form noValidate className="w-2/5 xl:w-1/4 ml-2 futures-form p-2 h-full" action={createFuturesOrder}>
             <input type="hidden" name="symbol" value={symbol} />
             <input type="hidden" name="user-id" value={user?.id} />
             <div className="flex items-center justify-around mb-6">
                 <input id="long" className="side-input" style={{ fontSize: "10px" }} type="radio" name="side" value={"LONG"} defaultChecked/>
-                <label htmlFor="long" className="side-label py-3 lg:px-10 xl:px-11 md:px-10">
+                <label htmlFor="long" className="side-label py-3 lg:px-10 xl:px-11 md:px-10" onClick={() => setSideValue("LONG")}>
                         LONG
                 </label>
                 
                 <input id="short" className="side-input" style={{ fontSize: "10px" }} type="radio" name="side" value={"SHORT"} />
-                <label htmlFor="short" className="side-label py-3 lg:px-10 xl:px-11 md:px-10">
+                <label htmlFor="short" className="side-label py-3 lg:px-10 xl:px-11 md:px-10" onClick={() => setSideValue("SHORT")}>
                         SHORT
                 </label>
             </div>
@@ -36,13 +35,13 @@ export default function FuturesForm({user, price}: {user:any, price:number}) {
             </div>
             <div className={clsx("p-2", typeValue === "MARKET" ? "hidden" : "")}>
                 <label>PRICE</label>
-                <input type="number" name="price" defaultValue={typeValue === "MARKET" ? price.toFixed(2) : ""} min={0} placeholder={price.toFixed(2)} className="futures-input"/>
+                <input type="number" name="price" min={0} defaultValue={price.toFixed(2)} placeholder={price.toFixed(2)} className="futures-input"/>
                 <p style={{ fontSize: "12px" }}>CURRENT PRICE: {price.toFixed(2)}</p>
             </div>
             <div className="p-2 flex justify-between w-full">
                 <fieldset className="w-3/5">
                     <legend>AMOUNT</legend>
-                    <input type="number" name="usdc-size" min="10" max={user?.usdc} step="1" defaultValue={1} placeholder="MIN: 10" className="futures-input"/>
+                    <input type="number" name="usdc-size" min="10" max={user?.usdc} step="1" defaultValue={10} placeholder="MIN: 10" className="futures-input"/>
                     <p style={{ fontSize: "12px" }}>(BALANCE: {user?.usdc} USDC)</p>
                 </fieldset>
                 <fieldset className=" w-1/4">
@@ -58,14 +57,14 @@ export default function FuturesForm({user, price}: {user:any, price:number}) {
                 <div className="p-2">
                     <div className="p-2">
                         <label>TAKE PROFIT</label>
-                        <input type="number" id="take-profit" name="take_profit" defaultValue={0} className="futures-input" />
+                        <input type="number" id="take-profit" name="take_profit" defaultValue={0} min={sideValue === "LONG" ? price.toFixed(2) :0} max={sideValue === "SHORT" ? price.toFixed(2) :0} className="futures-input" />
                         <label>STOP LOSS</label>
-                        <input type="number" id="stop-loss" name="stop_loss" defaultValue={0} className="futures-input" />
+                        <input type="number" id="stop-loss" name="stop_loss" defaultValue={0} min={sideValue === "SHORT" ? price.toFixed(2) :0} max={sideValue === "LONG" ? price.toFixed(2) :0} className="futures-input" />
                     </div>
                 </div>
             ) : null}
             <div className="p-2 flex justify-center">
-                <input type="submit" value="SUBMIT" className="futures-submit"/>
+                <input type="submit" value="SUBMIT" className="futures-submit" />
             </div>
         </form>
     );
