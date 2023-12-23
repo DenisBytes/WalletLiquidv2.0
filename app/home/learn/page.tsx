@@ -1,7 +1,9 @@
 export default function Page(){
     return(
-        <div>
-            <h1>Hey</h1>
+        <div className="flex justify-center" style={{height: "80vh"}}>
+            <div className="">
+                
+            </div>
         </div>
     )
 }

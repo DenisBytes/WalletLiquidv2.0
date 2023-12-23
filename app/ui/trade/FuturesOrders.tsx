@@ -20,77 +20,64 @@ export default function FuturesOrders({futuresOrders, markPrice, otherMarkPrice}
             openOrders.map((futuresOrder) => (
             
             <tr key={futuresOrder.id} className="align-middle items-end">
+                
                 <td className={clsx(futuresOrder.side === "LONG" ? "text-green-500" : "text-red-500")}>{futuresOrder.symbol} - USDT</td>
                 <td className="items-center">{futuresOrder.usdc_size/100 * futuresOrder.leverage}</td>
                 <td className="items-center">{futuresOrder.price / 100}</td>
                 <td className="items-center">{futuresOrder.symbol === symbol ? markPrice.toFixed(2) : otherMarkPrice.toFixed(2)}</td>
                 <td className="items-center">{parseFloat((futuresOrder.liquidation_price/100).toString()).toFixed(2)}</td>
-                {/*<td className="items-center">{futuresOrder.earnings}</td>*/}
+                {calculateEarnings(futuresOrder)}
                 <td className="flex items-baseline">{parseFloat((futuresOrder.usdc_size/100).toString()).toFixed(2)} (<p style={{fontSize: "10px"}}>x</p>{futuresOrder.leverage})</td>
-                <td className="items-center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td className="items-center">{futuresOrder.take_profit ? futuresOrder.take_profit / 100: "-"} {futuresOrder.stop_loss ? futuresOrder.stop_loss / 100 : "-"}</td>
+                <td>
+                    <form>
+                        <input type="submit" value="Close" className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" />
+                    </form>
+                </td>
             </tr>
         )))
     };
-
-    const renderPendingOrders = () => {
-        // Logic to filter and render pending orders
-        // Similar structure to renderOpenOrders but for pending orders
-        const pendingOrders = futuresOrders?.filter(futuresOrder => futuresOrder.status === 'PENDING');
-        if (!pendingOrders || pendingOrders.length === 0) {
-            return <tr><td colSpan={9}>No pending orders available.</td></tr>;
+    const calculateEarnings = (futuresOrder: FuturesOrder)=>{
+        const orderTokenSize = (futuresOrder.usdc_size/100 * futuresOrder.leverage) / (futuresOrder.price/100);
+        if (futuresOrder.symbol === symbol){
+            const orderDifference =(futuresOrder.price/100) - Number(markPrice.toFixed(2)) ;
+            if (futuresOrder.side === "SHORT"){
+                if (futuresOrder.price/100 >= Number(markPrice.toFixed(2))){
+                    return <td className="text-green-500">+ {(orderTokenSize * orderDifference).toFixed(2)} (+{((orderTokenSize * orderDifference) * 100 / (futuresOrder.usdc_size/100)).toFixed(2)}%) </td>
+                }
+                else{
+                    return <td className="text-red-500">- {(orderTokenSize * orderDifference).toFixed(2)} (-{((orderTokenSize * orderDifference) * 100 / (futuresOrder.usdc_size/100)).toFixed(2)}%) </td>
+                }
+            }
+            else if(futuresOrder.side === "LONG"){
+                if(futuresOrder.price/100 <= Number(markPrice.toFixed(2))){
+                    return <td className="text-green-500">+ {(orderTokenSize * orderDifference).toFixed(2)} (+{((orderTokenSize * orderDifference) * 100 / (futuresOrder.usdc_size/100)).toFixed(2)}%) </td>
+                }
+                else{
+                    return <td className="text-red-500">-{(orderTokenSize * orderDifference).toFixed(2)} (-{((orderTokenSize * orderDifference) * 100 / (futuresOrder.usdc_size/100)).toFixed(2)}%) </td>
+                }
+            }
         }
-
-        return pendingOrders.map((futuresOrder) => (
-            <tr key={futuresOrder.id}>
-                <td className="items-center">{futuresOrder.symbol} - USDT</td>
-                <td className="items-center">{futuresOrder.usdc_size * futuresOrder.leverage}</td>
-                <td className="items-center">{futuresOrder.price / 100}</td>
-                <td className="items-center">{futuresOrder.symbol === symbol ? markPrice.toFixed(2) : otherMarkPrice.toFixed(2)}</td>
-                <td className="items-center">{parseFloat((futuresOrder.liquidation_price/100).toString()).toFixed(2)}</td>
-                <td className="items-center">{parseFloat((futuresOrder.liquidation_price/100).toString()).toFixed(2)}</td>
-                <td className="items-center">{Number(futuresOrder.usdc_size)}</td>
-                {/*<td className="items-center">{futuresOrder.earnings}</td>*/}
-                <td className="items-center">{Number(futuresOrder.take_profit)}</td>
-                <td className="items-center">{Number(futuresOrder.stop_loss)}</td>
-                <td className="flex items-baseline">{parseFloat((futuresOrder.usdc_size/100).toString()).toFixed(2)} <p style={{fontSize: "10px"}}>x</p>({futuresOrder.leverage})</td>
-                <td className="items-center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-            </tr>
-        ))
-    };
-
-    const renderClosedOrders = () => {
-        // Logic to filter and render closed orders
-        // Similar structure to renderOpenOrders but for closed orders
-        const closedOrders = futuresOrders?.filter(futuresOrder => futuresOrder.status === 'CLOSED');
-        if (!closedOrders || closedOrders.length === 0) {
-            return <tr><td colSpan={9}>No closed orders available.</td></tr>;
+        else{
+            const orderDifference = Number(otherMarkPrice.toFixed(2)) - (futuresOrder.price/100);
+            if (futuresOrder.side === "SHORT"){
+                if (futuresOrder.price/100 >= Number(otherMarkPrice.toFixed(2))){
+                    return <td className="text-green-500">+ {(orderTokenSize * orderDifference).toFixed(2)} ({((orderTokenSize * orderDifference) * 100 / (futuresOrder.usdc_size/100)).toFixed(2)}%) </td>
+                }
+                else{
+                    return <td className="text-red-500">{(orderTokenSize * orderDifference).toFixed(2)} ({((orderTokenSize * orderDifference) * 100 / (futuresOrder.usdc_size/100)).toFixed(2)}%) </td>
+                }
+            }
+            else if(futuresOrder.side === "LONG"){
+                if(futuresOrder.price/100 <= Number(otherMarkPrice.toFixed(2))){
+                    return <td className="text-green-500">+ {(orderTokenSize * orderDifference).toFixed(2)} ({((orderTokenSize * orderDifference) * 100 / (futuresOrder.usdc_size/100)).toFixed(2)}%) </td>
+                }
+                else{
+                    return <td className="text-red-500">{(orderTokenSize * orderDifference).toFixed(2)} ({((orderTokenSize * orderDifference) * 100 / (futuresOrder.usdc_size/100)).toFixed(2)}%) </td>
+                }
+            }
         }
-
-        return closedOrders.map((futuresOrder) => (
-            <tr key={futuresOrder.id}>
-                <td className="items-center">{futuresOrder.symbol} - USDT</td>
-                <td className="items-center">{futuresOrder.usdc_size * futuresOrder.leverage}</td>
-                <td className="items-center">{futuresOrder.price / 100}</td>
-                <td className="items-center">{futuresOrder.symbol === symbol ? markPrice.toFixed(2) : otherMarkPrice.toFixed(2)}</td>
-                <td className="items-center">{parseFloat((futuresOrder.liquidation_price/100).toString()).toFixed(2)}</td>
-                <td className="items-center">{parseFloat((futuresOrder.liquidation_price/100).toString()).toFixed(2)}</td>
-                <td className="items-center">{Number(futuresOrder.usdc_size)}</td>
-                {/*<td className="items-center">{futuresOrder.earnings}</td>*/}
-                <td className="flex items-baseline">{parseFloat((futuresOrder.usdc_size/100).toString()).toFixed(2)} (<p style={{fontSize: "10px"}}>x</p>{futuresOrder.leverage})</td>
-                <td className="items-center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-            </tr>
-        ))
-    };
-
-    let ordersToRender;
-    if (activeTab === 'open') {
-        ordersToRender = renderOpenOrders();
-    } else if (activeTab === 'pending') {
-        ordersToRender = renderPendingOrders();
-    } else if (activeTab === 'closed') {
-        ordersToRender = renderClosedOrders();
     }
-
 
     return (
         <div className="flex w-full justify-center mb-8">
@@ -118,24 +105,26 @@ export default function FuturesOrders({futuresOrders, markPrice, otherMarkPrice}
                         CLOSED
                     </button>
                 </div>
-                <table className="w-full my-4">
-                    <thead>
-                        <tr className="align-middle items-center">
-                            <th>PAIR</th>
-                            <th>VALUE</th>
-                            <th>ENTRY PRICE</th>
-                            <th>CURRENT PRICE</th>
-                            <th>LIQUIDATION PRICE</th>
-                            <th>EARNINGS</th>
-                            <th>MARGIN</th>
-                            <th>TP/SL</th>
-                            <th>ACTION</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {ordersToRender}
-                    </tbody>
-                </table>
+                {activeTab === "open" && 
+                    <table className="w-full my-4">
+                        <thead>
+                            <tr className="align-middle items-center">
+                                <th>PAIR</th>
+                                <th>VALUE</th>
+                                <th>ENTRY PRICE</th>
+                                <th>CURRENT PRICE</th>
+                                <th>LIQUIDATION PRICE</th>
+                                <th>EARNINGS</th>
+                                <th>MARGIN</th>
+                                <th>TP/SL</th>
+                                <th>ACTION</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {renderOpenOrders()}
+                        </tbody>
+                </table>}
+                {activeTab === "pending"}
             </footer>
         </div>
     
