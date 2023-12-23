@@ -4,7 +4,7 @@ export type User = {
   email: string;
   password: string;
   usdc: number;
-  futuresPageLastLogin?: Date;
+  futures_page_last_login?: Date;
   options_progress: Array<number>;
   futures_progress: Array<number>;
 };
