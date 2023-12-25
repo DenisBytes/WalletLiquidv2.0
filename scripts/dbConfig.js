@@ -26,7 +26,7 @@ async function createUserTable(client){
                 email TEXT NOT NULL UNIQUE,
                 password TEXT NOT NULL,
                 usdc NUMERIC DEFAULT 100000, -- Setting the default value for usdc to 10000
-                futures_page_last_login TIMESTAMPTZ,
+                futures_page_last_login TIMESTAMPTZ
             );
     `;
 
