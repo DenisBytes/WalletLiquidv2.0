@@ -53,6 +53,9 @@ export async function createFuturesOrder(formData: FormData) {
             take_profit: formData.get('take_profit'),
             stop_loss: formData.get('stop_loss')
         });
+        if(price < 1 || usd_size < 10 || leverage < 1) {
+            throw new Error('Invalid input');
+        }
     
         const priceInCents = price * 100;
         const usd_sizeInCents = usd_size * 100;
@@ -68,6 +71,15 @@ export async function createFuturesOrder(formData: FormData) {
             liquidation_price = price * (1 + maintainMargin / leverage) ;
         }
         const liquidation_priceInCents = liquidation_price * 100;
+        if(side==='LONG' && take_profit !==0 && take_profit < price){
+            throw new Error('Invalid Take Profit');
+        }else if(side==='LONG' && stop_loss !==0 && stop_loss > price){
+            throw new Error('Invalid Stop Loss');
+        }else if(side==='SHORT' && take_profit !==0 && take_profit > price){
+            throw new Error('Invalid Take Profit');
+        }else if(side==='SHORT' && stop_loss !==0 && stop_loss < price){
+            throw new Error('Invalid Stop Loss');
+        }
     
         if (type==='MARKET') {
             status='OPEN';

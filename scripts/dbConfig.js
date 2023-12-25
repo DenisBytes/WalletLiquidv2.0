@@ -27,8 +27,6 @@ async function createUserTable(client){
                 password TEXT NOT NULL,
                 usdc NUMERIC DEFAULT 100000, -- Setting the default value for usdc to 10000
                 futures_page_last_login TIMESTAMPTZ,
-                options_progress NUMERIC[] DEFAULT ARRAY[]::NUMERIC[], -- Empty array as default for options_progress
-                futures_progress NUMERIC[] DEFAULT ARRAY[]::NUMERIC[] -- Empty array as default for futures_progress
             );
     `;
 
@@ -83,11 +81,33 @@ async function createFuturesOrderTable(client) {
     }
 }
 
+async function createFuturesChapter(client) {
+    try {
+        await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
+
+        const createTable = await client.sql`
+            CREATE TABLE IF NOT EXISTS futures_chapter (
+                id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+                user_id UUID NOT NULL,
+                is_done BOOLEAN NOT NULL,
+                is_quit_done BOOLEAN NOT NULL
+            );
+        `;
+
+        console.log(`Created "futures_chapter" table`);
+    } catch (error) {
+        console.error('Error Creating futures_chapter table:', error);
+        throw error;
+    }
+
+} 
+
 async function main() {
     const client = await db.connect();
 
     await createUserTable(client);
     await createFuturesOrderTable(client);
+    await createFuturesChapter(client);
 
     await client.end();
 }

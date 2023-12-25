@@ -5,8 +5,6 @@ export type User = {
   password: string;
   usdc: number;
   futures_page_last_login?: Date;
-  options_progress: Array<number>;
-  futures_progress: Array<number>;
 };
 
 
@@ -27,4 +25,12 @@ export type FuturesOrder = {
   close_price?: number;
   time: Date;
   closed_time?: Date;
+}
+
+
+export type FuturesChapter = {
+  id: string;
+  user_id: string;
+  is_done: boolean; 
+  is_quiz_done: boolean;
 }

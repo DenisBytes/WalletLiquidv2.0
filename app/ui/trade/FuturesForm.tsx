@@ -1,9 +1,10 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import clsx from "clsx";
 import { createFuturesOrder } from "@/app/lib/actions";
+import { useFormStatus } from "react-dom";
 
 export default function FuturesForm({user, price}: {user:any, price:number}) {
     const pathname = usePathname();
@@ -63,9 +64,19 @@ export default function FuturesForm({user, price}: {user:any, price:number}) {
                     </div>
                 </div>
             ) : null}
-            <div className="p-2 flex justify-center">
-                <input type="submit" value="SUBMIT" className="futures-submit" />
-            </div>
+            <SubmitButton />
         </form>
     );
+}
+
+function SubmitButton(){
+    const {pending} = useFormStatus();
+
+    return (
+        <div className="p-2 flex justify-center">
+            <button type="submit" className="futures-submit">
+                {pending ? "Submitting..." : "Submit"}
+            </button>
+        </div>
+    )
 }
