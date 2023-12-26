@@ -5,6 +5,7 @@ import { AuthError } from 'next-auth';
 import {z} from "zod";
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
+import { OptionsLearn } from './definitions';
 
 export async function authenticate(
     prevState: string | undefined,
@@ -113,3 +114,36 @@ export async function updateLastLogin(user_id: string | undefined) {
     revalidatePath(`/home/trade/futures/BTC}`);
 }
 
+export async function getOrCreateFuturesLearning(user_id: string | undefined) {
+    try{
+        const query =  sql`INSERT INTO futures_learning (user_id) VALUES (${user_id}) ON CONFLICT (user_id) DO NOTHING RETURNING *`;
+        const result = await query;
+        if (result.rows.length===0) {
+            const existingQuery = sql`SELECT * FROM futures_learning WHERE user_id = ${user_id}`;
+            const existingResult = await existingQuery;
+            return existingResult.rows[0];
+        }else{
+            return result.rows[0];
+        }
+    }catch(error){
+        console.error('Failed to get or create futures learning:', error);
+        throw new Error('Failed to get or create futures learning.');
+    }
+}
+
+export async function getOrCreateOptionsLearning(user_id: string | undefined) {
+    try{
+        const existingQuery = sql`SELECT * FROM options_learning WHERE user_id = ${user_id}`;
+        const existingResult = await existingQuery;
+
+        if (existingResult.rows.length > 0) {
+            return existingResult.rows[0];
+        } else {
+            const query = sql`INSERT INTO options_learning (user_id) VALUES (${user_id}) RETURNING *`;
+            const result = await query;
+            return result.rows[0];
+        }
+    }catch(error){
+        
+    }
+}

@@ -42,6 +42,8 @@ async function createUserTable(client){
             `;
         }),
     );
+
+    console.log(`Created ${insertedUsers.length} users`);
     }catch (error) {
         console.error('Error Creating users table:', error);
         throw error;
@@ -81,33 +83,48 @@ async function createFuturesOrderTable(client) {
     }
 }
 
-async function createFuturesChapter(client) {
-    try {
-        await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
-
+async function createOptionsLearning(client){
+    try{
+        await client.sql `CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
         const createTable = await client.sql`
-            CREATE TABLE IF NOT EXISTS futures_chapter (
+            CREATE TABLE IF NOT EXISTS options_learning (
                 id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
                 user_id UUID NOT NULL,
-                is_done BOOLEAN NOT NULL,
-                is_quit_done BOOLEAN NOT NULL
-            );
-        `;
+                is_done1 BOOLEAN DEFAULT FALSE,
+                is_done2 BOOLEAN DEFAULT FALSE,
+                is_done3 BOOLEAN DEFAULT FALSE,
+                is_done4 BOOLEAN DEFAULT FALSE,
+                is_done5 BOOLEAN DEFAULT FALSE,
+                is_done6 BOOLEAN DEFAULT FALSE,
+                is_done7 BOOLEAN DEFAULT FALSE,
+                is_done8 BOOLEAN DEFAULT FALSE,
+                is_done9 BOOLEAN DEFAULT FALSE,
+                is_done10 BOOLEAN DEFAULT FALSE,
+                is_done11 BOOLEAN DEFAULT FALSE,
+                is_done12 BOOLEAN DEFAULT FALSE,
+                is_done13 BOOLEAN DEFAULT FALSE,
+                is_done14 BOOLEAN DEFAULT FALSE,
+                is_done15 BOOLEAN DEFAULT FALSE,
+                is_done16 BOOLEAN DEFAULT FALSE,
+                is_done17 BOOLEAN DEFAULT FALSE,
+                is_done18 BOOLEAN DEFAULT FALSE,
+                is_done19 BOOLEAN DEFAULT FALSE,
+                is_done20 BOOLEAN DEFAULT FALSE
+            );`
 
-        console.log(`Created "futures_chapter" table`);
-    } catch (error) {
-        console.error('Error Creating futures_chapter table:', error);
+        console.log(`Created "options_learning" table`);
+    }catch(error){
+        console.error('Error Creating futures_orders table:', error);
         throw error;
     }
-
-} 
+}
 
 async function main() {
     const client = await db.connect();
 
     await createUserTable(client);
     await createFuturesOrderTable(client);
-    await createFuturesChapter(client);
+    await createOptionsLearning(client);
 
     await client.end();
 }
