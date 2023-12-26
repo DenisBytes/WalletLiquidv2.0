@@ -13,9 +13,19 @@ export default async function Page(){
         user = await getUser(session.user.email);
         optionsLearning = await getOrCreateOptionsLearning(user?.id);
         for (let i = 1; i <= 20; i++) {
-            const isDone = optionsLearning !== undefined ? optionsLearning[`is_done${i}`]: false;
+            const propertyName = `is_done_${getNumberName(i)}`;
+            const isDone = optionsLearning !== undefined ? optionsLearning[propertyName] : false;
             chaptersDone[`chapter${i}`] = isDone;
         }
+    }
+
+    function getNumberName(num: number): string {
+        const numberNames = [
+            'first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eighth', 'ninth', 'tenth',
+            'eleventh', 'twelfth', 'thirteenth', 'fourteenth', 'fifteenth', 'sixteenth', 'seventeenth',
+            'eighteenth', 'nineteenth', 'twentieth'
+        ];
+        return numberNames[num - 1];
     }
     function getChapterName(chapterNum: number) {
         const chapterNames = [

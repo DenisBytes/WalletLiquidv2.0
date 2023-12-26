@@ -46,24 +46,24 @@ export type FuturesLearn = {
 export type OptionsLearn = {
   id: string;
   user_id: string;
-  is_done1: boolean; 
-  is_done2: boolean;
-  is_done3: boolean;
-  is_done4: boolean;
-  is_done5: boolean;
-  is_done6: boolean;
-  is_done7: boolean;
-  is_done8: boolean;
-  is_done9: boolean;
-  is_done10: boolean;
-  is_done11: boolean;
-  is_done12: boolean;
-  is_done13: boolean;
-  is_done14: boolean;
-  is_done15: boolean;
-  is_done16: boolean;
-  is_done17: boolean;
-  is_done18: boolean;
-  is_done19: boolean;
-  is_done20: boolean;
+  is_done_first: boolean; 
+  is_done_second: boolean;
+  is_done_third: boolean;
+  is_done_fourth: boolean;
+  is_done_fifth: boolean;
+  is_done_sixth: boolean;
+  is_done_seventh: boolean;
+  is_done_eighth: boolean;
+  is_done_ninth: boolean;
+  is_done_tenth: boolean;
+  is_done_eleventh: boolean;
+  is_done_twelfth: boolean;
+  is_done_thirteenth: boolean;
+  is_done_fourteenth: boolean;
+  is_done_fifteenth: boolean;
+  is_done_sixteenth: boolean;
+  is_done_seventeenth: boolean;
+  is_done_eighteenth: boolean;
+  is_done_nineteenth: boolean;
+  is_done_twentieth: boolean
 }

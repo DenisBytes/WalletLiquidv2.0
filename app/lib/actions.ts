@@ -147,3 +147,22 @@ export async function getOrCreateOptionsLearning(user_id: string | undefined) {
         
     }
 }
+
+const optionsLearningSchema = z.object({
+    user_id: z.string(),
+    chapter_num: z.string(),
+});
+export async function updateOptionLearning(prevState: any, formData: FormData) {
+    try{
+        const {user_id, chapter_num} = optionsLearningSchema.parse({
+            user_id: formData.get('user_id'),
+            chapter_num: formData.get('chapter_num'),
+        });
+        const columnName :string = "is_done_"+chapter_num;
+        console.log("columnName", columnName);
+        await sql`UPDATE options_learning SET ${columnName} = true WHERE user_id = ${user_id}`;
+    }catch(error){
+        console.error('Failed to update options learning:', error);
+        throw new Error('Failed to update options learning.');
+    }
+}
