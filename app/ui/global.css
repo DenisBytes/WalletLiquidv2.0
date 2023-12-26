@@ -354,9 +354,24 @@ footer{
 
 .colored-div{
   border-radius: 0.25rem;
-  border: 1px solid var(--primary-color);
-  background-color: var(--components-background);
-  box-shadow: var(--primary-color) 0px 2px 4px 0px, var(--primary-color) 0px 2px 16px 0px;
+  border-style: solid;
+  border-width: 1px;
+  border-image: linear-gradient(90deg, #5494fc, #2ce694) 1;
+  background: rgb(13,23,38);
+  background: linear-gradient(90deg, rgba(13,23,38,1) 0%, rgba(0,95,55,1) 100%);
   padding: 1rem;
   margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.colored-div2{
+  border-radius: 0.25rem;
+  border-style: solid;
+  border-width: 1px;
+  border-image: linear-gradient(90deg, #8b43f3, #ec4c94) 1;
+  background: rgb(20,11,36);
+  background: linear-gradient(90deg, rgba(20,11,36,1) 0%, rgba(123,21,68,1) 100%);
+  padding: 1rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
