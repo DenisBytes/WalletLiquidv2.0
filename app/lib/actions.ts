@@ -144,21 +144,26 @@ export async function getOrCreateOptionsLearning(user_id: string | undefined) {
             return result.rows[0];
         }
     }catch(error){
-        
+        console.error('Failed to get or create options learning:', error);
+        throw new Error('Failed to get or create options learning.');
     }
 }
 
 const optionsLearningSchema = z.object({
     user_id: z.string(),
-    chapter_num: z.string(),
+    chapter: z.coerce.number()  
 });
 export async function updateOptionLearning(prevState: any, formData: FormData) {
     try{
-        const {user_id, chapter_num} = optionsLearningSchema.parse({
+        const {user_id, chapter} = optionsLearningSchema.parse({
             user_id: formData.get('user_id'),
-            chapter_num: formData.get('chapter_num'),
+            chapter: formData.get('chapter'),
         });
-        await sql`UPDATE options_learning SET ${chapter_num} = true WHERE user_id = ${user_id}`;
+        const wow = sql`UPDATE options_learning SET chapter1 = TRUE WHERE user_id = ${user_id}`;
+        const wowResult = await wow;
+        console.log('Updated options learning');
+        revalidatePath("/home/learn");
+        redirect(`/home/learn/options/chapter${chapter+1}`);
     }catch(error){
         console.error('Failed to update options learning:', error);
         throw new Error('Failed to update options learning.');
