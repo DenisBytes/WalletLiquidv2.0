@@ -158,9 +158,7 @@ export async function updateOptionLearning(prevState: any, formData: FormData) {
             user_id: formData.get('user_id'),
             chapter_num: formData.get('chapter_num'),
         });
-        const columnName :string = "is_done_"+chapter_num;
-        console.log("columnName", columnName);
-        await sql`UPDATE options_learning SET ${columnName} = true WHERE user_id = ${user_id}`;
+        await sql`UPDATE options_learning SET ${chapter_num} = true WHERE user_id = ${user_id}`;
     }catch(error){
         console.error('Failed to update options learning:', error);
         throw new Error('Failed to update options learning.');

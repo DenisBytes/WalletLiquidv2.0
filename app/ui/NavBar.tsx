@@ -6,7 +6,7 @@ import { ArrowRightOnRectangleIcon } from '@heroicons/react/20/solid';
 
 export default async function NavBar () {
     return (
-        <nav className="p-4 md:flex justify-between items-center px-9 bg-transparent hidden">
+        <nav className="p-4 md:flex justify-between items-center px-9 bg-transaparent bg-opacity-75 backdrop-filter backdrop-blur-lg fixed w-full z-10 hidden" style={{position: "sticky", top: 0}}>
             {/* Left Section */}
             <div className="flex items-center space-x-2">
                     

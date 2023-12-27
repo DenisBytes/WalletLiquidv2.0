@@ -11,8 +11,14 @@
   --home-links-gradient: rgba(223,154,222,1);
   --components-background: white;
   --text-color-buttons: white;
+  --color-div-background-first: rgba(13,23,38,1);
+  --color-div-background-second: rgba(0,95,55,1);
+  --color-div-background-first: #e5eefe;
+  --color-div-background-second: #dcfcec;
+  --color-div2-background-first: #efe2fe;
+  --color-div2-background-second: #fce4f0;
+  --disabled-color: #cfc2ce;
 }
-
 
 [class="dark"]:root {
   --background-color: #121212;
@@ -23,6 +29,11 @@
   --home-links-gradient: #fcdcfc;
   --components-background: #242425;
   --text-color-buttons: #121212;
+  --color-div-background-first: rgba(13,23,38,1);
+  --color-div-background-second: rgba(0,95,55,1);
+  --color-div2-background-first: rgba(20,11,36,1);
+  --color-div2-background-second: rgba(123,21,68,1);
+  --disabled-color: #9f9f9f;
 }
 
 .nav-links{
@@ -358,7 +369,7 @@ footer{
   border-width: 1px;
   border-image: linear-gradient(90deg, #5494fc, #2ce694) 1;
   background: rgb(13,23,38);
-  background: linear-gradient(90deg, rgba(13,23,38,1) 0%, rgba(0,95,55,1) 100%);
+  background: linear-gradient(90deg, var(--color-div-background-first) 0%, var(--color-div-background-second) 100%);
   padding: 1rem;
   margin-top: 2rem;
   margin-bottom: 2rem;
@@ -370,7 +381,7 @@ footer{
   border-width: 1px;
   border-image: linear-gradient(90deg, #8b43f3, #ec4c94) 1;
   background: rgb(20,11,36);
-  background: linear-gradient(90deg, rgba(20,11,36,1) 0%, rgba(123,21,68,1) 100%);
+  background: linear-gradient(90deg, var(--color-div2-background-first) 0%, var(--color-div2-background-second) 100%);
   padding: 1rem;
   margin-top: 2rem;
   margin-bottom: 2rem;
@@ -388,7 +399,18 @@ footer{
   color: var(--text-color-buttons);
 }
 .chapter-submit:disabled{
-  background-color: var(--nav-links);
+  background-color: var(--disabled-color);
   color: gray;
   cursor: not-allowed;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-3px); }
+  100% { transform: translateX(0); }
+}
+.shake {
+  animation: shake 0.5s ease-in-out;
 }

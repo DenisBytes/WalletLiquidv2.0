@@ -79,11 +79,11 @@ export default async function Page(){
                             {Array.from({ length: 20 }, (_, i) => i + 1).map((chapterNum) => (
                                 <Link href={`/home/learn/options/chapter${chapterNum}`} key={`chapter${chapterNum}`} className="border border-y-0 border-x-0 p-4 border-b-4 border-b-[var(--primary-color)]">
                                     {chaptersDone[`chapter${chapterNum}`] ? (
-                                        <span className="tick">✔️</span>
+                                        <span className="tick">✅</span>
                                     ) : (
                                         <span className="cross">❌</span>
                                     )}
-                                    <span>{`CHAPTER ${chapterNum}: ${
+                                    <span>{`${chapterNum}. ${
                                         getChapterName(chapterNum)
                                     }`}</span>
                                 </Link>
