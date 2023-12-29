@@ -159,11 +159,80 @@ export async function updateOptionLearning(prevState: any, formData: FormData) {
             user_id: formData.get('user_id'),
             chapter: formData.get('chapter'),
         });
-        const wow = sql`UPDATE options_learning SET chapter1 = TRUE WHERE user_id = ${user_id}`;
-        const wowResult = await wow;
-        console.log('Updated options learning');
+        switch(chapter){
+            case 1:
+                await sql`UPDATE options_learning SET chapter1 = TRUE WHERE user_id = ${user_id}`;
+                break;
+            case 2:
+                await sql`UPDATE options_learning SET chapter2 = TRUE WHERE user_id = ${user_id}`;
+                break;
+            case 3:
+                await sql`UPDATE options_learning SET chapter3 = TRUE WHERE user_id = ${user_id}`;
+                break;
+            case 4:
+                await sql`UPDATE options_learning SET chapter4 = TRUE WHERE user_id = ${user_id}`;
+                break;
+            case 5:
+                await sql`UPDATE options_learning SET chapter5 = TRUE WHERE user_id = ${user_id}`;
+                break;
+            case 6:
+                await sql`UPDATE options_learning SET chapter6 = TRUE WHERE user_id = ${user_id}`;
+                break;
+            case 7:
+                await sql`UPDATE options_learning SET chapter7 = TRUE WHERE user_id = ${user_id}`;
+                break;
+            case 8:
+                await sql`UPDATE options_learning SET chapter8 = TRUE WHERE user_id = ${user_id}`;
+                break;
+            case 9:
+                await sql`UPDATE options_learning SET chapter9 = TRUE WHERE user_id = ${user_id}`;
+                break;
+            case 10:
+                await sql`UPDATE options_learning SET chapter10 = TRUE WHERE user_id = ${user_id}`;
+                break;
+            case 11:
+                await sql`UPDATE options_learning SET chapter11 = TRUE WHERE user_id = ${user_id}`;
+                break;
+            case 12:
+                await sql`UPDATE options_learning SET chapter12 = TRUE WHERE user_id = ${user_id}`;
+                break;
+            case 13:
+                await sql`UPDATE options_learning SET chapter13 = TRUE WHERE user_id = ${user_id}`;
+                break;
+            case 14:
+                await sql`UPDATE options_learning SET chapter14 = TRUE WHERE user_id = ${user_id}`;
+                break;
+            case 15:
+                await sql`UPDATE options_learning SET chapter15 = TRUE WHERE user_id = ${user_id}`;
+                break;
+            case 16:
+                await sql`UPDATE options_learning SET chapter16 = TRUE WHERE user_id = ${user_id}`;
+                break;
+            case 17:
+                await sql`UPDATE options_learning SET chapter17 = TRUE WHERE user_id = ${user_id}`;
+                break;
+            case 18:
+                await sql`UPDATE options_learning SET chapter18 = TRUE WHERE user_id = ${user_id}`;
+                break;
+            case 19:
+                await sql`UPDATE options_learning SET chapter19 = TRUE WHERE user_id = ${user_id}`;
+                break;
+            case 20:
+                await sql`UPDATE options_learning SET chapter20 = TRUE WHERE user_id = ${user_id}`;
+                break;
+            default:
+                break;
+        }
         revalidatePath("/home/learn");
-        redirect(`/home/learn/options/chapter${chapter+1}`);
+        console.log("Updated options learning");
+        /*
+        if (chapter !== 20){
+            redirect(`/home/learn/options/chapter${chapter+1}`);
+        }
+        else {
+            redirect(`/home/learn`);
+        }
+        */
     }catch(error){
         console.error('Failed to update options learning:', error);
         throw new Error('Failed to update options learning.');

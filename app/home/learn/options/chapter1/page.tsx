@@ -1,4 +1,4 @@
-import Chapter1Quiz from "@/app/ui/learn/options/Chapter1Quiz";
+import ChapterQuiz from "@/app/ui/learn/options/ChapterQuiz";
 import { auth } from "@/auth";
 import type { User } from "@/app/lib/definitions";
 import { getUser } from "@/app/lib/data";
@@ -15,10 +15,10 @@ export default async function Page() {
                 <h1 style={{ fontSize: "35px"}}>WHAT ARE OPTIONS ?</h1>
                 <div className="colored-div">
                     <h2 style={{fontSize: "30px"}}>💡 In this article, you will learn about:</h2>
-                    <ul className="ml-6">
-                        <li>- Options</li>
-                        <li>- Call and Put options</li>
-                        <li>- What DeFi options are used for</li>
+                    <ul className="ml-6 sub-title">
+                        <li> Options</li>
+                        <li> Call and Put options</li>
+                        <li> What DeFi options are used for</li>
                     </ul>
                 </div>
                 <h2 className="my-4" style={{fontSize: "30px"}}>Understanding Options</h2>
@@ -75,7 +75,7 @@ export default async function Page() {
                 <p className="text-[#909090]">Options are the most versatile and flexible tool for investing.<br/><br/>
                     By understanding the fundamentals of options thoroughly, traders can gain a powerful weapon for their portfolio. <br/><br/>
                 </p>
-                <Chapter1Quiz user = {user}/>
+                <ChapterQuiz user = {user} question="What are the two main types of basic options?" answer1="Long calls and short calls" answer2="Calls and puts" answer3="Straddles and spreads" correctAnswer="second" chapterNum={1} />
             </div>
         </div>
     )
