@@ -11,7 +11,7 @@ export default async function Page() {
     }
     return (
         <div className="flex justify-center w-full my-8" style={{fontFamily:"sans-serif", fontSize: "20px"}}>
-            <div className="flex flex-col justify-center rounded-xl  bg-[var(--components-background)] py-10 px-20 " style={{width: "50%",boxShadow:"var(--primary-color) 0px 2px 4px 0px, var(--primary-color) 0px 2px 16px 0px"}}>
+            <div className="flex flex-col justify-center rounded-xl  bg-[var(--components-background)] py-10 px-20 " style={{width: "65%",boxShadow:"var(--primary-color) 0px 2px 4px 0px, var(--primary-color) 0px 2px 16px 0px"}}>
                 <h1 style={{ fontSize: "35px"}}>WHAT ARE OPTIONS ?</h1>
                 <div className="colored-div">
                     <h2 style={{fontSize: "30px"}}>💡 In this article, you will learn about:</h2>
@@ -75,7 +75,13 @@ export default async function Page() {
                 <p className="text-[#909090]">Options are the most versatile and flexible tool for investing.<br/><br/>
                     By understanding the fundamentals of options thoroughly, traders can gain a powerful weapon for their portfolio. <br/><br/>
                 </p>
-                <ChapterQuiz user = {user} question="What are the two main types of basic options?" answer1="Long calls and short calls" answer2="Calls and puts" answer3="Straddles and spreads" correctAnswer="second" chapterNum={1} />
+                <ChapterQuiz user = {user} 
+                    question="What are the two main types of basic options?" 
+                    answer1="Long calls and short calls" 
+                    answer2="Calls and puts" 
+                    answer3="Straddles and spreads" 
+                    correctAnswer="second" 
+                    chapterNum={1} />
             </div>
         </div>
     )

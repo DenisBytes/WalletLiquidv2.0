@@ -11,7 +11,7 @@ export default async function Page() {
     }
     return (
         <div className="flex justify-center w-full my-8" style={{fontFamily:"sans-serif", fontSize: "20px"}}>
-            <div className="flex flex-col justify-center rounded bg-[var(--components-background)] py-10 px-20 " style={{width: "50%",boxShadow:"var(--primary-color) 0px 2px 4px 0px, var(--primary-color) 0px 2px 16px 0px;"}}>
+            <div className="flex flex-col justify-center rounded bg-[var(--components-background)] py-10 px-20 " style={{width: "65%",boxShadow:"var(--primary-color) 0px 2px 4px 0px, var(--primary-color) 0px 2px 16px 0px;"}}>
                 <h1 style={{ fontSize: "35px"}}>Implied and Realized Volatility</h1>
                 <div className="colored-div">
                     <h2 style={{fontSize: "30px"}}>💡 In this article, you will learn about:</h2>
@@ -78,7 +78,13 @@ export default async function Page() {
                 <p className="text-[#909090]">
                     In summary, volatility is a crucial concept in the DeFi market, and understanding implied and realized volatility can help traders and investors make more informed decisions.
                 </p>
-                <ChapterQuiz user={user} question="What is the difference between implied and realized volatility?" answer1="Implied volatility doesn't matter, since it's not based on actual data." answer2="Implied volatility is based on what the markets expect, whereas realized volatility is based on historical data." answer3="Realized volatility is real, while implied volatility is merely an analyst's prediction." correctAnswer="second" chapterNum={11} />
+                <ChapterQuiz user={user} 
+                    question="What is the difference between implied and realized volatility?" 
+                    answer1="Implied volatility doesn't matter, since it's not based on actual data." 
+                    answer2="Implied volatility is based on what the markets expect, whereas realized volatility is based on historical data." 
+                    answer3="Realized volatility is real, while implied volatility is merely an analyst's prediction." 
+                    correctAnswer="second" 
+                    chapterNum={11} />
             </div>
         </div>
     )

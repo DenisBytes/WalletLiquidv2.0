@@ -11,7 +11,7 @@ export default async function Page() {
     }
     return (
         <div className="flex justify-center w-full my-8" style={{fontFamily:"sans-serif", fontSize: "20px"}}>
-            <div className="flex flex-col justify-center rounded bg-[var(--components-background)] py-10 px-20 " style={{width: "50%",boxShadow:"var(--primary-color) 0px 2px 4px 0px, var(--primary-color) 0px 2px 16px 0px;"}}>
+            <div className="flex flex-col justify-center rounded bg-[var(--components-background)] py-10 px-20 " style={{width: "65%",boxShadow:"var(--primary-color) 0px 2px 4px 0px, var(--primary-color) 0px 2px 16px 0px;"}}>
                 <h1 style={{ fontSize: "35px"}}>European Options vs American Options</h1>
                 <div className="colored-div">
                     <h2 style={{fontSize: "30px"}}>💡 In this article, you will learn about:</h2>
@@ -68,7 +68,13 @@ export default async function Page() {
 
                     Additionally, it&#39;s important to know what type of options you are buying or selling. Different DeFi options platforms might use different types of options. <br/><br/>
                 </p>
-                <ChapterQuiz user={user} question="Which description matches that of an European option?" answer1="Can be exercised for an added cost at any time" answer2="Can only be exercised at the expiration date" answer3="Can be exercised before the expiration date" correctAnswer="second" chapterNum={4} />
+                <ChapterQuiz user={user} 
+                    question="Which description matches that of an European option?" 
+                    answer1="Can be exercised for an added cost at any time" 
+                    answer2="Can only be exercised at the expiration date" 
+                    answer3="Can be exercised before the expiration date" 
+                    correctAnswer="second" 
+                    chapterNum={4} />
             </div>
         </div>
     )

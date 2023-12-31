@@ -11,7 +11,7 @@ export default async function Page() {
     }
     return (
         <div className="flex justify-center w-full my-8" style={{fontFamily:"sans-serif", fontSize: "20px"}}>
-            <div className="flex flex-col justify-center rounded bg-[var(--components-background)] py-10 px-20 " style={{width: "50%",boxShadow:"var(--primary-color) 0px 2px 4px 0px, var(--primary-color) 0px 2px 16px 0px;"}}>
+            <div className="flex flex-col justify-center rounded bg-[var(--components-background)] py-10 px-20 " style={{width: "65%",boxShadow:"var(--primary-color) 0px 2px 4px 0px, var(--primary-color) 0px 2px 16px 0px;"}}>
                 <h1 style={{ fontSize: "35px"}}>Understanding Moneyness</h1>
                 <div className="colored-div">
                     <h2 style={{fontSize: "30px"}}>💡 In this article, you will learn about:</h2>
@@ -78,7 +78,13 @@ export default async function Page() {
 
                     At-the-money options have no intrinsic value but may have extrinsic value depending on how much time is left before expiration. By understanding moneyness, traders can make informed decisions about which options to buy or sell.
                 </p>
-                <ChapterQuiz user={user} question="Can an in-the-money option always be exercised for a profit?" answer1="No. A trader must first consider the fees and premiums paid to determine whether or not an option is profitable." answer2="Yes, as long as the underlying asset is above the strike price." answer3="Obviously, an ITM option is always profitable." correctAnswer="first" chapterNum={12} />
+                <ChapterQuiz user={user} 
+                    question="Can an in-the-money option always be exercised for a profit?" 
+                    answer1="No. A trader must first consider the fees and premiums paid to determine whether or not an option is profitable." 
+                    answer2="Yes, as long as the underlying asset is above the strike price." 
+                    answer3="Obviously, an ITM option is always profitable." 
+                    correctAnswer="first" 
+                    chapterNum={12} />
             </div>
         </div>
     )

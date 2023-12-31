@@ -11,14 +11,14 @@ export default async function Page() {
     }
     return (
         <div className="flex justify-center w-full my-8" style={{fontFamily:"sans-serif", fontSize: "20px"}}>
-            <div className="flex flex-col justify-center rounded bg-[var(--components-background)] py-10 px-20 " style={{width: "50%",boxShadow:"var(--primary-color) 0px 2px 4px 0px, var(--primary-color) 0px 2px 16px 0px;"}}>
+            <div className="flex flex-col justify-center rounded bg-[var(--components-background)] py-10 px-20 " style={{width: "65%",boxShadow:"var(--primary-color) 0px 2px 4px 0px, var(--primary-color) 0px 2px 16px 0px;"}}>
                 <h1 style={{ fontSize: "35px"}}>Introducing The Greeks</h1>
                 <div className="colored-div">
                     <h2 style={{fontSize: "30px"}}>💡 In this article, you will learn about:</h2>
                     <ul className="ml-6 sub-title">
                         <li> What &quot;The Greeks&quot; are</li>
                         <li> Delta, Gamma, Theta, Vega, and Rho</li>
-                        <li> KHow Options Greeks are used</li>
+                        <li> How Options Greeks are used</li>
                     </ul>
                 </div>
                 <h2 className="my-4" style={{fontSize: "30px"}}>What Are &quot;The Greeks&quot;?</h2>
@@ -97,7 +97,13 @@ export default async function Page() {
                     <p><strong>Rho</strong> measures the sensitivity of an option&apos;s price to changes in interest rates.</p>
                 </div>
 
-                <ChapterQuiz user={user} question="What does Theta measure?" answer1="Theta measures how much an option's price will change according to a $1 change in the underlying asset price." answer2="Theta represents the sensitivity of Delta relative to the underlying asset price." answer3="Theta represents the sensitivity of Delta relative to the underlying asset price." correctAnswer="third" chapterNum={14} />
+                <ChapterQuiz user={user} 
+                    question="What does Theta measure?" 
+                    answer1="Theta measures how much an option's price will change according to a $1 change in the underlying asset price." 
+                    answer2="Theta represents the sensitivity of Delta relative to the underlying asset price." 
+                    answer3="Theta represents the sensitivity of Delta relative to the underlying asset price." 
+                    correctAnswer="third" 
+                    chapterNum={14} />
             </div>
         </div>
     )

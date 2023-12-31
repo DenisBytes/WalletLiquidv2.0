@@ -3,6 +3,8 @@ import { getUser } from "@/app/lib/data"
 import type { User, OptionsLearn } from "@/app/lib/definitions"
 import { auth } from "@/auth";
 import Link from "next/link";
+import Image from "next/image";
+
 export default async function Page(){
     let user: User | undefined;
     const session = await auth();
@@ -18,71 +20,36 @@ export default async function Page(){
             chaptersDone[`chapter${i}`] = isDone;
         }
     }
-    function getChapterName(chapterNum: number) {
-        const chapterNames = [
-            "WHAT ARE OPTIONS?",
-            "UNDERSTANDING DERIVATIVES",
-            "UNDERSTANDING OPTIONS: KEY DEFINITIONS AND COMPONENTS",
-            "EUROPEAN OPTIONS VS AMERICAN OPTIONS",
-            "EXAM: INTRODUCTION TO DEFI OPTIONS",
-            "USE CASES FOR DEFI OPTIONS",
-            "CALL OPTIONS BASICS",
-            "PUT OPTIONS BASICS",
-            "DEFI OPTIONS IN PRACTICE",
-            "EXAM: DEFI OPTIONS BASICS",
-            "IMPLIED AND REALIZED VOLATILITY",
-            "UNDERSTANDING MONEYNESS",
-            "INTRINSIC AND EXTRINSIC VALUE",
-            "INTRODUCING THE GREEKS",
-            "EXAM: INTERMEDIATE DEFI OPTIONS CONCEPTS",
-            "UNDERSTANDING SKEW",
-            "UNDERSTANDING THE GREEKS",
-            "CALL-PUT PARITY",
-            "OPTIONS ARBITRAGE",
-            "EXAM: ADVANCED DEFI OPTIONS CONCEPTS"
-        ];        
-    
-        return chapterNames[chapterNum - 1] || `Chapter ${chapterNum}`;
-    }
-    
 
     return(
-        <div className="flex justify-center" style={{height: "80vh"}}>
-            <div className="flex justify-between w-8/12 mt-4">
-                <div id="futures" className="h-full w-1/2">
-
-                </div>
-                <div id="options" className="h-full w-1/2">
-                    <div className="card">
-                        <div className="w-full flex justify-center my-6">
-                            <h1 style={{fontSize: "30px"}}>OPTIONS COURSE</h1>
-                        </div>
-                        <div className="progress">
-                            <div className="circle">
-                                {/* Calculate percentage of completed chapters */}
-                                {optionsLearning && (
-                                    <span>{`${Object.values(chaptersDone).filter(done => done).length * 5}%`}</span>
-                                )}
+        <div className="w-full flex justify-center mt-4" style={{height: "80vh"}}>
+            <div className="w-3/4">
+                <div className="w-full flex justify-around mt-4">
+                    <div id="futures" className="h-full w-1/3">
+                        <div className="card">
+                            <Image src="/cyberpunk1.jpg" className="rounded-t-lg" alt="futures" width={700} height={428} />
+                            <h1 className="px-4 pt-4" style={{fontSize: "30px"}}>FUTURES 101</h1>
+                            <div className="p-4">
+                                <p className="text-[#909090]" style={{fontFamily:"sans-serif"}}>Futures trading simplifies crypto investment, offering contracts to buy or sell assets at set prices on specified dates, enabling speculation, hedging, and leveraging opportunities in crypto markets.</p>
+                            </div>
+                            <div className="w-full flex justify-center">
+                                <Link href="/home/learn/futures/chapter1"className="course-button">BEGIN THE COURSE</Link>
                             </div>
                         </div>
-                        <div className="chapters">
-                            {/* Display chapter names and corresponding tick or cross */}
-                            {Array.from({ length: 20 }, (_, i) => i + 1).map((chapterNum) => (
-                                <Link href={`/home/learn/options/chapter${chapterNum}`} key={`chapter${chapterNum}`} className="border border-y-0 border-x-0 p-4 border-b-4 border-b-[var(--primary-color)]">
-                                    {chaptersDone[`chapter${chapterNum}`] ? (
-                                        <span className="tick">✅</span>
-                                    ) : (
-                                        <span className="cross">❌</span>
-                                    )}
-                                    <span>{`${chapterNum}. ${
-                                        getChapterName(chapterNum)
-                                    }`}</span>
-                                </Link>
-                            ))}
+                    </div>
+                    <div id="options" className="h-full w-1/3">
+                        <div className="card">
+                            <Image src="/cyberpunk2.jpg" className="rounded-t-lg" alt="options" width={700} height={428} />
+                            <h1 className="px-4 pt-4" style={{fontSize: "30px"}}>OPTIONS 101</h1>
+                            <div className="p-4">
+                                <p className="text-[#909090]" style={{fontFamily:"sans-serif"}}>Discover the basics of crypto options trading: Learn to hedge risk, speculate on price movements, and leverage flexibility in cryptocurrency markets through derivative contracts known as crypto options.</p>
+                            </div>
+                            <div className="w-full flex justify-center">
+                                <Link href="/home/learn/options/chapter1" className="course-button">BEGIN THE COURSE</Link>
+                            </div>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     )

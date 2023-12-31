@@ -11,7 +11,7 @@ export default async function Page() {
     }
     return (
         <div className="flex justify-center w-full my-8" style={{fontFamily:"sans-serif", fontSize: "20px"}}>
-            <div className="flex flex-col justify-center rounded bg-[var(--components-background)] py-10 px-20 " style={{width: "50%",boxShadow:"var(--primary-color) 0px 2px 4px 0px, var(--primary-color) 0px 2px 16px 0px;"}}>
+            <div className="flex flex-col justify-center rounded bg-[var(--components-background)] py-10 px-20 " style={{width: "65%",boxShadow:"var(--primary-color) 0px 2px 4px 0px, var(--primary-color) 0px 2px 16px 0px;"}}>
                 <h1 style={{ fontSize: "35px"}}>Use Cases for DeFi Options</h1>
                 <div className="colored-div">
                     <h2 style={{fontSize: "30px"}}>💡 In this article, you will learn about:</h2>
@@ -112,7 +112,13 @@ export default async function Page() {
                 <div className="colored-div" style={{fontSize:"18px"}}>
                     <p><strong>Earning yield</strong> is a way to profit from options without directly trading them. This can be done by depositing assets into <strong>liquidity pools</strong> or automated <strong>strategy vaults</strong>.</p>
                 </div>
-                <ChapterQuiz user={user} question="What are the use cases for DeFi options?" answer1="Betting on price action and leveraging short positions." answer2="Hedging, speculation, directional exposure, leverage and yield-farming." answer3="Earning yield from liquidity pools, strategy vaults, and copy-trading." correctAnswer="second" chapterNum={6} />
+                <ChapterQuiz user={user} 
+                    question="What are the use cases for DeFi options?" 
+                    answer1="Betting on price action and leveraging short positions." 
+                    answer2="Hedging, speculation, directional exposure, leverage and yield-farming." 
+                    answer3="Earning yield from liquidity pools, strategy vaults, and copy-trading." 
+                    correctAnswer="second" 
+                    chapterNum={6} />
             </div>
         </div>
     )

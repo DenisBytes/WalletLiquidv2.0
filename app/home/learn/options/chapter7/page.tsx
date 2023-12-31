@@ -11,7 +11,7 @@ export default async function Page() {
     }
     return (
         <div className="flex justify-center w-full my-8" style={{fontFamily:"sans-serif", fontSize: "20px"}}>
-            <div className="flex flex-col justify-center rounded bg-[var(--components-background)] py-10 px-20 " style={{width: "50%",boxShadow:"var(--primary-color) 0px 2px 4px 0px, var(--primary-color) 0px 2px 16px 0px;"}}>
+            <div className="flex flex-col justify-center rounded bg-[var(--components-background)] py-10 px-20 " style={{width: "65%",boxShadow:"var(--primary-color) 0px 2px 4px 0px, var(--primary-color) 0px 2px 16px 0px;"}}>
                 <h1 style={{ fontSize: "35px"}}>Call Options Basics</h1>
                 <div className="colored-div">
                     <h2 style={{fontSize: "30px"}}>💡 In this article, you will learn about:</h2>
@@ -100,7 +100,13 @@ export default async function Page() {
                     
                     Call options can also be used for hedging and implementing complex strategies. However, it&apos;s important to remember that like other financial instruments, call options are complex and involve significant risks, so it&apos;s crucial to fully understand their properties before using them as part of an investment strategy. <br /><br/>
                 </p>
-                <ChapterQuiz user={user} question="When a trader enters a &apos;long call&apos; position to speculate on price movements, where do they expect the price to go?" answer1="Down" answer2="Up" answer3="Sideways" correctAnswer="second" chapterNum={7} />
+                <ChapterQuiz user={user} 
+                    question="When a trader enters a &apos;long call&apos; position to speculate on price movements, where do they expect the price to go?" 
+                    answer1="Down" 
+                    answer2="Up" 
+                    answer3="Sideways" 
+                    correctAnswer="second" 
+                    chapterNum={7} />
             </div>
         </div>
     )

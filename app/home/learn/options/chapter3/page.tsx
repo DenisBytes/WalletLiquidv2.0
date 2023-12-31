@@ -11,7 +11,7 @@ export default async function Page() {
     }
     return (
         <div className="flex justify-center w-full my-8" style={{fontFamily:"sans-serif", fontSize: "20px"}}>
-            <div className="flex flex-col justify-center rounded bg-[var(--components-background)] py-10 px-20 " style={{width: "50%",boxShadow:"var(--primary-color) 0px 2px 4px 0px, var(--primary-color) 0px 2px 16px 0px;"}}>
+            <div className="flex flex-col justify-center rounded bg-[var(--components-background)] py-10 px-20 " style={{width: "65%",boxShadow:"var(--primary-color) 0px 2px 4px 0px, var(--primary-color) 0px 2px 16px 0px;"}}>
                 <h1 style={{ fontSize: "35px"}}>Understanding Options: Key Definitions and Components</h1>
                 <div className="colored-div">
                     <h2 style={{fontSize: "30px"}}>💡 In this article, you will learn about:</h2>
@@ -89,7 +89,13 @@ export default async function Page() {
 
                 In other words, the likelier an option is to make a profit for its buyer, the more expensive it is. <br/><br/>
                 </p>
-                <ChapterQuiz user={user} question="What is the Strike Price?" answer1="The price of an option." answer2="Can be exercised before the expiration date" answer3="The price at which an option gives you the right to buy or sell the underlying asset." correctAnswer="third" chapterNum={3} />
+                <ChapterQuiz user={user} 
+                    question="What is the Strike Price?" 
+                    answer1="The price of an option." 
+                    answer2="Can be exercised before the expiration date" 
+                    answer3="The price at which an option gives you the right to buy or sell the underlying asset." 
+                    correctAnswer="third" 
+                    chapterNum={3} />
             </div>
         </div>
     )

@@ -11,7 +11,7 @@ export default async function Page() {
     }
     return (
         <div className="flex justify-center w-full my-8" style={{fontFamily:"sans-serif", fontSize: "20px"}}>
-            <div className="flex flex-col justify-center rounded bg-[var(--components-background)] py-10 px-20 " style={{width: "50%",boxShadow:"var(--primary-color) 0px 2px 4px 0px, var(--primary-color) 0px 2px 16px 0px;"}}>
+            <div className="flex flex-col justify-center rounded bg-[var(--components-background)] py-10 px-20 " style={{width: "65%",boxShadow:"var(--primary-color) 0px 2px 4px 0px, var(--primary-color) 0px 2px 16px 0px;"}}>
                 <h1 style={{ fontSize: "35px"}}>Understanding Derivatives</h1>
                 <div className="colored-div">
                     <h2 style={{fontSize: "30px"}}>💡 In this article, you will learn about:</h2>
@@ -84,7 +84,13 @@ export default async function Page() {
                 <p className="text-[#909090]">Financial derivatives are an alternative and powerful investment tool to more sophisticated traders.<br/><br/>
                     Derivatives can enable investors and traders to manage risk, protect their investments, and potentially profit from market movements without directly owning an asset. <br/><br/>
                 </p>
-                <ChapterQuiz user={user} question="Where does a derivative in DeFi generally get its value from?" answer1="A real-life asset like oil or gold" answer2="An asset or group of assets such as ETH or a liquidity pool" answer3="An option's strike price" correctAnswer="second" chapterNum={2} />
+                <ChapterQuiz user={user} 
+                    question="Where does a derivative in DeFi generally get its value from?" 
+                    answer1="A real-life asset like oil or gold" 
+                    answer2="An asset or group of assets such as ETH or a liquidity pool" 
+                    answer3="An option's strike price" 
+                    correctAnswer="second" 
+                    chapterNum={2} />
             </div>
         </div>
     )

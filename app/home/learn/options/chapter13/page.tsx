@@ -11,7 +11,7 @@ export default async function Page() {
     }
     return (
         <div className="flex justify-center w-full my-8" style={{fontFamily:"sans-serif", fontSize: "20px"}}>
-            <div className="flex flex-col justify-center rounded bg-[var(--components-background)] py-10 px-20 " style={{width: "50%",boxShadow:"var(--primary-color) 0px 2px 4px 0px, var(--primary-color) 0px 2px 16px 0px;"}}>
+            <div className="flex flex-col justify-center rounded bg-[var(--components-background)] py-10 px-20 " style={{width: "65%",boxShadow:"var(--primary-color) 0px 2px 4px 0px, var(--primary-color) 0px 2px 16px 0px;"}}>
                 <h1 style={{ fontSize: "35px"}}>Intrinsic and Extrinsic Value</h1>
                 <div className="colored-div">
                     <h2 style={{fontSize: "30px"}}>💡 In this article, you will learn about:</h2>
@@ -66,7 +66,13 @@ export default async function Page() {
 
                     Several factors, such as the time remaining until expiration, implied volatility, and interest rates, can affect an option&apos;s extrinsic value. When evaluating the value of DeFi options, consider both intrinsic and extrinsic value, as well as market conditions and personal goals. <br /><br />
                 </p>
-                <ChapterQuiz user={user} question="What is the extrinsic value of an option?" answer1="The time value derived from an options potential of expiring in-the-money before expiry." answer2="The inherent value of an option." answer3="The profit made from exercising the option." correctAnswer="first" chapterNum={13} />
+                <ChapterQuiz user={user} 
+                    question="What is the extrinsic value of an option?" 
+                    answer1="The time value derived from an options potential of expiring in-the-money before expiry." 
+                    answer2="The inherent value of an option." 
+                    answer3="The profit made from exercising the option." 
+                    correctAnswer="first" 
+                    chapterNum={13} />
             </div>
         </div>
     )

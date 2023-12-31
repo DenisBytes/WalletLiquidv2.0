@@ -11,7 +11,7 @@ export default async function Page() {
     }
     return (
         <div className="flex justify-center w-full my-8" style={{fontFamily:"sans-serif", fontSize: "20px"}}>
-            <div className="flex flex-col justify-center rounded bg-[var(--components-background)] py-10 px-20 " style={{width: "50%",boxShadow:"var(--primary-color) 0px 2px 4px 0px, var(--primary-color) 0px 2px 16px 0px;"}}>
+            <div className="flex flex-col justify-center rounded bg-[var(--components-background)] py-10 px-20 " style={{width: "65%",boxShadow:"var(--primary-color) 0px 2px 4px 0px, var(--primary-color) 0px 2px 16px 0px;"}}>
                 <h1 style={{ fontSize: "35px"}}>Put Options Basics</h1>
                 <div className="colored-div">
                     <h2 style={{fontSize: "30px"}}>💡 In this article, you will learn about:</h2>
@@ -85,7 +85,13 @@ export default async function Page() {
 
                     Put options can also be used for hedging and implementing complex strategies. However, its important to remember that like other financial instruments, put options are complex and involve significant risks, so it&apos;s crucial to fully understand their properties before using them as part of an investment strategy. <br /><br />
                 </p>
-                <ChapterQuiz user={user} question="When does a trader generally decide to enter a long put position?" answer1="Only when they want to speculate on price movements." answer2="When they expect prices to stagnate over the near future." answer3="When they either want insurance for their current holdings, or to speculate on prices falling." correctAnswer="third" chapterNum={8} />
+                <ChapterQuiz user={user} 
+                    question="When does a trader generally decide to enter a long put position?" 
+                    answer1="Only when they want to speculate on price movements." 
+                    answer2="When they expect prices to stagnate over the near future." 
+                    answer3="When they either want insurance for their current holdings, or to speculate on prices falling." 
+                    correctAnswer="third" 
+                    chapterNum={8} />
             </div>
         </div>
     )

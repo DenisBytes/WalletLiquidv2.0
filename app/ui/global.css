@@ -320,8 +320,8 @@ footer{
 .card {
   border: 1px solid var(--primary-color);
   box-shadow: 0 0 0 2px var(--primary-color);
-  padding: 20px;
-  border-radius: 8px;
+  border-radius: 0.5rem;
+  background-color: var(--components-background);
 }
 
 .progress {
@@ -343,17 +343,6 @@ footer{
   box-shadow: var(--primary-color) 0px 2px 4px 0px, var(--primary-color) 0px 2px 16px 0px;
 }
 
-.chapters {
-  display: flex;
-  flex-direction: column;
-}
-
-.chapters > div {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 8px;
-}
 
 .tick {
   color: green;
@@ -417,4 +406,17 @@ footer{
 
 .sub-title{
   list-style-type: square;
+}
+
+.course-button{
+  padding: 1rem 1.5rem;
+  border: 1px solid var(--primary-color);
+  border-radius: 0.5rem;
+  margin: 1rem;
+}
+
+.course-button:hover{
+  background-color: var(--primary-color);
+  box-shadow: 0 0 0 2px var(--nav-links);
+  color: var(--text-color-buttons);
 }
