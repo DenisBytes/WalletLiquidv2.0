@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  width: 10px;
+  background: #2ce694;
+}
+
 :root {
   --background-color: 214, 219, 220;
   --primary-color: #C72893;
@@ -11,8 +23,6 @@
   --home-links-gradient: rgba(223,154,222,1);
   --components-background: white;
   --text-color-buttons: white;
-  --color-div-background-first: rgba(13,23,38,1);
-  --color-div-background-second: rgba(0,95,55,1);
   --color-div-background-first: #e5eefe;
   --color-div-background-second: #dcfcec;
   --color-div2-background-first: #efe2fe;
@@ -419,4 +429,22 @@ footer{
   background-color: var(--primary-color);
   box-shadow: 0 0 0 2px var(--nav-links);
   color: var(--text-color-buttons);
+}
+
+.learn-div{
+  box-shadow:var(--primary-color) 0px 2px 4px 0px, var(--primary-color) 0px 2px 16px 0px;
+  width: 65%;
+}
+
+.option-symbol-input[type="radio"] {
+  display: none;
+}
+
+
+.option-type-input[type="radio"]{
+  display: none;
+}
+
+.option-side-input[type="radio"]{
+  display: none;
 }

@@ -5,8 +5,6 @@ import { AuthError } from 'next-auth';
 import {z} from "zod";
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
-import { OptionsLearn } from './definitions';
-
 export async function authenticate(
     prevState: string | undefined,
     formData: FormData,
@@ -154,11 +152,16 @@ const optionsLearningSchema = z.object({
     chapter: z.coerce.number()  
 });
 export async function updateOptionLearning(prevState: any, formData: FormData) {
+    //Not in the try block because of NEXT REDIRECT issue :( 
+    const {user_id, chapter} = optionsLearningSchema.parse({
+        user_id: formData.get('user_id'),
+        chapter: formData.get('chapter'),
+    });
     try{
-        const {user_id, chapter} = optionsLearningSchema.parse({
-            user_id: formData.get('user_id'),
-            chapter: formData.get('chapter'),
-        });
+        //Why not do one time `SET chapter${chapter} = TRUE` and do all this switch cases?
+        //Because when putting ${chapter} in sql,
+        //it will be "translated" in (for exmaple) $1 or $2 or "1"
+        //the outcome will be chapter$1 / chapter"2"
         switch(chapter){
             case 1:
                 await sql`UPDATE options_learning SET chapter1 = TRUE WHERE user_id = ${user_id}`;
@@ -224,17 +227,14 @@ export async function updateOptionLearning(prevState: any, formData: FormData) {
                 break;
         }
         revalidatePath("/home/learn");
-        console.log("Updated options learning");
-        /*
-        if (chapter !== 20){
-            redirect(`/home/learn/options/chapter${chapter+1}`);
-        }
-        else {
-            redirect(`/home/learn`);
-        }
-        */
     }catch(error){
         console.error('Failed to update options learning:', error);
         throw new Error('Failed to update options learning.');
+    }
+    if (chapter !== 20){
+        redirect(`/home/learn/options/chapter${chapter+1}`);
+    }
+    else {
+        redirect(`/home/learn`);
     }
 }

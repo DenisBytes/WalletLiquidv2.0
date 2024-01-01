@@ -11,7 +11,6 @@ export async function getUser(email: string | undefined | null): Promise<User | 
     } catch (error) {
         console.error('Failed to fetch user:', error);
         throw new Error('Failed to fetch user.');
-        redirect("/");
     }
 }   
 

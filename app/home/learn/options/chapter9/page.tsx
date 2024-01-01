@@ -1,3 +1,4 @@
+"use server";
 import { getUser } from "@/app/lib/data";
 import { User } from "@/app/lib/definitions";
 import ChapterQuiz from "@/app/ui/learn/options/ChapterQuiz";
@@ -11,7 +12,7 @@ export default async function Page() {
     }
     return (
         <div className="flex justify-center w-full my-8" style={{fontFamily:"sans-serif", fontSize: "20px"}}>
-            <div className="flex flex-col justify-center rounded bg-[var(--components-background)] py-10 px-20 " style={{width: "65%",boxShadow:"var(--primary-color) 0px 2px 4px 0px, var(--primary-color) 0px 2px 16px 0px;"}}>
+            <div className="flex flex-col justify-center rounded-xl bg-[var(--components-background)] py-10 px-20 learn-div">
                 <h1 style={{ fontSize: "35px"}}>DeFi Options in Practice</h1>
                 <div className="colored-div">
                     <h2 style={{fontSize: "30px"}}>💡 In this article, you will learn about:</h2>

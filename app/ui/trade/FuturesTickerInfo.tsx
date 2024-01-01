@@ -1,4 +1,4 @@
-export default function TickerInfo({markPrice, indexPrice, fundingRate, openInterest}: {markPrice:number, indexPrice:number, fundingRate:number, openInterest:number}) {
+export default function FuturesTickerInfo({markPrice, indexPrice, fundingRate, openInterest}: {markPrice:number, indexPrice:number, fundingRate:number, openInterest:number}) {
     const openInterestUsdc = openInterest*markPrice;
     const formattedOpenInterest = openInterestUsdc.toLocaleString('en-US', { maximumFractionDigits: 2 });
 

@@ -33,7 +33,7 @@ export default async function Page(){
                                 <p className="text-[#909090]" style={{fontFamily:"sans-serif"}}>Futures trading simplifies crypto investment, offering contracts to buy or sell assets at set prices on specified dates, enabling speculation, hedging, and leveraging opportunities in crypto markets.</p>
                             </div>
                             <div className="w-full flex justify-center">
-                                <Link href="/home/learn/futures/chapter1"className="course-button">BEGIN THE COURSE</Link>
+                                <button className="course-button">COMING SOON</button>
                             </div>
                         </div>
                     </div>

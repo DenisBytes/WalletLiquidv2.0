@@ -6,7 +6,7 @@ import FuturesOrderBook from "./FuturesOrderBook";
 import FuturesForm from "./FuturesForm";
 import TradingViewWidget from "./TradingViewWidget";
 import type { User, FuturesOrder } from "@/app/lib/definitions";
-import TickerInfo from "./TickerInfo";
+import FuturesTickerInfo from "./FuturesTickerInfo";
 import Link from "next/link";
 import FuturesOrders from "./FuturesOrders";
 
@@ -72,7 +72,7 @@ export default function FuturesPage({user, futuresOrders}: {user:User  | undefin
         <div className="md:block hidden px-1">
             <div className="w-100 flex px-5">
                 <BTCETHButtons />
-                <TickerInfo markPrice={markPrice} indexPrice={indexPrice} fundingRate={fundingRate} openInterest={openInterest} />
+                <FuturesTickerInfo markPrice={markPrice} indexPrice={indexPrice} fundingRate={fundingRate} openInterest={openInterest} />
                 <Link href={"/home"}></Link>
             </div>
             <div className="flex p-1 mx-10 my-5 justify-between min-h-[75vh]" style={{width:"95%"}}>

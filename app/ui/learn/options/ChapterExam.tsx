@@ -16,16 +16,11 @@ export default function ChapterExam({
     q2: string, q2a1: string, q2a2: string, q2a3: string, q2Correct: string,
     q3: string, q3a1: string, q3a2: string, q3a3: string, q3Correct: string,
     q4: string, q4a1: string, q4a2: string, q4a3: string, q4Correct: string}) {
-    const [firstQuestionCorrect, setFirstQuestionCorrect] = useState<boolean | null>(null);
-    const [secondQuestionCorrect, setSecondQuestionCorrect] = useState<boolean | null>(null);
-    const [thirdQuestionCorrect, setThirdQuestionCorrect] = useState<boolean | null>(null);
-    const [fourthQuestionCorrect, setFourthQuestionCorrect] = useState<boolean | null>(null);
-    const [allCorrect, setAllCorrect] = useState<boolean | null>(null);
+    const [firstQuestionCorrect, setFirstQuestionCorrect] = useState<boolean>(false);
+    const [secondQuestionCorrect, setSecondQuestionCorrect] = useState<boolean>(false);
+    const [thirdQuestionCorrect, setThirdQuestionCorrect] = useState<boolean>(false);
+    const [fourthQuestionCorrect, setFourthQuestionCorrect] = useState<boolean>(false);
     const [state, dispatch] = useFormState(updateOptionLearning, undefined);
-
-    if(firstQuestionCorrect === true || secondQuestionCorrect === true || thirdQuestionCorrect === true || fourthQuestionCorrect === true){
-        setAllCorrect(true);
-    }
     
     function handleFirstQuestion(button: HTMLButtonElement) {
         if (button.id !== q1Correct) {
@@ -84,6 +79,8 @@ export default function ChapterExam({
             <div className="border my-8 border-gray-400 p-6 rounded-md">
                 <p className="text-[#909090]">Test yourself!</p>
                 <h3 className="my-3">{q1}</h3>
+
+
                 <button id="q1first" 
                     onClick={(e) => handleFirstQuestion(e.target as HTMLButtonElement)} 
                     className={clsx("text-[#909090] border border-gray-400 w-full rounded-xl px-4 py-2 my-4 text-left",
@@ -106,6 +103,8 @@ export default function ChapterExam({
                     : "hover:bg-[#b4a6ae] hover:text-[var(--text-color-buttons)]" : "hover:bg-[#b4a6ae] hover:text-[var(--text-color-buttons)]")}
                     >{q1a3}</button>
                 <br/> <br />
+
+
                 <h3 className="my-3">{q2}</h3>
                 <button id="q2first"
                     onClick={(e) => handleSecondQuestion(e.target as HTMLButtonElement)} 
@@ -124,11 +123,13 @@ export default function ChapterExam({
                 <button id="q2third"
                     onClick={(e) => handleSecondQuestion(e.target as HTMLButtonElement)} 
                     className={clsx("text-[#909090] border border-gray-400 w-full rounded-xl px-4 py-2 my-4 text-left",
-                    thirdQuestionCorrect ? q2Correct === "q2third" ? 
+                    secondQuestionCorrect ? q2Correct === "q2third" ? 
                     "bg-[var(--home-links-gradient)] text-[var(--text-color-buttons)] hover:bg-[var(--home-links-gradient)] hover:text-[var(--text-color-buttons)]" 
                     : "hover:bg-[#b4a6ae] hover:text-[var(--text-color-buttons)]" : "hover:bg-[#b4a6ae] hover:text-[var(--text-color-buttons)]")}
                     >{q2a3}</button>
                 <br/> <br />
+
+
                 <h3 className="my-3">{q3}</h3>
                 <button id="q3first"
                     onClick={(e) => handleThirdQuestion(e.target as HTMLButtonElement)}
@@ -152,6 +153,8 @@ export default function ChapterExam({
                     : "hover:bg-[#b4a6ae] hover:text-[var(--text-color-buttons)]" : "hover:bg-[#b4a6ae] hover:text-[var(--text-color-buttons)]")}
                     >{q3a3}</button>
                 <br/> <br />
+
+
                 <h3 className="my-3">{q4}</h3>
                 <button id="q4first"
                     onClick={(e) => handleFourthQuestion(e.target as HTMLButtonElement)}
@@ -180,19 +183,19 @@ export default function ChapterExam({
                 <form action={dispatch}>
                     <input type="hidden" value ={user?.id} name="user_id"/>
                     <input type="hidden" value={chapterNum} name="chapter"/>
-                    <SubmitButton allCorrect={allCorrect}/>
+                    <SubmitButton firstQuestionCorrect={firstQuestionCorrect} secondQuestionCorrect={secondQuestionCorrect} thirdQuestionCorrect={thirdQuestionCorrect} fourthQuestionCorrect={fourthQuestionCorrect}/>
                 </form>
             </div>
         </div>
     )
 }
 
-function SubmitButton({allCorrect}: {allCorrect: boolean | null}) {
+function SubmitButton({firstQuestionCorrect, secondQuestionCorrect, thirdQuestionCorrect, fourthQuestionCorrect}: {firstQuestionCorrect: boolean, secondQuestionCorrect: boolean, thirdQuestionCorrect: boolean, fourthQuestionCorrect: boolean}) {
     const {pending} = useFormStatus();
 
     return (
         <div className="p-2 flex justify-center">
-            <button type="submit" className="chapter-submit" disabled={allCorrect === false || allCorrect === null}>
+            <button type="submit" className="chapter-submit" disabled={!firstQuestionCorrect || !secondQuestionCorrect || !thirdQuestionCorrect || !fourthQuestionCorrect}>
                 {pending ? "Loading..." : "Submit"}
             </button>
         </div>
