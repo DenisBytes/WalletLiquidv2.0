@@ -448,3 +448,7 @@ footer{
 .option-side-input[type="radio"]{
   display: none;
 }
+
+.option-form-div{
+  box-shadow:var(--primary-color) 0px 2px 4px 0px, var(--primary-color) 0px 2px 16px 0px;
+}
