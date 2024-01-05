@@ -1,6 +1,6 @@
 import { fontSyncopate } from "./ui/Fonts"
-import './ui/global.css'
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import "./ui/global.css"
 
 export default function RootLayout({
   children,
@@ -9,8 +9,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className= {`${fontSyncopate.className} antialiased `}>
-        <main className="hidden md:block">
+      <body className= {`${fontSyncopate.className} antialiased bg-[] `}>
+        <main className="lg:block">
           {children}
         </main>
         <SpeedInsights />

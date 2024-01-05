@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.0.18",
+    "@studio-freight/lenis": "^1.0.33",
     "@tailwindcss/forms": "^0.5.7",
     "@types/node": "20.5.7",
     "@vercel/postgres": "^0.5.0",
@@ -18,6 +19,8 @@
     "autoprefixer": "10.4.15",
     "bcrypt": "^5.1.1",
     "clsx": "^2.0.0",
+    "gsap": "^3.12.4",
+    "howler": "^2.2.4",
     "next": "^14.0.2",
     "next-auth": "^5.0.0-beta.4",
     "next-themes": "^0.2.1",
@@ -31,6 +34,7 @@
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.1",
+    "@types/howler": "^2.2.11",
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.14",
     "@types/ws": "^8.5.10",

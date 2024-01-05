@@ -21,6 +21,7 @@ export default function FuturesPage({user, futuresOrders}: {user:User  | undefin
 
     useEffect(() => {
         let websocket: WebSocket | null = null;
+        let otherWebsocket: WebSocket | null = null; 
 
         const handleWebSocketMessage = (event: MessageEvent) => {
             const data = JSON.parse(event.data);
@@ -46,10 +47,10 @@ export default function FuturesPage({user, futuresOrders}: {user:User  | undefin
 
         const otherSymbol = symbol === "BTC" ? "ETH" : "BTC";
         const otherWebsocketUrl = `wss://fstream.binance.com/ws/${otherSymbol.toLocaleLowerCase()}usdt@markPrice`;
-        websocket = new WebSocket(otherWebsocketUrl);
-        websocket.addEventListener('open', () => {
+        otherWebsocket = new WebSocket(otherWebsocketUrl);
+        otherWebsocket.addEventListener('open', () => {
         });
-        websocket.addEventListener("message", handleOtherWebSocketMessage);
+        otherWebsocket.addEventListener("message", handleOtherWebSocketMessage);
 
         const fetchOpenInterest = async () => {
             try {
@@ -66,6 +67,7 @@ export default function FuturesPage({user, futuresOrders}: {user:User  | undefin
         };
 
         const intervalId = setInterval(fetchOpenInterest, 5000);
+        //no return statement (closing web sockets) because it closes immmeditely after render. don't know why
     }, [symbol, openInterest]);
 
     return (

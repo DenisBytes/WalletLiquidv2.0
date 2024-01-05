@@ -133,7 +133,6 @@ export default function OptionsPage({user}: {user: User | undefined}) {
     )
 }
 
-
 function SubmitButton() {
     const {pending} = useFormStatus();
     return (

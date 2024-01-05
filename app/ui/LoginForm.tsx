@@ -1,29 +1,104 @@
 "use client";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useEffect, useRef } from "react";
+import { useFormState, useFormStatus } from "react-dom";
+import { fontSyncopate } from "./Fonts";
+import { authenticate } from "../lib/actions";
 
-import { Button } from './Button';
-import { ArrowRightIcon } from '@heroicons/react/20/solid';
-import { authenticate } from '../lib/actions';
-import {useFormState, useFormStatus} from "react-dom"
+gsap.config({
+    force3D: true,
+});
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function LoginForm() {
+    const signUpRef = useRef(null);
+    const loginRef = useRef(null);
     const [state, dispatch] = useFormState(authenticate, undefined);
 
-    return (
-        <form action={dispatch} className="space-y-3">
-            <label> Email </label>
-                <input type="email" name="email" />
-            <label> Password </label>
-                <input type="password" name="password" />
-            <LoginButton />
-        </form>
-    );
-}
-function LoginButton() {
-    const { pending } = useFormStatus();
+    useEffect(() => {
+        const signUp = signUpRef.current;
+        const login = loginRef.current;
+
+        if (signUp && login) {
+            gsap.to(signUp, {
+                x: "850",
+                scrollTrigger: {
+                    trigger: signUp,
+                    start: "top 50%",
+                    end: "bottom 50%",
+                    toggleActions: "play none none reverse",
+                },
+            });
+
+            gsap.to(login, {
+                x: "-850px",
+                scrollTrigger: {
+                    trigger: login,
+                    start: "top 50%",
+                    end: "bottom 50%",
+                    toggleActions: "play none none reverse",
+                },
+            });
+        }
+    }, []);
 
     return (
-        <Button className="mt-4 w-full" aria-disabled={pending}>
-            Log in <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
-        </Button>
+        <div className="flex w-full justify-around">
+            <form ref={signUpRef} className="flex flex-col w-1/4 justify-between items-center relative left-[-800px] bg-transparent border border-[#FFCBF4] rounded-md p-4">
+                <h1 className="text-white text-4xl">Sign up</h1>
+                <div className="flex justify-center items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="#FFCBF4" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-10 h-10 border border-[#FFCBF4] p-1">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                    </svg>
+                    <input className="m-4 p-2 border border-[#FFCBF4] bg-slate-600 placeholder:text-[#FFCBF4] focus:bg-white focus:text-[black]" type="text" placeholder="Username" />
+                </div>
+                <div className="flex justify-center items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="#FFCBF4" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-10 h-10 border border-[#FFCBF4] p-1">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 13.5h3.86a2.25 2.25 0 0 1 2.012 1.244l.256.512a2.25 2.25 0 0 0 2.013 1.244h3.218a2.25 2.25 0 0 0 2.013-1.244l.256-.512a2.25 2.25 0 0 1 2.013-1.244h3.859m-19.5.338V18a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18v-4.162c0-.224-.034-.447-.1-.661L19.24 5.338a2.25 2.25 0 0 0-2.15-1.588H6.911a2.25 2.25 0 0 0-2.15 1.588L2.35 13.177a2.25 2.25 0 0 0-.1.661Z" />
+                    </svg>
+                    <input className="m-4 p-2 border border-[#FFCBF4] bg-slate-600 placeholder:text-[#FFCBF4] focus:bg-white focus:text-[black]" type="email" placeholder="Email" />
+                </div>
+                <div className="flex justify-center items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="#FFCBF4" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-10 h-10 border border-[#FFCBF4] p-1">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 5.25a3 3 0 0 1 3 3m3 0a6 6 0 0 1-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1 1 21.75 8.25Z" />
+                    </svg>
+                    <input className="m-4 p-2 border border-[#FFCBF4] bg-slate-600 placeholder:text-[#FFCBF4] focus:bg-white focus:text-[black]" type="password" placeholder="Password" />
+                </div>
+                <div className="flex justify-center items-center">
+                    <SubmitButton />
+                </div>
+            </form>
+            <div className="login-logo mt-[5%] flex justify-center items-center"></div>
+            <form action={dispatch} ref={loginRef}className="flex flex-col w-1/4 justify-between items-center relative right-[-800px] bg-transparent border border-[#FFCBF4] rounded-md p-4">
+                <h1 className="text-white text-4xl">Log in</h1>
+                <div className="flex justify-center items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="#FFCBF4" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-10 h-10 border border-[#FFCBF4] p-1">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 13.5h3.86a2.25 2.25 0 0 1 2.012 1.244l.256.512a2.25 2.25 0 0 0 2.013 1.244h3.218a2.25 2.25 0 0 0 2.013-1.244l.256-.512a2.25 2.25 0 0 1 2.013-1.244h3.859m-19.5.338V18a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18v-4.162c0-.224-.034-.447-.1-.661L19.24 5.338a2.25 2.25 0 0 0-2.15-1.588H6.911a2.25 2.25 0 0 0-2.15 1.588L2.35 13.177a2.25 2.25 0 0 0-.1.661Z" />
+                    </svg>
+                    <input name="email" className="m-4 p-2 border border-[#FFCBF4] bg-slate-600 placeholder:text-[#FFCBF4] focus:bg-white focus:text-[black]" type="email" placeholder="Email" />
+                </div>
+                <div className="flex justify-center items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="#FFCBF4" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-10 h-10 border border-[#FFCBF4] p-1">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 5.25a3 3 0 0 1 3 3m3 0a6 6 0 0 1-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1 1 21.75 8.25Z" />
+                    </svg>
+                    <input name="password" className="m-4 p-2 border border-[#FFCBF4] bg-slate-600 placeholder:text-[#FFCBF4] focus:bg-white focus:text-[black]" type="password" placeholder="Password" />
+                </div>
+                <div className="flex justify-center items-center">
+                    <SubmitButton />
+                </div>
+            </form>
+        </div>
     );
+}
+
+function SubmitButton(){
+    const {pending} = useFormStatus();
+
+    return (
+        <button type="submit" className={`${fontSyncopate.className} antialiased w-50 p-2 border border-[#FFCBF4] text-white rounded-md hover:bg-[#FFCBF4] hover:text-[#10043c] hover:shadow-slate-500 hover:shadow-sm `}>
+            {pending ? "LOADING..." : "SUBMIT"}
+        </button>
+    )
 }

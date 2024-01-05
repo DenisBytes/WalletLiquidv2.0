@@ -6,12 +6,10 @@
   width: 5px;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--primary-color);
+  background: #C72893;
 }
-
-::-webkit-scrollbar-thumb:hover {
-  width: 10px;
-  background: #2ce694;
+::-webkit-scrollbar-track {
+  background: #10043c;
 }
 
 :root {
@@ -28,11 +26,12 @@
   --color-div2-background-first: #efe2fe;
   --color-div2-background-second: #fce4f0;
   --disabled-color: #cfc2ce;
+  overflow-x: hidden;
 }
 
 [class="dark"]:root {
   --background-color: #121212;
-  --primary-color: #fbd3fb;
+  --primary-color: #FFCBF4;
   --color-text: white;
   --nav-links: #b4a6ae;
   --home-links: white;
@@ -44,6 +43,7 @@
   --color-div2-background-first: rgba(20,11,36,1);
   --color-div2-background-second: rgba(123,21,68,1);
   --disabled-color: #9f9f9f;
+  overflow-x: hidden;
 }
 
 .nav-links{
@@ -451,4 +451,301 @@ footer{
 
 .option-form-div{
   box-shadow:var(--primary-color) 0px 2px 4px 0px, var(--primary-color) 0px 2px 16px 0px;
+}
+
+
+.login-logo{
+  width: 200px;
+  height:200px;
+  background: url("/logodark.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  animation: rotate 15s linear infinite;
+}
+
+.wrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  perspective: 25px;
+  overflow: hidden;
+  background-color: #10043c;
+}
+
+.wrapper .rect {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate3d(-50%, -50%, -100px);
+  -moz-transform: translate3d(-50%, -50%, -100px);
+  -ms-transform: translate3d(-50%, -50%, -100px);
+  -o-transform: translate3d(-50%, -50%, -100px);
+  transform: translate3d(-50%, -50%, -100px);
+  opacity: 0;
+  width: 100%;
+  height: 0;
+  padding-bottom: 100vh;
+  border: 2px solid #fbd3fb;
+  box-shadow: 0px 60px 140px #C72893;
+  -webkit-backface-visibility: hidden;
+}
+
+/* LESS loop emulation using duplication for animation classes */
+.wrapper .rect.rect-1 {
+  -webkit-animation: move-animation 12s infinite -400ms;
+  -moz-animation: move-animation 12s infinite -400ms;
+  -o-animation: move-animation 12s infinite -400ms;
+  animation: move-animation 12s infinite -400ms;
+}
+
+.wrapper .rect.rect-2 {
+  -webkit-animation: move-animation 12s infinite -800ms;
+  -moz-animation: move-animation 12s infinite -800ms;
+  -o-animation: move-animation 12s infinite -800ms;
+  animation: move-animation 12s infinite -800ms;
+}
+
+.wrapper .rect.rect-3 {
+  -webkit-animation: move-animation 12s infinite -1200ms;
+  -moz-animation: move-animation 12s infinite -1200ms;
+  -o-animation: move-animation 12s infinite -1200ms;
+  animation: move-animation 12s infinite -1200ms;
+}
+
+.wrapper .rect.rect-4 {
+  -webkit-animation: move-animation 12s infinite -1600ms;
+  -moz-animation: move-animation 12s infinite -1600ms;
+  -o-animation: move-animation 12s infinite -1600ms;
+  animation: move-animation 12s infinite -1600ms;
+}
+
+.wrapper .rect.rect-5 {
+  -webkit-animation: move-animation 12s infinite -2000ms;
+  -moz-animation: move-animation 12s infinite -2000ms;
+  -o-animation: move-animation 12s infinite -2000ms;
+  animation: move-animation 12s infinite -2000ms;
+}
+
+.wrapper .rect.rect-6 {
+  -webkit-animation: move-animation 12s infinite -2400ms;
+  -moz-animation: move-animation 12s infinite -2400ms;
+  -o-animation: move-animation 12s infinite -2400ms;
+  animation: move-animation 12s infinite -2400ms;
+}
+
+.wrapper .rect.rect-7 {
+  -webkit-animation: move-animation 12s infinite -2800ms;
+  -moz-animation: move-animation 12s infinite -2800ms;
+  -o-animation: move-animation 12s infinite -2800ms;
+  animation: move-animation 12s infinite -2800ms;
+}
+
+.wrapper .rect.rect-8 {
+  -webkit-animation: move-animation 12s infinite -3200ms;
+  -moz-animation: move-animation 12s infinite -3200ms;
+  -o-animation: move-animation 12s infinite -3200ms;
+  animation: move-animation 12s infinite -3200ms;
+}
+
+.wrapper .rect.rect-9 {
+  -webkit-animation: move-animation 12s infinite -3600ms;
+  -moz-animation: move-animation 12s infinite -3600ms;
+  -o-animation: move-animation 12s infinite -3600ms;
+  animation: move-animation 12s infinite -3600ms;
+}
+
+.wrapper .rect.rect-10 {
+  -webkit-animation: move-animation 12s infinite -4000ms;
+  -moz-animation: move-animation 12s infinite -4000ms;
+  -o-animation: move-animation 12s infinite -4000ms;
+  animation: move-animation 12s infinite -4000ms;
+}
+
+.wrapper .rect.rect-11 {
+  -webkit-animation: move-animation 12s infinite -4400ms;
+  -moz-animation: move-animation 12s infinite -4400ms;
+  -o-animation: move-animation 12s infinite -4400ms;
+  animation: move-animation 12s infinite -4400ms;
+}
+
+.wrapper .rect.rect-12 {
+  -webkit-animation: move-animation 12s infinite -4800ms;
+  -moz-animation: move-animation 12s infinite -4800ms;
+  -o-animation: move-animation 12s infinite -4800ms;
+  animation: move-animation 12s infinite -4800ms;
+}
+
+.wrapper .rect.rect-13 {
+  -webkit-animation: move-animation 12s infinite -5200ms;
+  -moz-animation: move-animation 12s infinite -5200ms;
+  -o-animation: move-animation 12s infinite -5200ms;
+  animation: move-animation 12s infinite -5200ms;
+}
+
+.wrapper .rect.rect-14 {
+  -webkit-animation: move-animation 12s infinite -5600ms;
+  -moz-animation: move-animation 12s infinite -5600ms;
+  -o-animation: move-animation 12s infinite -5600ms;
+  animation: move-animation 12s infinite -5600ms;
+}
+
+.wrapper .rect.rect-15 {
+  -webkit-animation: move-animation 12s infinite -6000ms;
+  -moz-animation: move-animation 12s infinite -6000ms;
+  -o-animation: move-animation 12s infinite -6000ms;
+  animation: move-animation 12s infinite -6000ms;
+}
+
+.wrapper .rect.rect-16 {
+  -webkit-animation: move-animation 12s infinite -6400ms;
+  -moz-animation: move-animation 12s infinite -6400ms;
+  -o-animation: move-animation 12s infinite -6400ms;
+  animation: move-animation 12s infinite -6400ms;
+}
+
+.wrapper .rect.rect-17 {
+  -webkit-animation: move-animation 12s infinite -6800ms;
+  -moz-animation: move-animation 12s infinite -6800ms;
+  -o-animation: move-animation 12s infinite -6800ms;
+  animation: move-animation 12s infinite -6800ms;
+}
+
+.wrapper .rect.rect-18 {
+  -webkit-animation: move-animation 12s infinite -7200ms;
+  -moz-animation: move-animation 12s infinite -7200ms;
+  -o-animation: move-animation 12s infinite -7200ms;
+  animation: move-animation 12s infinite -7200ms;
+}
+
+.wrapper .rect.rect-19 {
+  -webkit-animation: move-animation 12s infinite -7600ms;
+  -moz-animation: move-animation 12s infinite -7600ms;
+  -o-animation: move-animation 12s infinite -7600ms;
+  animation: move-animation 12s infinite -7600ms;
+}
+
+.wrapper .rect.rect-20 {
+  -webkit-animation: move-animation 12s infinite -8000ms;
+  -moz-animation: move-animation 12s infinite -8000ms;
+  -o-animation: move-animation 12s infinite -8000ms;
+  animation: move-animation 12s infinite -8000ms;
+}
+
+.wrapper .rect.rect-21 {
+  -webkit-animation: move-animation 12s infinite -8400ms;
+  -moz-animation: move-animation 12s infinite -8400ms;
+  -o-animation: move-animation 12s infinite -8400ms;
+  animation: move-animation 12s infinite -8400ms;
+}
+
+.wrapper .rect.rect-22 {
+  -webkit-animation: move-animation 12s infinite -8800ms;
+  -moz-animation: move-animation 12s infinite -8800ms;
+  -o-animation: move-animation 12s infinite -8800ms;
+  animation: move-animation 12s infinite -8800ms;
+}
+
+.wrapper .rect.rect-23 {
+  -webkit-animation: move-animation 12s infinite -9200ms;
+  -moz-animation: move-animation 12s infinite -9200ms;
+  -o-animation: move-animation 12s infinite -9200ms;
+  animation: move-animation 12s infinite -9200ms;
+}
+
+.wrapper .rect.rect-24 {
+  -webkit-animation: move-animation 12s infinite -9600ms;
+  -moz-animation: move-animation 12s infinite -9600ms;
+  -o-animation: move-animation 12s infinite -9600ms;
+  animation: move-animation 12s infinite -9600ms;
+}
+
+.wrapper .rect.rect-25 {
+  -webkit-animation: move-animation 12s infinite -10000ms;
+  -moz-animation: move-animation 12s infinite -10000ms;
+  -o-animation: move-animation 12s infinite -10000ms;
+  animation: move-animation 12s infinite -10000ms;
+}
+
+.wrapper .rect.rect-26 {
+  -webkit-animation: move-animation 12s infinite -10400ms;
+  -moz-animation: move-animation 12s infinite -10400ms;
+  -o-animation: move-animation 12s infinite -10400ms;
+  animation: move-animation 12s infinite -10400ms;
+}
+
+.wrapper .rect.rect-27 {
+  -webkit-animation: move-animation 12s infinite -10800ms;
+  -moz-animation: move-animation 12s infinite -10800ms;
+  -o-animation: move-animation 12s infinite -10800ms;
+  animation: move-animation 12s infinite -10800ms;
+}
+
+.wrapper .rect.rect-28 {
+  -webkit-animation: move-animation 12s infinite -11200ms;
+  -moz-animation: move-animation 12s infinite -11200ms;
+  -o-animation: move-animation 12s infinite -11200ms;
+  animation: move-animation 12s infinite -11200ms;
+}
+
+.wrapper .rect.rect-29 {
+  -webkit-animation: move-animation 12s infinite -11600ms;
+  -moz-animation: move-animation 12s infinite -11600ms;
+  -o-animation: move-animation 12s infinite -11600ms;
+  animation: move-animation 12s infinite -11600ms;
+}
+
+.wrapper .rect.rect-30 {
+  -webkit-animation: move-animation 12s infinite -12000ms;
+  -moz-animation: move-animation 12s infinite -12000ms;
+  -o-animation: move-animation 12s infinite -12000ms;
+  animation: move-animation 12s infinite -12000ms;
+}
+
+
+/* Emulating LESS loop for animation classes */
+/* .rect-3, .rect-4, ... until .rect-30 */
+
+@-webkit-keyframes move-animation {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(-50%, -50%, -100px);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translate3d(-50%, -50%, 40px);
+  }
+}
+@-moz-keyframes move-animation {
+  0% {
+    opacity: 0;
+    -moz-transform: translate3d(-50%, -50%, -100px);
+  }
+  100% {
+    opacity: 1;
+    -moz-transform: translate3d(-50%, -50%, 40px);
+  }
+}
+@-o-keyframes move-animation {
+  0% {
+    opacity: 0;
+    -o-transform: translate3d(-50%, -50%, -100px);
+  }
+  100% {
+    opacity: 1;
+    -o-transform: translate3d(-50%, -50%, 40px);
+  }
+}
+@keyframes move-animation {
+  0% {
+    opacity: 0;
+    transform: translate3d(-50%, -50%, -100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(-50%, -50%, 40px);
+  }
 }
