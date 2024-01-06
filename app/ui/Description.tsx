@@ -31,17 +31,18 @@ export default function Description() {
                 end: () => `+=${containerBounds.height}`, // Dynamic end based on container height
                 pin: true,
                 pinSpacing: false,
-                markers: true, // For debugging - remove this in production
+                //markers: true, // For debugging - remove this in production
             });
 
-            ScrollTrigger.create({
-                trigger: text2,
-                start: `top ${text1Bounds.y}`, // 25% from the top of text1Ref
-                end: () => `+=200vh`, // Dynamic end based on container height
-                pin: true,
-                pinSpacing: false,
-                markers: true, // For debugging - remove this in production
-            })
+            gsap.to(text2, {
+                y: "-20vh",
+                scrollTrigger: {
+                    trigger: text2,
+                    start: "top 150%",
+                    end: "bottom 150%",
+                    //markers: true,
+                },
+            });
 
             
 
@@ -57,7 +58,7 @@ export default function Description() {
                     TRADING PLATFORM
                 </h1>
                 <section className="min-h-[50vh]"></section>
-                <h1 ref={text2Ref} className="font-[700] w-full ml-[44.3%]" style={{ fontSize: '40px', lineHeight: '1' }}>
+                <h1 ref={text2Ref} className="font-[700] w-full ml-[44.3%] relative h-[50vh] bottom-[-50vh]" style={{ fontSize: '40px', lineHeight: '1' }}>
                     LEARN, TRADE, <br />
                     TRAIN TO <br />
                     BECOME AN  <br />
