@@ -31,7 +31,7 @@ export default function Description() {
                 end: () => `+=${containerBounds.height}`, // Dynamic end based on container height
                 pin: true,
                 pinSpacing: false,
-                //markers: true, // For debugging - remove this in production
+                markers: true, // For debugging - remove this in production
             });
 
             ScrollTrigger.create({
@@ -40,7 +40,7 @@ export default function Description() {
                 end: () => `+=${text1Bounds.height}`, // Dynamic end based on container height
                 pin: true,
                 pinSpacing: false,
-                //markers: true, // For debugging - remove this in production
+                markers: true, // For debugging - remove this in production
             })
 
             
@@ -49,7 +49,7 @@ export default function Description() {
     }, []);
 
     return (
-        <div ref={containerRef} className="h-screen min-h-[80vh]">
+        <div ref={containerRef} className="h-screen min-h-[130vh]">
             <div className={`bg-[#10043c] flex flex-col text-white ${fontSyncopate.className} antialiased`}>
                 <h1 ref={text1Ref} className="font-[700] w-full" style={{ fontSize: '105px', lineHeight: '0.8' }}>
                     FIRST <br />
