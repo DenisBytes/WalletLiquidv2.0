@@ -58,7 +58,7 @@ export default function Description() {
                     TRADING PLATFORM
                 </h1>
                 <section className="min-h-[50vh]"></section>
-                <h1 ref={text2Ref} className="font-[700] w-full ml-[44.3%] relative h-[50vh] bottom-[-50vh]" style={{ fontSize: '40px', lineHeight: '1' }}>
+                <h1 ref={text2Ref} className="font-[700] w-full ml-[44.3%] relative h-[50vh] bottom-[-70vh]" style={{ fontSize: '40px', lineHeight: '1' }}>
                     LEARN, TRADE, <br />
                     TRAIN TO <br />
                     BECOME AN  <br />
