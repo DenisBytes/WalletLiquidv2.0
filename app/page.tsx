@@ -15,7 +15,7 @@ export default function Page() {
                 <section className="min-h-[70vh]"></section>
                 <NoSSR1 />
                 <section className="min-h-[100vh]"></section>
-                <NoSSR1 />
+                <NoSSR3 />
                 <section className="min-h-[30vh]"></section>
             </div>
             <div className="lg:hidden flex justify-start items-center w-full h-[100vh] bg-[#10043c]">
