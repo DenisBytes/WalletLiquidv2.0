@@ -28,8 +28,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "app/lib/placeholder-data.js",
-    "scripts/seed.js"
-, "app/lib/player.js"  ],
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/lib/player.js"],
+    "scripts/seed.js",
+    "app/lib/player.js"  ],
   "exclude": ["node_modules"]
 }

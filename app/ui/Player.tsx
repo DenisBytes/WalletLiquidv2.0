@@ -16,7 +16,7 @@ const audio: any = [{title: "Timecop",song: "/timecop.mp3", howl: timecompHowl},
 
 const player = new HPlayer(audio);
 
-export const Player = () => {
+export default function Player() {
 
     const [isPlaying, setIsPlaying] = useState(player.playing());
 
