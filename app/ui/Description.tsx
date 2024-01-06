@@ -37,7 +37,7 @@ export default function Description() {
             ScrollTrigger.create({
                 trigger: text2,
                 start: `top ${text1Bounds.y}`, // 25% from the top of text1Ref
-                end: () => `+=${text1Bounds.height}`, // Dynamic end based on container height
+                end: () => `+=${text1Bounds.height+20}`, // Dynamic end based on container height
                 pin: true,
                 pinSpacing: false,
                 markers: true, // For debugging - remove this in production
