@@ -72,10 +72,12 @@ export default function FuturesPage({user, futuresOrders}: {user:User  | undefin
 
     return (
         <div className="md:block hidden px-1">
-            <div className="w-100 flex px-5">
-                <BTCETHButtons />
-                <FuturesTickerInfo markPrice={markPrice} indexPrice={indexPrice} fundingRate={fundingRate} openInterest={openInterest} />
-                <Link href={"/home"}></Link>
+            <div className="w-100 flex px-5 items-center justify-between mx-4">
+                <div className="flex p-5 items-center w-[100%]">
+                    <BTCETHButtons />
+                    <FuturesTickerInfo markPrice={markPrice} indexPrice={indexPrice} fundingRate={fundingRate} openInterest={openInterest} />
+                </div>
+                <Link href="/trade/options" className=" border border-[var(--primary-color)] px-4 py-4 rounded-lg text-[var(--home-links)] bg-[var(--components-background)] hover:text-[var(--text-color-buttons)] hover:bg-[var(--primary-color)]">OPTIONS</Link>
             </div>
             <div className="flex p-1 mx-10 my-5 justify-between min-h-[75vh]" style={{width:"95%"}}>
                 <TradingViewWidget />

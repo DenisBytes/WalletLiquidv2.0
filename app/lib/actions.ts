@@ -5,6 +5,7 @@ import { AuthError } from 'next-auth';
 import {z} from "zod";
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
+
 export async function authenticate(
     prevState: string | undefined,
     formData: FormData,
@@ -23,6 +24,7 @@ export async function authenticate(
         throw error;
     }
 }
+
 
 const FuturesOrderSchema = z.object({
     id: z.string(),
