@@ -1,6 +1,6 @@
 # WalletLiquid v2.0 - Options and Futures Learning Platform
 
-Platform where you can paper trade ("fake" money) crypto derivates (futures and options) + 2 courses to learn futures and options.
+Platform where you can paper trade ("fake" money) crypto derivates (futures and options) + 2 courses to learn futures and options. It a refactor of WalletLiquidv1 written in Java.
 
 ## URL
 
