@@ -1,5 +1,34 @@
-## Next.js App Router Course - Final
+# WalletLiquid v2.0 - Options and Futures Learning Platform
 
-This is the final template for the Next.js App Router Course. It contains the final code for the dashboard application.
+Platform where you can paper trade ("fake" money) crypto derivates (futures and options) + 2 courses to learn futures and options.
 
-For more information, see the [course curriculum](https://nextjs.org/learn) on the Next.js Website.
+## URL
+
+Visit the live demo of Dev-Type [here](https://wallet-liquidv2-0.vercel.app).
+
+
+## How to run locally
+
+  To experience WalletLiquid on your local machine, follow these straightforward steps:
+
+1. **Clone the repository to your local machine:**
+
+   ```bash
+   git clone https://github.com/DenisBytes/WalletLiquidv2.0.git
+
+2. **Navigate to the project directory:**
+
+   ```bash
+   cd WalletLiquidv2.0
+
+3. **Install Dependencies:**
+
+   ```bash
+   npm install
+   
+4. Run the application:
+
+   ```bash
+   npm run dev
+
+Open your web browser and visit localhost:3000 to access the platform.
