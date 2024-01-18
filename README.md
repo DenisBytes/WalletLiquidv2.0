@@ -4,7 +4,7 @@ Platform where you can paper trade ("fake" money) crypto derivates (futures and 
 
 ## URL
 
-Visit the live demo of Dev-Type [here](https://wallet-liquidv2-0.vercel.app).
+Visit the live demo of WalletLiquid [here](https://wallet-liquidv2-0.vercel.app).
 
 
 ## How to run locally
