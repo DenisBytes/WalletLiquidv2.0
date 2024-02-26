@@ -2,6 +2,12 @@
 
 Platform where you can paper trade ("fake" money) crypto derivates (futures and options) + 2 courses to learn futures and options. It a refactor of WalletLiquidv1 written in Java.
 
+![image](https://github.com/DenisBytes/WalletLiquidv2.0/assets/130691305/a323fca7-efd2-4f65-a4b6-de8b76028667)
+![image](https://github.com/DenisBytes/WalletLiquidv2.0/assets/130691305/ed953652-8f9d-4463-a069-75fa3917b157)
+![image](https://github.com/DenisBytes/WalletLiquidv2.0/assets/130691305/1b227634-33a4-4a27-aa10-0a7af4f94015)
+
+
+
 ## URL
 
 Visit the live demo of WalletLiquid [here](https://wallet-liquidv2-0.vercel.app).
