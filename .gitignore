@@ -34,6 +34,20 @@ yarn-error.log*
 # worktrees
 .worktrees/
 
+# AI / vibe coding
+CLAUDE.md
+.claude/
+.cursorrules
+.cursor/
+.aider*
+.copilot/
+.github/copilot/
+.codeium/
+.continue/
+.windsurf/
+.bolt/
+.v0/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
