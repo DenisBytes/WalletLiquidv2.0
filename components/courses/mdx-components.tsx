@@ -1,37 +1,9 @@
 import type { MDXComponents } from 'mdx/types'
 import { cn } from '@/lib/utils/cn'
-
-function PayoffDiagram(props: Record<string, unknown>) {
-  return (
-    <div className="glass rounded-xl p-6 my-6 text-center text-text-muted">
-      [PayoffDiagram placeholder]
-    </div>
-  )
-}
-
-function PriceSimulator(props: Record<string, unknown>) {
-  return (
-    <div className="glass rounded-xl p-6 my-6 text-center text-text-muted">
-      [PriceSimulator placeholder]
-    </div>
-  )
-}
-
-function GreeksVisualizer(props: Record<string, unknown>) {
-  return (
-    <div className="glass rounded-xl p-6 my-6 text-center text-text-muted">
-      [GreeksVisualizer placeholder]
-    </div>
-  )
-}
-
-function Quiz(props: Record<string, unknown>) {
-  return (
-    <div className="glass rounded-xl p-6 my-6 text-center text-text-muted">
-      [Quiz placeholder]
-    </div>
-  )
-}
+import { Quiz } from './quiz'
+import { PayoffDiagram } from './payoff-diagram'
+import { PriceSimulator } from './price-simulator'
+import { GreeksVisualizer } from './greeks-visualizer'
 
 function Callout({
   type = 'info',
