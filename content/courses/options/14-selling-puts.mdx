@@ -1,0 +1,68 @@
+# Selling Puts
+
+<Callout type="info">
+In this chapter, you will learn about selling put options (short puts), when to use them, the risks involved, and the risk/reward profile.
+</Callout>
+
+## What is a Short Put?
+
+Selling a put option is known as taking a <KeyTerm term="short put">Selling a put option, collecting premium, with the obligation to buy the underlying if the option is exercised.</KeyTerm> position.
+
+This position is taken by an investor who believes that the price of the underlying asset will remain the same or increase. By selling a put option, the investor collects the premium and hopes that the option will expire out of the money.
+
+However, if the price of the underlying asset decreases below the strike price, the investor may be obligated to buy the asset at the higher strike price, resulting in a loss.
+
+<Callout type="info">
+A short put is like a short call, but instead of profiting when the underlying falls or stagnates, you profit if the underlying **rises or stagnates**.
+</Callout>
+
+## Example: Short Put in Practice
+
+Alice wants to earn yield on her portfolio and expects ETH prices to stagnate over the coming weeks. She sells a put option on ETH with a strike price of $2,300, expiring in one month. She collects a premium of $150.
+
+One month later, ETH remains above $2,300. The option expires worthless. Alice keeps the $150 premium as profit.
+
+<Callout type="tip">
+If the underlying stays **above** the strike price, the put seller profits from the premium collected.
+</Callout>
+
+<Callout type="warning">
+If the underlying falls **below** the strike price, the put seller may have to buy the asset at the higher strike price — resulting in a loss. The maximum loss occurs if the asset goes to zero.
+</Callout>
+
+## Risk/Reward Profile
+
+| | Short Put |
+|---|---|
+| **Max Profit** | Premium collected |
+| **Max Loss** | Strike price - premium (if price goes to $0) |
+| **Breakeven** | Strike price - premium |
+| **Best for** | Neutral to bullish outlook |
+
+## When to Sell Puts
+
+- **Income generation:** If you expect prices to stay flat or rise, selling puts generates premium income.
+- **Acquiring at a discount:** If you want to buy an asset at a lower price, selling puts at your target strike lets you collect premium while waiting. If the price drops to your strike, you buy at the price you wanted.
+- **High IV environment:** When IV is elevated, put premiums are rich — selling captures the inflated time value.
+
+<Callout type="tip">
+Theta works in your favor as a put seller. Time decay erodes the option's value daily, benefiting the seller.
+</Callout>
+
+## Cash-Secured Puts
+
+A **cash-secured put** is when you sell a put while holding enough cash to buy the underlying if the option is exercised. This is a more conservative approach than selling naked puts, as you're prepared to take delivery of the asset.
+
+This strategy is popular among investors who want to:
+1. Earn premium income while waiting
+2. Acquire assets at a price they're comfortable with
+
+## Key Takeaways
+
+Selling puts collects premium income and works best in neutral-to-bullish environments. Maximum loss is substantial (the full strike price minus premium if the asset goes to zero). Short puts benefit from time decay and drops in IV. Cash-secured puts are a more conservative variation.
+
+<Quiz
+  question="What's the biggest risk involved with short puts?"
+  answers={["The underlying asset expiring above the strike price", "Losing out on the option premiums", "If the underlying falls, the seller may have to buy at the higher strike price, resulting in potentially large losses"]}
+  correctIndex={2}
+/>

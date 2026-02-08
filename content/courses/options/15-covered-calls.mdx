@@ -1,0 +1,66 @@
+# Covered Calls
+
+<Callout type="info">
+In this chapter, you will learn about the covered call strategy — one of the most popular options income strategies — how it works, when to use it, and its trade-offs.
+</Callout>
+
+## What is a Covered Call?
+
+A <KeyTerm term="covered call">An options strategy where you sell a call option against an asset you already own, generating premium income.</KeyTerm> is a strategy where an investor **owns** an asset and **sells** a call option against it with a strike price above the current market price.
+
+The investor collects the premium from selling the call. If the price stays below the strike, the option expires worthless and the investor keeps both the asset and the premium. If the price rises above the strike, the investor must sell the asset at the strike price — capturing the premium but forfeiting additional upside.
+
+## How It Works
+
+1. **Own the underlying asset** (e.g., 1 ETH at $3,000)
+2. **Sell a call option** with a strike price above the current price (e.g., $3,500 strike)
+3. **Collect the premium** (e.g., $100)
+
+### Scenario A: Price stays below $3,500
+The option expires worthless. You keep your ETH and the $100 premium. Net result: +$100 income.
+
+### Scenario B: Price rises above $3,500
+The option is exercised. You sell your ETH at $3,500. Net result: ($3,500 - $3,000) + $100 premium = +$600, but you miss any gains above $3,500.
+
+### Scenario C: Price drops significantly
+You still own the ETH (now worth less), but the $100 premium provides a small buffer against the loss.
+
+## Risk/Reward Profile
+
+| | Covered Call |
+|---|---|
+| **Max Profit** | (Strike price - purchase price) + premium |
+| **Max Loss** | Purchase price - premium (if asset goes to $0) |
+| **Breakeven** | Purchase price - premium |
+| **Best for** | Neutral to mildly bullish outlook |
+
+<Callout type="tip">
+Covered calls generate income from premiums collected but cap your upside potential. This is the trade-off: consistent income in exchange for limited gains on rallies.
+</Callout>
+
+## When to Use Covered Calls
+
+- **Low volatility expectations:** You don't expect significant upside in the near term.
+- **Income generation:** You want to earn yield on assets you already hold.
+- **Partial profit-taking:** You're willing to sell at the strike price and want to earn extra premium along the way.
+
+<Callout type="warning">
+Covered calls don't protect against significant downside. If the underlying drops sharply, the premium collected provides only a minor cushion. Consider combining with protective puts for fuller protection.
+</Callout>
+
+## Choosing the Strike Price
+
+- **Higher strike** → Lower premium, but more upside room. Less likely to be called away.
+- **Lower strike** → Higher premium, but your upside is capped sooner. More likely to be called away.
+
+Most covered call writers aim for strikes that are OTM (above current price) by 5-15%, balancing premium income against the probability of being exercised.
+
+## Key Takeaways
+
+Covered calls are one of the most popular and beginner-friendly options strategies. They generate consistent income from assets you already hold, at the cost of capping your upside. Best suited for neutral to mildly bullish markets with low volatility expectations.
+
+<Quiz
+  question="What is the covered calls strategy based on?"
+  answers={["Buying and selling a call simultaneously", "Reducing risk by buying put options as a hedge", "Selling call options for assets you already hold to generate income"]}
+  correctIndex={2}
+/>

@@ -1,0 +1,98 @@
+# Putting It All Together
+
+<Callout type="info">
+In this final chapter, you will review key concepts, learn about call-put parity and arbitrage, and understand how everything connects to make you a more complete options trader.
+</Callout>
+
+## Course Recap
+
+Over the previous 19 chapters, you've learned:
+
+- **Fundamentals:** What options are, calls vs puts, strike price, expiration, and premium
+- **Valuation:** Intrinsic and extrinsic value, moneyness (ITM/OTM/ATM), and option pricing
+- **The Greeks:** Delta, Gamma, Theta, Vega — how they measure option sensitivity
+- **Volatility:** Implied vs realized volatility and how it affects pricing
+- **Strategies:** Buying calls/puts, selling calls/puts, covered calls, protective puts, spreads, straddles, and strangles
+- **Risk Management:** Position sizing, skew, Greeks management, and common mistakes
+
+Now let's cover two advanced concepts that tie everything together.
+
+## Call-Put Parity
+
+<KeyTerm term="Call-put parity">A fundamental principle that establishes a pricing relationship between calls, puts, and the underlying asset.</KeyTerm> is an essential concept that states: the sum of a long call and a short put with the same strike price and expiration is equivalent to holding the underlying asset.
+
+The formula:
+
+*Call Price - Put Price = Asset Price - Present Value(Strike Price)*
+
+Or equivalently:
+
+*C - P = S - PV(K)*
+
+Where C is the call price, P is the put price, S is the current asset price, and PV(K) is the present value of the strike price.
+
+### Why Call-Put Parity Matters
+
+<Callout type="info">
+**Pricing validation:** If call and put prices deviate from parity, it may indicate a mispricing opportunity.
+</Callout>
+
+<Callout type="info">
+**Synthetic positions:** Call-put parity allows traders to create synthetic positions. A long call + short put = synthetic long stock. This is useful when direct access to the underlying is limited or expensive.
+</Callout>
+
+<Callout type="info">
+**Arbitrage detection:** If prices violate parity, traders can exploit the difference for risk-free profit by simultaneously buying the underpriced side and selling the overpriced side.
+</Callout>
+
+## Options Arbitrage
+
+<KeyTerm term="Arbitrage">Exploiting price differences across markets for the same or related assets to earn risk-free profit.</KeyTerm> is a trading strategy that exploits price differences in different markets for the same or related assets.
+
+In crypto options, these price differences can occur across different exchanges — both centralized and decentralized.
+
+### Example
+
+Suppose a BTC call option with a June expiry and $26,000 strike is priced at $1,307 on one exchange and $1,484 on another. A trader could buy on the cheaper exchange and sell on the more expensive one, capturing the $177 difference.
+
+### Prerequisites for Arbitrage
+
+- Access to various exchanges (both CEXs and DEXs)
+- Real-time market data to spot opportunities as they arise
+- Sufficient capital on multiple exchanges
+- Fast trade execution — preferably via API
+
+<Callout type="warning">
+Arbitrage opportunities are short-lived. As they're identified, traders rush to exploit them and the price discrepancies quickly disappear.
+</Callout>
+
+### Risks of Arbitrage
+
+Even though arbitrage is often described as "risk-free," several factors can complicate execution:
+
+- **System failures:** Technical glitches can prevent trades from executing as planned
+- **Market conditions:** Rapid changes can erase opportunities before you exploit them
+- **Execution risk:** One side of your trade might not go through as expected
+- **Counterparty risk:** The exchange or counterparty might fail to fulfill obligations
+
+## Building Your Trading Framework
+
+Now that you have the full toolkit, here's a framework for approaching options trades:
+
+1. **Market view:** What do you expect the underlying to do? (Direction, magnitude, timing)
+2. **Volatility view:** Is IV high or low relative to history? Do you expect it to change?
+3. **Strategy selection:** Choose a strategy that matches your views and risk tolerance
+4. **Position sizing:** How much are you willing to risk on this trade?
+5. **Entry criteria:** At what price/IV level will you enter?
+6. **Exit plan:** Define profit targets and stop-loss levels before entering
+7. **Monitor and adjust:** Track your Greeks, roll positions if needed, and close when your thesis is invalidated
+
+## Key Takeaways
+
+Options trading is a skill that combines market analysis, probability thinking, and disciplined risk management. The concepts in this course — from basic calls and puts to Greeks, volatility, and multi-leg strategies — form a comprehensive foundation. Practice with paper trading to build experience before committing real capital.
+
+<Quiz
+  question="What does call-put parity help traders identify?"
+  answers={["Whether an asset is fundamentally underpriced", "Profitable price differences between options with identical terms — arbitrage opportunities", "The optimal time to exercise an option"]}
+  correctIndex={1}
+/>

@@ -1,0 +1,85 @@
+# Risk Management
+
+<Callout type="info">
+In this chapter, you will learn about risk management for options trading — position sizing, volatility skew, managing Greeks exposure, and common mistakes to avoid.
+</Callout>
+
+## Why Risk Management Matters
+
+Options offer leverage, flexibility, and defined-risk profiles — but they can still destroy a portfolio if used carelessly. Successful options trading requires disciplined risk management, not just accurate directional calls.
+
+<Callout type="warning">
+The majority of options expire worthless. Even with the right directional view, poor timing or position sizing can result in consistent losses.
+</Callout>
+
+## Position Sizing
+
+The most fundamental risk management rule: **never risk more than you can afford to lose on a single trade.**
+
+Guidelines for options position sizing:
+- **Option buyers:** Risk no more than 1-5% of your portfolio per trade. Premiums can go to zero.
+- **Option sellers:** Ensure you have sufficient collateral to cover the worst-case scenario.
+- **Spread traders:** Your max loss is defined — make sure it's an acceptable amount relative to your portfolio.
+
+## Understanding Volatility Skew
+
+<KeyTerm term="Volatility skew">The pattern where options on the same underlying with the same expiration have different implied volatilities based on their strike prices.</KeyTerm> describes the variation in implied volatility across different strike prices.
+
+### Types of Skew
+
+- **Smile:** IV is higher for both deep OTM and deep ITM options than for ATM options.
+- **Skew (forward/reverse):** IV is different on one side of the ATM strike than the other.
+- **Reverse Skew:** IV is higher for OTM puts than OTM calls — this is common in crypto and reflects the market pricing in a higher probability of sharp downside moves.
+
+### Why Skew Matters for Risk Management
+
+<Callout type="info">
+**Pricing:** Recognizing skew helps identify overpriced or underpriced options based on their implied volatility relative to ATM levels.
+</Callout>
+
+<Callout type="info">
+**Tail risk:** Skew provides insights into market sentiment about extreme moves. Steep put skew suggests the market is worried about crashes.
+</Callout>
+
+<Callout type="info">
+**Hedging costs:** The cost of protective puts varies based on skew — understanding this helps you time your hedges.
+</Callout>
+
+## Managing Greeks Exposure
+
+A well-managed portfolio considers all Greeks:
+
+- **Delta:** Know your net directional exposure. Are you long or short the market?
+- **Gamma:** High Gamma near expiration creates instability. Consider closing or rolling positions before the final week.
+- **Theta:** If you're a net buyer, Theta is your enemy. If you're a net seller, it's your friend.
+- **Vega:** Know your IV exposure. Are you positioned to benefit from or be harmed by changes in IV?
+
+<Callout type="tip">
+Regularly assess your portfolio's net Greeks. A position that looked balanced when entered can become skewed as the underlying moves and time passes.
+</Callout>
+
+## Common Mistakes
+
+1. **Overleveraging:** Using too much of your portfolio in options positions.
+2. **Ignoring time decay:** Holding long options too long without the expected move materializing.
+3. **Fighting the trend:** Repeatedly buying puts in a bull market or calls in a bear market.
+4. **No exit plan:** Entering trades without defined profit targets and stop-loss levels.
+5. **Ignoring IV:** Buying options when IV is extremely elevated (before IV crush).
+
+## Practical Risk Rules
+
+- **Define your max loss before entering** every trade
+- **Use spreads** to cap risk when selling options
+- **Diversify across expiration dates** — don't concentrate all positions in one expiry
+- **Monitor IV levels** relative to historical ranges before entering
+- **Close losing positions** before they reach max loss — preservation of capital is paramount
+
+## Key Takeaways
+
+Risk management separates profitable options traders from the rest. Position size conservatively, understand your Greeks exposure, respect time decay, and always have an exit plan. No single trade should threaten your portfolio.
+
+<Quiz
+  question="What can volatility skew be useful for in options trading?"
+  answers={["Volatility skew tells traders how much Theta is expected to change", "Volatility skew can be used to identify under- or overpriced options based on implied volatility", "Volatility skew only applies to futures, not options"]}
+  correctIndex={1}
+/>

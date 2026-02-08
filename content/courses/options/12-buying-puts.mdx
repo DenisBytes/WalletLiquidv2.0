@@ -1,0 +1,60 @@
+# Buying Puts
+
+<Callout type="info">
+In this chapter, you will learn about buying put options (going long puts), when to use them, practical examples, and the risk/reward profile.
+</Callout>
+
+## What is a Long Put?
+
+A <KeyTerm term="long put">Buying a put option with the expectation that the underlying asset's price will fall below the strike price.</KeyTerm> is when an investor purchases a put option with the hope that the price of the underlying asset will **fall** below the strike price.
+
+If the price decreases below the strike price, the holder can exercise or sell back the option to make a profit. If the price doesn't decrease below the strike price, the holder lets the option expire and only loses the premium.
+
+<Callout type="info">
+A long put is like a long call, but instead of anticipating the price to rise, the trader anticipates the price to **fall**.
+</Callout>
+
+## Example: Long Put in Practice
+
+John believes that the price of ETH, currently trading at $3,000, will decrease in the near future. Instead of selling his ETH outright, John purchases a put option with a strike price of $2,800 and an expiration date in three months. He pays a premium of $200.
+
+Three months later, ETH has dropped to $2,500. Since John holds a put with a $2,800 strike price, he can exercise the option and sell ETH at the higher price.
+
+John's profit: ($2,800 - $2,500) - $200 premium = **$100 profit**.
+
+<Callout type="tip">
+If the price **decreases** below the strike price, the holder can exercise the option for a profit.
+</Callout>
+
+<Callout type="info">
+If the price **rises or stagnates**, the holder only loses the premium paid for the option.
+</Callout>
+
+## Risk/Reward Profile
+
+| | Long Put |
+|---|---|
+| **Max Profit** | Strike price - premium (if price goes to $0) |
+| **Max Loss** | Premium paid |
+| **Breakeven** | Strike price - premium |
+| **Best for** | Bearish outlook |
+
+## When to Buy Puts
+
+- **Speculation on downside:** You believe the price will fall significantly.
+- **Portfolio insurance:** You own the underlying and want to protect against a price drop (more on this in the Protective Puts chapter).
+- **Hedging:** Buying puts on assets you hold limits your downside risk while preserving upside potential.
+
+<Callout type="warning">
+Like long calls, long puts face time decay (Theta). The underlying needs to move enough below the strike price to overcome the premium paid. Timing matters.
+</Callout>
+
+## Key Takeaways
+
+Buying puts is the most basic bearish options strategy. Your maximum risk is limited to the premium paid, while profit potential is substantial (up to the entire strike price if the asset goes to zero). Long puts are also powerful hedging tools for protecting existing holdings.
+
+<Quiz
+  question="When does a trader generally decide to enter a long put position?"
+  answers={["Only when they want to speculate on price movements", "When they expect prices to stagnate over the near future", "When they either want insurance for their holdings, or to speculate on prices falling"]}
+  correctIndex={2}
+/>

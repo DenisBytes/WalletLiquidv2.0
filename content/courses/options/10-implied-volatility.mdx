@@ -1,0 +1,68 @@
+# Implied Volatility
+
+<Callout type="info">
+In this chapter, you will learn about implied volatility, realized (historical) volatility, and how volatility affects options pricing and trading decisions.
+</Callout>
+
+## Volatility in Options
+
+**Volatility** is a measure of how much and how fast the price of an asset can change over a short period of time. In the crypto markets, volatility is especially important as it directly affects the risk and return of options strategies.
+
+There are two ways to measure volatility: <KeyTerm term="implied volatility">An estimate of how uncertain the price of an asset will be in the future, derived from option prices.</KeyTerm> and <KeyTerm term="realized volatility">The historically recorded price movement of an asset over a specified period.</KeyTerm>.
+
+## Understanding Implied Volatility
+
+Implied volatility (IV) is an estimate of how uncertain and unpredictable the price of an asset will be in the future.
+
+It's like predicting the weather over the next few months. Just like a weather forecast, IV is based on various factors and conditions.
+
+When the forecast indicates high volatility, traders may be more likely to purchase options to profit from potential price swings. When the forecast calls for low volatility, traders may prefer strategies more fit for calmer markets, such as selling options.
+
+<Callout type="info">
+If the market implies **high** volatility for an asset like ETH, the price is expected to **move a lot** in the future. Options become more expensive.
+</Callout>
+
+<Callout type="tip">
+If the market implies **low** volatility, the price is expected to **move less**. Options become cheaper.
+</Callout>
+
+## Realized Volatility: Historical Price Movement
+
+**Realized volatility** (also called historical volatility) measures the past price movement of an asset over a specified period.
+
+Realized volatility can be used to find correlations and historical patterns, as well as an indicator of the actual price risk of an underlying asset.
+
+If implied volatility is higher than realized volatility, it means the markets expect unusually high volatility. Among other implications, this means an option might be overpriced on average, signaling traders to sell premiums.
+
+<Callout type="info">
+**Realized volatility** is an indicator of the *actual* historically recorded price risk.
+</Callout>
+
+<Callout type="tip">
+**Implied volatility** is an indicator of the *expected* future price risk.
+</Callout>
+
+## IV and Options Pricing
+
+High implied volatility means that an option is more likely to expire in the money. This results in a higher premium since the buyer has a higher chance of profiting and the seller takes on more risk.
+
+- **Low IV** → cheaper premiums → good time to buy options
+- **High IV** → expensive premiums → good time to sell options
+
+<Callout type="warning">
+Buying options when IV is extremely high can be risky — even if the underlying moves in your direction, a subsequent drop in IV (called "IV crush") can reduce your option's value.
+</Callout>
+
+## IV Crush
+
+After major events (protocol launches, regulatory announcements, earnings), implied volatility often drops sharply. This is known as **IV crush**. Options that were expensive before the event can lose significant value even if the underlying price moves favorably.
+
+## Key Takeaways
+
+Understanding implied and realized volatility can help traders make more informed decisions. IV directly affects option pricing — higher IV means more expensive options. Comparing IV to realized volatility can signal whether options are overpriced or underpriced.
+
+<Quiz
+  question="What is the difference between implied and realized volatility?"
+  answers={["Implied volatility doesn't matter since it's not based on actual data", "Implied volatility is based on what the markets expect, whereas realized volatility is based on historical data", "Realized volatility is real, while implied volatility is merely an analyst's prediction"]}
+  correctIndex={1}
+/>

@@ -1,0 +1,92 @@
+# Straddles and Strangles
+
+<Callout type="info">
+In this chapter, you will learn about straddles and strangles — volatility strategies that profit from large price moves in either direction, regardless of which way the market goes.
+</Callout>
+
+## Trading Volatility, Not Direction
+
+Most strategies we've covered so far are directional — they require the price to go up or down. **Straddles** and **strangles** are different. They profit from **large moves in either direction** and lose money when the price stays flat.
+
+These are <KeyTerm term="volatility strategies">Options strategies that profit from the magnitude of price movement, regardless of direction.</KeyTerm> — you're betting on *how much* the price moves, not *which way*.
+
+## What is a Straddle?
+
+A <KeyTerm term="straddle">Buying both a call and a put at the same strike price and expiration date.</KeyTerm> involves buying both a call and a put at the **same strike price** and **same expiration date**, typically at the money.
+
+**Example:** ETH is trading at $3,000.
+- Buy $3,000 call for $200
+- Buy $3,000 put for $180
+- Total cost: $380
+
+### When You Profit
+- If ETH rises above $3,380 → the call profits more than both premiums cost
+- If ETH falls below $2,620 → the put profits more than both premiums cost
+- The further the price moves from $3,000, the more you profit
+
+### When You Lose
+- If ETH stays near $3,000, both options lose value to time decay
+- Maximum loss: $380 (both premiums) if ETH is exactly at $3,000 at expiration
+
+<Callout type="info">
+**Max Profit:** Unlimited (price can move indefinitely in either direction).
+**Max Loss:** Total premiums paid ($380 in this example).
+</Callout>
+
+## What is a Strangle?
+
+A <KeyTerm term="strangle">Buying a call and a put at different strike prices (both OTM) with the same expiration date.</KeyTerm> is similar to a straddle but uses **different strike prices** — typically both out-of-the-money.
+
+**Example:** ETH is trading at $3,000.
+- Buy $3,200 call (OTM) for $100
+- Buy $2,800 put (OTM) for $80
+- Total cost: $180
+
+### When You Profit
+- If ETH rises above $3,380 → the call profits more than both premiums
+- If ETH falls below $2,620 → the put profits more than both premiums
+- Requires a larger move than a straddle to become profitable
+
+### Advantage Over a Straddle
+- **Cheaper** — both options are OTM, so premiums are lower
+- **Higher probability of partial recovery** — you lose less if the price moves moderately
+
+## Straddle vs Strangle
+
+| | Straddle | Strangle |
+|---|---|---|
+| **Cost** | Higher | Lower |
+| **Breakeven range** | Narrower | Wider |
+| **Max loss** | Higher (more premium) | Lower (less premium) |
+| **Move needed** | Smaller | Larger |
+
+## When to Use These Strategies
+
+- **Before major events:** Protocol launches, regulatory decisions, or macro announcements that could cause sharp moves.
+- **Low IV environment:** When implied volatility is cheap and you expect it to spike.
+- **Uncertain direction:** You believe a big move is coming but don't know which way.
+
+<Callout type="warning">
+The biggest enemy of straddles and strangles is **time decay**. If the expected move doesn't happen, Theta will erode the value of both options daily. These strategies work best with short time horizons around catalysts.
+</Callout>
+
+## Short Straddles and Strangles
+
+You can also **sell** straddles and strangles, betting that the price will stay within a range:
+
+- **Short straddle:** Sell ATM call + sell ATM put. Profit if price stays near the strike.
+- **Short strangle:** Sell OTM call + sell OTM put. Profit if price stays between the two strikes.
+
+<Callout type="warning">
+Short straddles and strangles have theoretically unlimited risk. They should only be used by experienced traders with proper risk management.
+</Callout>
+
+## Key Takeaways
+
+Straddles and strangles are volatility plays — they profit from large price moves regardless of direction. Straddles are more expensive but require smaller moves. Strangles are cheaper but need larger moves. Both suffer from time decay when the underlying stays flat.
+
+<Quiz
+  question="What is the key difference between a straddle and a strangle?"
+  answers={["A straddle uses calls only, a strangle uses puts only", "A straddle uses the same strike price for both options, a strangle uses different (OTM) strike prices", "A straddle is for bullish markets, a strangle is for bearish markets"]}
+  correctIndex={1}
+/>
