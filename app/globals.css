@@ -1,1 +1,89 @@
 @import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-mono), ui-monospace, monospace;
+
+  --color-surface: #0A0A0F;
+  --color-surface-raised: #12121A;
+  --color-surface-overlay: #1A1A25;
+  --color-border: #2A2A3A;
+  --color-border-subtle: #1F1F2E;
+
+  --color-accent: #7C5CFC;
+  --color-accent-hover: #9B7FFF;
+  --color-accent-muted: #7C5CFC33;
+
+  --color-success: #22C55E;
+  --color-success-muted: #22C55E1A;
+  --color-danger: #EF4444;
+  --color-danger-muted: #EF44441A;
+
+  --color-text-primary: #F1F1F4;
+  --color-text-secondary: #9CA3AF;
+  --color-text-muted: #6B7280;
+}
+
+/* Glass card utility */
+.glass {
+  background: rgba(18, 18, 26, 0.8);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--color-border);
+}
+
+.glass-hover:hover {
+  background: rgba(26, 26, 37, 0.9);
+  border-color: var(--color-accent-muted);
+}
+
+/* Number styling — monospace for all financial data */
+.font-numbers {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* PnL colors */
+.pnl-positive {
+  color: var(--color-success);
+}
+
+.pnl-negative {
+  color: var(--color-danger);
+}
+
+/* Gradient accent */
+.gradient-accent {
+  background: linear-gradient(135deg, #7C5CFC 0%, #3B82F6 100%);
+}
+
+.gradient-accent-text {
+  background: linear-gradient(135deg, #7C5CFC 0%, #3B82F6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-surface);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-muted);
+}
+
+/* Selection */
+::selection {
+  background: var(--color-accent-muted);
+  color: var(--color-text-primary);
+}
