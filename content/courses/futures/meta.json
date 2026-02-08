@@ -1,0 +1,16 @@
+{
+  "title": "Futures Trading Fundamentals",
+  "description": "Master perpetual futures, leverage, liquidation, and position management.",
+  "chapters": [
+    { "slug": "01-what-are-futures", "title": "What Are Futures?" },
+    { "slug": "02-perpetual-contracts", "title": "Perpetual Contracts" },
+    { "slug": "03-long-and-short", "title": "Going Long and Short" },
+    { "slug": "04-leverage", "title": "Understanding Leverage" },
+    { "slug": "05-margin", "title": "Margin Requirements" },
+    { "slug": "06-liquidation", "title": "Liquidation" },
+    { "slug": "07-pnl-calculation", "title": "PnL Calculation" },
+    { "slug": "08-funding-rates", "title": "Funding Rates" },
+    { "slug": "09-risk-management", "title": "Risk Management" },
+    { "slug": "10-trading-strategies", "title": "Trading Strategies" }
+  ]
+}

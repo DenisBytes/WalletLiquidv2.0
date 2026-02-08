@@ -1,0 +1,26 @@
+{
+  "title": "Options Trading Masterclass",
+  "description": "From zero to options trader. Learn calls, puts, Greeks, and pricing strategies.",
+  "chapters": [
+    { "slug": "01-what-are-options", "title": "What Are Options?" },
+    { "slug": "02-calls-and-puts", "title": "Calls and Puts" },
+    { "slug": "03-option-pricing", "title": "Option Pricing Basics" },
+    { "slug": "04-intrinsic-and-time-value", "title": "Intrinsic and Time Value" },
+    { "slug": "05-the-greeks-overview", "title": "The Greeks: Overview" },
+    { "slug": "06-delta", "title": "Delta" },
+    { "slug": "07-gamma", "title": "Gamma" },
+    { "slug": "08-theta", "title": "Theta" },
+    { "slug": "09-vega", "title": "Vega" },
+    { "slug": "10-implied-volatility", "title": "Implied Volatility" },
+    { "slug": "11-buying-calls", "title": "Buying Calls" },
+    { "slug": "12-buying-puts", "title": "Buying Puts" },
+    { "slug": "13-selling-calls", "title": "Selling Calls" },
+    { "slug": "14-selling-puts", "title": "Selling Puts" },
+    { "slug": "15-covered-calls", "title": "Covered Calls" },
+    { "slug": "16-protective-puts", "title": "Protective Puts" },
+    { "slug": "17-option-spreads", "title": "Option Spreads" },
+    { "slug": "18-straddles-and-strangles", "title": "Straddles and Strangles" },
+    { "slug": "19-risk-management", "title": "Risk Management" },
+    { "slug": "20-putting-it-together", "title": "Putting It All Together" }
+  ]
+}
