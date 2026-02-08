@@ -24,6 +24,7 @@
     "next-mdx-remote": "^5.0.0",
     "react": "^19",
     "react-dom": "^19",
+    "tailwind-merge": "^3.4.0",
     "tailwindcss": "^4",
     "typescript": "^5.7",
     "zod": "^3.22.2",
