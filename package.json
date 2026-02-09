@@ -2,11 +2,13 @@
   "private": true,
   "scripts": {
     "build": "next build",
+    "build:cf": "opennextjs-cloudflare",
     "dev": "next dev",
+    "preview": "opennextjs-cloudflare && wrangler pages dev",
+    "deploy": "opennextjs-cloudflare && wrangler pages deploy",
     "lint": "next lint",
     "prettier": "prettier --write --ignore-unknown .",
     "prettier:check": "prettier --check --ignore-unknown .",
-    "seed": "node -r dotenv/config ./scripts/dbConfig.js",
     "start": "next start"
   },
   "dependencies": {
@@ -31,6 +33,7 @@
     "zustand": "^5.0.11"
   },
   "devDependencies": {
+    "@opennextjs/cloudflare": "^1.16.3",
     "@tailwindcss/postcss": "^4",
     "@types/howler": "^2.2.11",
     "@types/react": "^19",
