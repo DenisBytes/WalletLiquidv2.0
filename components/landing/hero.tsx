@@ -272,8 +272,9 @@ export function Hero() {
 
         {/* CTA */}
         <div ref={ctaRef} className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 opacity-0">
+          {/* eslint-disable-next-line @next/next/no-html-link-for-pages -- Auth0 API route requires full navigation */}
           <a
-            href="/api/auth/login"
+            href="/auth/login"
             className="group relative inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-semibold text-white overflow-hidden transition-transform hover:scale-[1.02] active:scale-[0.98]"
           >
             <span className="absolute inset-0 gradient-accent" />

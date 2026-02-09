@@ -5,7 +5,7 @@ import { Topbar } from '@/components/ui/topbar'
 
 export default async function AppLayout({ children }: { children: React.ReactNode }) {
   const session = await auth0.getSession()
-  if (!session) redirect('/api/auth/login')
+  if (!session) redirect('/auth/login')
 
   return (
     <div className="flex h-screen bg-surface">

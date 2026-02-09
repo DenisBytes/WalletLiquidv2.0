@@ -95,8 +95,9 @@ export function Topbar() {
             </div>
           )}
 
+          {/* eslint-disable-next-line @next/next/no-html-link-for-pages -- Auth0 route requires full navigation */}
           <a
-            href="/api/auth/logout"
+            href="/auth/logout"
             className="p-2 rounded-lg text-text-muted hover:text-text-primary hover:bg-surface-overlay transition-colors"
             title="Log out"
           >

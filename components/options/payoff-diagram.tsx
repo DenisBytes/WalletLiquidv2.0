@@ -98,17 +98,21 @@ export function PayoffDiagram({
   const scaleY = (val: number) => PADDING.top + (1 - (val - yMin) / (yMax - yMin)) * CHART_H
 
   const pathD = useMemo(() => {
+    const sx = (val: number) => PADDING.left + ((val - xMin) / (xMax - xMin)) * CHART_W
+    const sy = (val: number) => PADDING.top + (1 - (val - yMin) / (yMax - yMin)) * CHART_H
     return points
       .map((p, i) => {
-        const x = scaleX(p.x)
-        const y = scaleY(p.y)
+        const x = sx(p.x)
+        const y = sy(p.y)
         return `${i === 0 ? 'M' : 'L'}${x.toFixed(2)},${y.toFixed(2)}`
       })
       .join(' ')
   }, [points, xMin, xMax, yMin, yMax])
 
   const { profitFillD, lossFillD } = useMemo(() => {
-    const zeroY = scaleY(0)
+    const sx = (val: number) => PADDING.left + ((val - xMin) / (xMax - xMin)) * CHART_W
+    const sy = (val: number) => PADDING.top + (1 - (val - yMin) / (yMax - yMin)) * CHART_H
+    const zeroY = sy(0)
 
     let profitPath = ''
     let lossPath = ''
@@ -117,8 +121,8 @@ export function PayoffDiagram({
     let lossStarted = false
 
     for (let i = 0; i < points.length; i++) {
-      const x = scaleX(points[i].x)
-      const y = scaleY(points[i].y)
+      const x = sx(points[i].x)
+      const y = sy(points[i].y)
 
       if (points[i].y >= 0) {
         if (!profitStarted) {

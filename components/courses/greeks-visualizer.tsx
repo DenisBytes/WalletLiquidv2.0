@@ -10,6 +10,7 @@ import {
   calculateTheta,
   calculateVega,
 } from '@/lib/engine/options'
+import type { OptionType } from '@/lib/engine/types'
 
 interface GreeksVisualizerProps {
   type?: 'call' | 'put'
@@ -35,12 +36,13 @@ export function GreeksVisualizer({
     const t = days / 365
     if (t <= 0) return { price: 0, delta: 0, gamma: 0, theta: 0, vega: 0 }
 
+    const engineType: OptionType = type === 'call' ? 'CALL' : 'PUT'
     const optionPrice = type === 'call'
       ? blackScholesCall(price, strike, t, riskFreeRate, volatility)
       : blackScholesPut(price, strike, t, riskFreeRate, volatility)
-    const delta = calculateDelta(price, strike, t, riskFreeRate, volatility, type)
+    const delta = calculateDelta(price, strike, t, riskFreeRate, volatility, engineType)
     const gamma = calculateGamma(price, strike, t, riskFreeRate, volatility)
-    const theta = calculateTheta(price, strike, t, riskFreeRate, volatility, type)
+    const theta = calculateTheta(price, strike, t, riskFreeRate, volatility, engineType)
     const vega = calculateVega(price, strike, t, riskFreeRate, volatility)
 
     return { price: optionPrice, delta, gamma, theta, vega }

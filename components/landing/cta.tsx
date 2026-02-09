@@ -67,8 +67,9 @@ export function CTA() {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            {/* eslint-disable-next-line @next/next/no-html-link-for-pages -- Auth0 API route requires full navigation */}
             <a
-              href="/api/auth/login"
+              href="/auth/login"
               className="group relative inline-flex items-center gap-2 px-10 py-4 rounded-xl text-base font-semibold text-white overflow-hidden transition-transform hover:scale-[1.02] active:scale-[0.98]"
             >
               <span className="absolute inset-0 gradient-accent" />
