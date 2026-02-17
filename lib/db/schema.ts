@@ -21,7 +21,9 @@ export const optionStatusEnum = pgEnum('option_status', [
   'CLOSED',
 ])
 export const tradeTypeEnum = pgEnum('trade_type', ['FUTURES', 'OPTIONS'])
-export const tradeActionEnum = pgEnum('trade_action', ['OPEN', 'CLOSE', 'LIQUIDATION', 'EXERCISE'])
+export const tradeActionEnum = pgEnum('trade_action', [
+  'OPEN', 'CLOSE', 'LIQUIDATION', 'EXERCISE', 'STOP_LOSS', 'TAKE_PROFIT', 'FUNDING',
+])
 
 export const users = pgTable('users', {
   id: text('id').primaryKey(), // Auth0 sub
@@ -82,6 +84,20 @@ export const tradeHistory = pgTable('trade_history', {
   quantity: decimal('quantity', { precision: 20, scale: 8 }).notNull(),
   pnl: decimal('pnl', { precision: 20, scale: 8 }),
   executedAt: timestamp('executed_at').defaultNow().notNull(),
+})
+
+export const fundingRateHistory = pgTable('funding_rate_history', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  userId: text('user_id')
+    .notNull()
+    .references(() => users.id),
+  positionId: uuid('position_id')
+    .notNull()
+    .references(() => futuresPositions.id),
+  symbol: text('symbol').notNull(),
+  fundingRate: decimal('funding_rate', { precision: 20, scale: 10 }).notNull(),
+  payment: decimal('payment', { precision: 20, scale: 8 }).notNull(),
+  appliedAt: timestamp('applied_at').defaultNow().notNull(),
 })
 
 export const courseProgress = pgTable(

@@ -30,6 +30,9 @@ const actionConfig = {
   CLOSE: { label: 'CLOSE', color: 'text-text-primary', bg: 'bg-surface-overlay' },
   LIQUIDATION: { label: 'LIQ', color: 'text-danger', bg: 'bg-danger/15' },
   EXERCISE: { label: 'EXERCISE', color: 'text-success', bg: 'bg-success/15' },
+  STOP_LOSS: { label: 'SL', color: 'text-orange-400', bg: 'bg-orange-400/15' },
+  TAKE_PROFIT: { label: 'TP', color: 'text-success', bg: 'bg-success/15' },
+  FUNDING: { label: 'FUND', color: 'text-[#3B82F6]', bg: 'bg-[#3B82F6]/15' },
 } as const
 
 interface RecentTradesProps {
@@ -66,7 +69,11 @@ export function RecentTrades({ trades }: RecentTradesProps) {
                         ? 'bg-danger'
                         : trade.action === 'OPEN'
                           ? 'bg-accent'
-                          : 'bg-text-muted'
+                          : trade.action === 'FUNDING'
+                            ? 'bg-[#3B82F6]'
+                            : trade.action === 'STOP_LOSS'
+                              ? 'bg-orange-400'
+                              : 'bg-text-muted'
                     )}
                   />
 
