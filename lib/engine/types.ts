@@ -4,7 +4,7 @@ export type OptionType = 'CALL' | 'PUT'
 export type OptionSide = 'BUY' | 'SELL'
 export type OptionStatus = 'OPEN' | 'EXERCISED' | 'EXPIRED' | 'CLOSED'
 export type TradeType = 'FUTURES' | 'OPTIONS'
-export type TradeAction = 'OPEN' | 'CLOSE' | 'LIQUIDATION' | 'EXERCISE'
+export type TradeAction = 'OPEN' | 'CLOSE' | 'LIQUIDATION' | 'EXERCISE' | 'STOP_LOSS' | 'TAKE_PROFIT' | 'FUNDING'
 
 export interface FuturesPosition {
   id: string
