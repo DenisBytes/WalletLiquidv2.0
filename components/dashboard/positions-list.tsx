@@ -34,7 +34,7 @@ export function PositionsList({ positions }: PositionsListProps) {
         <div className="py-12 text-center">
           <p className="text-text-muted mb-3">No open positions</p>
           <Link
-            href="/futures"
+            href="/trade/futures"
             className="text-accent hover:text-accent-hover text-sm font-medium transition-colors"
           >
             Start trading

@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 
 const RECONNECT_DELAY = 3000
+const THROTTLE_MS = 100
 
 interface PriceState {
   prices: Map<string, number>
@@ -14,6 +15,20 @@ interface PriceState {
 export const usePriceStore = create<PriceState>((set, get) => {
   let reconnectTimeout: ReturnType<typeof setTimeout> | null = null
   let activeSymbols: string[] = []
+  const livePrices = new Map<string, number>()
+  let flushScheduled = false
+
+  function flushPrices() {
+    flushScheduled = false
+    set({ prices: new Map(livePrices) })
+  }
+
+  function scheduleFlush() {
+    if (!flushScheduled) {
+      flushScheduled = true
+      setTimeout(flushPrices, THROTTLE_MS)
+    }
+  }
 
   function cleanup() {
     if (reconnectTimeout) {
@@ -63,15 +78,11 @@ export const usePriceStore = create<PriceState>((set, get) => {
           const data = msg.data
           if (!data?.s || !data?.p) return
 
-          // Strip the USDT suffix to get the base symbol
           const symbol = data.s.replace(/USDT$/i, '').toUpperCase()
           const price = parseFloat(data.p)
 
-          set((state) => {
-            const next = new Map(state.prices)
-            next.set(symbol, price)
-            return { prices: next }
-          })
+          livePrices.set(symbol, price)
+          scheduleFlush()
         } catch {
           // Malformed message, skip
         }

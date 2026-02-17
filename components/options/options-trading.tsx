@@ -128,9 +128,9 @@ export function OptionsTrading({ initialBalance, initialPositions }: OptionsTrad
   }, [spotPrice, selectedStrike, selectedExpiry, optionType, expirations])
 
   return (
-    <div className="flex flex-col gap-4 h-full">
+    <div className="flex flex-col gap-4 min-w-0">
       {/* Header: symbol selector + spot price */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
         <div className="flex items-center gap-1 p-1 rounded-xl bg-surface-raised w-fit">
           {SYMBOLS.map((s) => (
             <button
@@ -164,8 +164,8 @@ export function OptionsTrading({ initialBalance, initialPositions }: OptionsTrad
       </div>
 
       {/* Option Chain + Order Panel */}
-      <div className="grid grid-cols-5 gap-4 min-h-[420px]">
-        <div className="col-span-3">
+      <div className="grid grid-cols-1 xl:grid-cols-[1fr_340px] gap-4">
+        <div className="min-w-0 min-h-[420px]">
           <OptionChain
             spotPrice={spotPrice}
             strikes={strikes}
@@ -178,7 +178,7 @@ export function OptionsTrading({ initialBalance, initialPositions }: OptionsTrad
             riskFreeRate={RISK_FREE_RATE}
           />
         </div>
-        <div className="col-span-2">
+        <div className="min-w-0">
           <OptionsOrderPanel
             symbol={symbol}
             balance={initialBalance}
@@ -199,7 +199,7 @@ export function OptionsTrading({ initialBalance, initialPositions }: OptionsTrad
       </div>
 
       {/* Payoff Diagram + Greeks */}
-      <div className="grid grid-cols-2 gap-4 min-h-[300px]">
+      <div className="grid grid-cols-1 xl:grid-cols-[1fr_340px] gap-4">
         <PayoffDiagram
           optionType={optionType}
           side="BUY"

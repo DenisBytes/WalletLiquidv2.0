@@ -30,15 +30,15 @@ export function FuturesTrading({ initialBalance, initialPositions }: FuturesTrad
   }, [symbol, connect, disconnect, initialPositions])
 
   return (
-    <div className="flex flex-col gap-4 h-full">
+    <div className="flex flex-col gap-4">
       {/* Symbol selector */}
-      <div className="flex items-center gap-1 p-1 rounded-xl bg-surface-raised w-fit">
+      <div className="flex items-center gap-1 p-1 rounded-xl bg-surface-raised w-fit overflow-x-auto">
         {SYMBOLS.map((s) => (
           <button
             key={s}
             onClick={() => setSymbol(s)}
             className={cn(
-              'px-4 py-2 rounded-lg text-sm font-medium transition-all',
+              'px-4 py-2 rounded-lg text-sm font-medium transition-all shrink-0',
               s === symbol
                 ? 'gradient-accent text-white shadow-lg shadow-accent/20'
                 : 'text-text-secondary hover:text-text-primary hover:bg-surface-overlay'
@@ -50,11 +50,11 @@ export function FuturesTrading({ initialBalance, initialPositions }: FuturesTrad
       </div>
 
       {/* Chart + Order Panel */}
-      <div className="grid grid-cols-5 gap-4 min-h-[480px]">
-        <div className="col-span-3">
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-4">
+        <div className="min-h-[400px] lg:min-h-[480px]">
           <PriceChart symbol={symbol} />
         </div>
-        <div className="col-span-2">
+        <div>
           <OrderPanel symbol={symbol} balance={initialBalance} />
         </div>
       </div>
