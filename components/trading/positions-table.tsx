@@ -56,7 +56,7 @@ export function PositionsTable({ positions }: PositionsTableProps) {
           <table className="w-full">
             <thead>
               <tr className="border-b border-border">
-                {['Symbol', 'Side', 'Entry Price', 'Mark Price', 'Size', 'Leverage', 'Liq. Price', 'PnL', 'ROE%', ''].map(
+                {['Symbol', 'Side', 'Entry Price', 'Mark Price', 'Size', 'Leverage', 'Liq. Price', 'PnL', 'Funding', 'ROE%', ''].map(
                   (header) => (
                     <th
                       key={header || 'action'}
@@ -170,6 +170,10 @@ function PositionRow({ position }: { position: FuturesRow }) {
         ) : (
           <span className="font-numbers text-sm text-text-muted">--</span>
         )}
+      </td>
+
+      <td className="py-3 pr-4">
+        <span className="font-numbers text-sm text-text-muted">--</span>
       </td>
 
       <td className="py-3 pr-4">

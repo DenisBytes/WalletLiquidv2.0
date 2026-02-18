@@ -6,6 +6,8 @@ import { cn } from '@/lib/utils/cn'
 import { PriceChart } from './price-chart'
 import { OrderPanel } from './order-panel'
 import { PositionsTable } from './positions-table'
+import { FundingRateBadge } from './funding-rate-badge'
+import { applyFundingRates } from '@/lib/actions/funding'
 import type { futuresPositions } from '@/lib/db/schema'
 
 type FuturesRow = typeof futuresPositions.$inferSelect
@@ -29,24 +31,32 @@ export function FuturesTrading({ initialBalance, initialPositions }: FuturesTrad
     return () => disconnect()
   }, [symbol, connect, disconnect, initialPositions])
 
+  // Lazy trigger: apply any pending funding rates when user visits the page
+  useEffect(() => {
+    applyFundingRates().catch(() => {})
+  }, [])
+
   return (
     <div className="flex flex-col gap-4">
-      {/* Symbol selector */}
-      <div className="flex items-center gap-1 p-1 rounded-xl bg-surface-raised w-fit overflow-x-auto">
-        {SYMBOLS.map((s) => (
-          <button
-            key={s}
-            onClick={() => setSymbol(s)}
-            className={cn(
-              'px-4 py-2 rounded-lg text-sm font-medium transition-all shrink-0',
-              s === symbol
-                ? 'gradient-accent text-white shadow-lg shadow-accent/20'
-                : 'text-text-secondary hover:text-text-primary hover:bg-surface-overlay'
-            )}
-          >
-            {s}
-          </button>
-        ))}
+      {/* Symbol selector + funding rate */}
+      <div className="flex items-center gap-3 flex-wrap">
+        <div className="flex items-center gap-1 p-1 rounded-xl bg-surface-raised w-fit overflow-x-auto">
+          {SYMBOLS.map((s) => (
+            <button
+              key={s}
+              onClick={() => setSymbol(s)}
+              className={cn(
+                'px-4 py-2 rounded-lg text-sm font-medium transition-all shrink-0',
+                s === symbol
+                  ? 'gradient-accent text-white shadow-lg shadow-accent/20'
+                  : 'text-text-secondary hover:text-text-primary hover:bg-surface-overlay'
+              )}
+            >
+              {s}
+            </button>
+          ))}
+        </div>
+        <FundingRateBadge symbol={symbol} />
       </div>
 
       {/* Chart + Order Panel */}
