@@ -24,6 +24,12 @@ export const tradeTypeEnum = pgEnum('trade_type', ['FUTURES', 'OPTIONS'])
 export const tradeActionEnum = pgEnum('trade_action', [
   'OPEN', 'CLOSE', 'LIQUIDATION', 'EXERCISE', 'STOP_LOSS', 'TAKE_PROFIT', 'FUNDING',
 ])
+export const orderTypeEnum = pgEnum('order_type', ['STOP_LOSS', 'TAKE_PROFIT', 'TRAILING_STOP'])
+export const orderStatusEnum = pgEnum('order_status', ['PENDING', 'TRIGGERED', 'CANCELLED'])
+export const strategyTypeEnum = pgEnum('strategy_type', [
+  'BULL_CALL_SPREAD', 'BEAR_PUT_SPREAD', 'STRADDLE', 'STRANGLE', 'IRON_CONDOR',
+])
+export const strategyStatusEnum = pgEnum('strategy_status', ['OPEN', 'CLOSED', 'EXPIRED'])
 
 export const users = pgTable('users', {
   id: text('id').primaryKey(), // Auth0 sub
@@ -98,6 +104,46 @@ export const fundingRateHistory = pgTable('funding_rate_history', {
   fundingRate: decimal('funding_rate', { precision: 20, scale: 10 }).notNull(),
   payment: decimal('payment', { precision: 20, scale: 8 }).notNull(),
   appliedAt: timestamp('applied_at').defaultNow().notNull(),
+})
+
+export const orders = pgTable('orders', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  userId: text('user_id')
+    .notNull()
+    .references(() => users.id),
+  positionId: uuid('position_id')
+    .notNull()
+    .references(() => futuresPositions.id),
+  type: orderTypeEnum('type').notNull(),
+  triggerPrice: decimal('trigger_price', { precision: 20, scale: 8 }).notNull(),
+  trailingDistance: decimal('trailing_distance', { precision: 20, scale: 8 }),
+  reduceOnly: integer('reduce_only').notNull().default(1),
+  status: orderStatusEnum('status').notNull().default('PENDING'),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+  triggeredAt: timestamp('triggered_at'),
+})
+
+export const optionStrategies = pgTable('option_strategies', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  userId: text('user_id')
+    .notNull()
+    .references(() => users.id),
+  symbol: text('symbol').notNull(),
+  strategyType: strategyTypeEnum('strategy_type').notNull(),
+  legs: jsonb('legs').$type<{
+    optionPositionId: string
+    optionType: 'CALL' | 'PUT'
+    side: 'BUY' | 'SELL'
+    strike: number
+    premium: number
+    quantity: number
+  }[]>().notNull(),
+  totalPremium: decimal('total_premium', { precision: 20, scale: 8 }).notNull(),
+  maxProfit: decimal('max_profit', { precision: 20, scale: 8 }),
+  maxLoss: decimal('max_loss', { precision: 20, scale: 8 }),
+  status: strategyStatusEnum('status').notNull().default('OPEN'),
+  openedAt: timestamp('opened_at').defaultNow().notNull(),
+  closedAt: timestamp('closed_at'),
 })
 
 export const courseProgress = pgTable(
