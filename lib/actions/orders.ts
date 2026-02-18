@@ -168,3 +168,17 @@ export async function getOrdersForPosition(positionId: string) {
       )
     )
 }
+
+export async function getAllPendingOrders() {
+  const user = await getOrCreateUser()
+
+  return db
+    .select()
+    .from(orders)
+    .where(
+      and(
+        eq(orders.userId, user.id),
+        eq(orders.status, 'PENDING')
+      )
+    )
+}
