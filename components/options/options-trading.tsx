@@ -10,10 +10,12 @@ import { OptionChain } from './option-chain'
 import { OptionsOrderPanel } from './order-panel'
 import { PayoffDiagram } from './payoff-diagram'
 import { GreeksDisplay } from './greeks-display'
+import { StrategyBuilder } from './strategy-builder'
 import type { OptionType, Greeks } from '@/lib/engine/types'
-import type { optionsPositions } from '@/lib/db/schema'
+import type { optionsPositions, optionStrategies } from '@/lib/db/schema'
 
 type OptionsRow = typeof optionsPositions.$inferSelect
+type StrategyRow = typeof optionStrategies.$inferSelect
 
 const SYMBOLS = ['BTC', 'ETH'] as const
 
@@ -71,10 +73,12 @@ function formatUsd(value: number): string {
 interface OptionsTradingProps {
   initialBalance: number
   initialPositions: OptionsRow[]
+  initialStrategies: StrategyRow[]
 }
 
-export function OptionsTrading({ initialBalance, initialPositions }: OptionsTradingProps) {
+export function OptionsTrading({ initialBalance, initialPositions, initialStrategies }: OptionsTradingProps) {
   const [symbol, setSymbol] = useState<(typeof SYMBOLS)[number]>('BTC')
+  const [mode, setMode] = useState<'single' | 'strategy'>('single')
   const [selectedExpiry, setSelectedExpiry] = useState(2) // default 14 days
   const [selectedStrike, setSelectedStrike] = useState<number>(0)
   const [optionType, setOptionType] = useState<OptionType>('CALL')
@@ -163,6 +167,33 @@ export function OptionsTrading({ initialBalance, initialPositions }: OptionsTrad
         </div>
       </div>
 
+      {/* Mode Toggle */}
+      <div className="flex items-center gap-1 p-1 rounded-xl bg-surface-raised w-fit">
+        {(['single', 'strategy'] as const).map((m) => (
+          <button
+            key={m}
+            onClick={() => setMode(m)}
+            className={cn(
+              'px-4 py-2 rounded-lg text-sm font-medium transition-all',
+              m === mode
+                ? 'gradient-accent text-white shadow-lg shadow-accent/20'
+                : 'text-text-secondary hover:text-text-primary hover:bg-surface-overlay'
+            )}
+          >
+            {m === 'single' ? 'Single' : 'Strategy'}
+          </button>
+        ))}
+      </div>
+
+      {mode === 'strategy' ? (
+        <StrategyBuilder
+          symbol={symbol}
+          spotPrice={spotPrice}
+          balance={initialBalance}
+          strategies={initialStrategies}
+        />
+      ) : (
+      <>
       {/* Option Chain + Order Panel */}
       <div className="grid grid-cols-1 xl:grid-cols-[1fr_340px] gap-4">
         <div className="min-w-0 min-h-[420px]">
@@ -212,6 +243,8 @@ export function OptionsTrading({ initialBalance, initialPositions }: OptionsTrad
 
       {/* Open Positions */}
       <OptionsPositionsTable positions={initialPositions} />
+      </>
+      )}
     </div>
   )
 }
