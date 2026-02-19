@@ -155,7 +155,7 @@ export function PriceChart({ symbol }: PriceChartProps) {
   return (
     <div className="glass rounded-2xl h-full relative overflow-hidden">
       {/* Price overlay */}
-      <div className="absolute top-4 right-4 z-10 text-right">
+      <div className="absolute top-4 left-4 z-10">
         <p className="text-text-muted text-xs mb-0.5">{symbol}/USDT</p>
         {currentPrice !== null && (
           <>
