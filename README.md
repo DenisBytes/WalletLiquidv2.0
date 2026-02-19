@@ -1,40 +1,60 @@
-# WalletLiquid v2.0 - Options and Futures Learning Platform
+# WalletLiquid v2.0
 
-Platform where you can paper trade ("fake" money) crypto derivates (futures and options) + 2 courses to learn futures and options. It a refactor of WalletLiquidv1 written in Java.
+Paper trading platform for crypto derivatives. Trade futures and options with fake money, learn with interactive courses.
 
-![image](https://github.com/DenisBytes/WalletLiquidv2.0/assets/130691305/a323fca7-efd2-4f65-a4b6-de8b76028667)
-![image](https://github.com/DenisBytes/WalletLiquidv2.0/assets/130691305/ed953652-8f9d-4463-a069-75fa3917b157)
-![image](https://github.com/DenisBytes/WalletLiquidv2.0/assets/130691305/1b227634-33a4-4a27-aa10-0a7af4f94015)
+Built with Next.js 15, deployed on Cloudflare Pages at $0/month.
 
+## Features
 
+**Futures Trading**
+- Long/short positions with 1x–125x leverage
+- Real-time prices from Binance WebSocket
+- Liquidation engine, margin calculation, live PnL
+- Stop-loss, take-profit, and trailing stop orders
+- Funding rate simulation (8h intervals)
 
-## URL
+**Options Trading**
+- Buy/sell calls and puts
+- Black-Scholes pricing with Greeks (Delta, Gamma, Theta, Vega)
+- Interactive payoff diagrams
+- Multi-leg strategies: spreads, straddles, strangles, iron condors
 
-Visit the live demo of WalletLiquid [here](https://wallet-liquidv2-0.vercel.app).
+**Courses**
+- 20-chapter options course
+- 10-chapter futures course
+- Interactive MDX components: quizzes, simulators, visualizers
+- Progress tracking
 
+**Dashboard**
+- Portfolio overview with sparkline
+- Open positions with live PnL
+- Asset allocation breakdown
+- Trade history with filtering and sorting
 
-## How to run locally
+## Stack
 
-  To experience WalletLiquid on your local machine, follow these straightforward steps:
+- **Framework:** Next.js 15 (App Router)
+- **Database:** Neon Postgres + Drizzle ORM
+- **Auth:** Auth0
+- **Styling:** Tailwind CSS v4
+- **Charts:** TradingView Lightweight Charts
+- **Animations:** GSAP + ScrollTrigger + Lenis
+- **State:** Zustand
+- **Content:** MDX via next-mdx-remote
+- **Runtime:** Cloudflare Pages (@opennextjs/cloudflare)
 
-1. **Clone the repository to your local machine:**
+## Local Development
 
-   ```bash
-   git clone https://github.com/DenisBytes/WalletLiquidv2.0.git
+```bash
+git clone https://github.com/DenisBytes/WalletLiquidv2.0.git
+cd WalletLiquidv2.0
+bun install
+cp .env.example .env  # fill in your env vars
+bun dev
+```
 
-2. **Navigate to the project directory:**
+Requires a Neon database and Auth0 tenant. See `.env.example` for required variables.
 
-   ```bash
-   cd WalletLiquidv2.0
+## License
 
-3. **Install Dependencies:**
-
-   ```bash
-   npm install
-   
-4. Run the application:
-
-   ```bash
-   npm run dev
-
-Open your web browser and visit localhost:3000 to access the platform.
+MIT
