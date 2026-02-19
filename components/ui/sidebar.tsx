@@ -51,18 +51,8 @@ const navigation = [
     ),
   },
   {
-    label: 'Learn Options',
-    href: '/learn/options',
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M3 4.5A1.5 1.5 0 014.5 3h3A1.5 1.5 0 019 4.5v11a.5.5 0 01-.854.354A2.5 2.5 0 006 15a2.5 2.5 0 00-2.146.854A.5.5 0 013 15.5v-11z" stroke="currentColor" strokeWidth="1.5" />
-        <path d="M17 4.5A1.5 1.5 0 0015.5 3h-3A1.5 1.5 0 0011 4.5v11a.5.5 0 00.854.354A2.5 2.5 0 0114 15a2.5 2.5 0 012.146.854A.5.5 0 0017 15.5v-11z" stroke="currentColor" strokeWidth="1.5" />
-      </svg>
-    ),
-  },
-  {
-    label: 'Learn Futures',
-    href: '/learn/futures',
+    label: 'Learn',
+    href: '/learn',
     icon: (
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M3 4.5A1.5 1.5 0 014.5 3h3A1.5 1.5 0 019 4.5v11a.5.5 0 01-.854.354A2.5 2.5 0 006 15a2.5 2.5 0 00-2.146.854A.5.5 0 013 15.5v-11z" stroke="currentColor" strokeWidth="1.5" />

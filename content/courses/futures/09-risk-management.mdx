@@ -1,0 +1,170 @@
+# Risk Management
+
+<Callout type="info">
+In this chapter, you will learn about position sizing, risk-reward ratios, stop-loss and take-profit orders, the 1-2% rule, how to avoid overleveraging, emotional discipline, drawdown management, and correlation risk.
+</Callout>
+
+## Why Risk Management Is Everything
+
+The difference between consistently profitable futures traders and those who blow up their accounts is not better predictions — it is better risk management. You can be wrong on more than half your trades and still be profitable if your winners are larger than your losers and your position sizes are controlled.
+
+<Callout type="warning">
+Without a defined risk management framework, leveraged futures trading is indistinguishable from gambling. A single unmanaged trade can destroy weeks or months of profits.
+</Callout>
+
+## Position Sizing
+
+<KeyTerm term="Position sizing">The process of determining how large a position to take on a given trade, based on your account size, risk tolerance, and the specific trade setup.</KeyTerm> is the foundation of risk management. It answers the question: "How much should I put into this trade?"
+
+### Fixed Percentage Method
+
+The most common approach is to risk a fixed percentage of your total account on each trade. This means calculating your position size based on your stop-loss distance and the amount you are willing to lose.
+
+**Position Size = (Account Balance × Risk %) / (Entry Price - Stop-Loss Price)**
+
+### Example
+
+- Account balance: $10,000
+- Risk per trade: 2% = $200
+- Entry price (long BTC): $50,000
+- Stop-loss: $49,000 (2% below entry)
+- Position size: $200 / ($50,000 - $49,000) = 0.2 BTC ($10,000 notional)
+
+This means you would use leverage to control a $10,000 position while only risking $200 if your stop is hit.
+
+<Callout type="tip">
+Always calculate your position size from your risk tolerance, not the other way around. Decide how much you can afford to lose first, then determine the appropriate position size.
+</Callout>
+
+## Risk-Reward Ratio
+
+<KeyTerm term="Risk-reward ratio">The ratio between the potential loss (risk) and the potential gain (reward) of a trade. A 1:3 ratio means you risk $1 to potentially make $3.</KeyTerm> helps you evaluate whether a trade is worth taking.
+
+A minimum risk-reward ratio of **1:2** is a widely recommended baseline. This means for every $1 you risk, you target at least $2 in profit.
+
+### Why This Matters
+
+With a 1:2 risk-reward ratio, you only need to win **34% of your trades** to break even. With a 1:3 ratio, you only need a 25% win rate.
+
+| Risk:Reward | Required Win Rate to Break Even |
+|-------------|-------------------------------|
+| 1:1         | 50%                           |
+| 1:2         | 34%                           |
+| 1:3         | 25%                           |
+| 1:4         | 20%                           |
+
+<Callout type="info">
+A high risk-reward ratio gives you a mathematical edge. Even mediocre trade selection can be profitable if you consistently cut losses short and let winners run.
+</Callout>
+
+## Stop-Loss and Take-Profit Orders
+
+### Stop-Loss Orders
+
+A <KeyTerm term="Stop-loss order">An order placed to automatically close a position at a predetermined price level to limit losses.</KeyTerm> is your primary defense against catastrophic losses.
+
+Rules for setting stop-losses:
+- Place them at technically meaningful levels (support/resistance, recent swing lows/highs), not arbitrary percentages.
+- Your stop-loss should always trigger before your liquidation price.
+- Never widen your stop-loss on a losing trade. This is one of the most destructive habits in trading.
+
+### Take-Profit Orders
+
+A take-profit order locks in gains when price reaches your target. Consider scaling out — closing 50% of the position at your first target and letting the rest run with a trailing stop.
+
+<Callout type="tip">
+Set both your stop-loss and take-profit before entering a trade. If you cannot define where you would exit at a loss and at a profit, you do not have a trade — you have a gamble.
+</Callout>
+
+## The 1-2% Rule
+
+The 1-2% rule states: **never risk more than 1-2% of your total account balance on a single trade.**
+
+This sounds conservative, but it is the single most important rule for long-term survival.
+
+### Why It Works
+
+With a $10,000 account risking 2% per trade:
+- After 5 consecutive losses: $10,000 → $9,039 (a 9.6% drawdown)
+- After 10 consecutive losses: $10,000 → $8,171 (an 18.3% drawdown)
+
+Compare this to risking 10% per trade:
+- After 5 consecutive losses: $10,000 → $5,905 (a 41% drawdown)
+- After 10 consecutive losses: $10,000 → $3,487 (a 65% drawdown)
+
+<Callout type="warning">
+Recovering from drawdowns gets exponentially harder. A 50% loss requires a 100% gain to recover. A 75% loss requires a 300% gain. The 1-2% rule keeps drawdowns manageable and recoverable.
+</Callout>
+
+## Avoiding Overleveraging
+
+Overleveraging is the most common way traders blow up their accounts. Just because an exchange offers 125x leverage does not mean you should use it.
+
+### Practical Leverage Guidelines
+
+- **Conservative:** 2-5x leverage — suitable for swing trades held for days or weeks
+- **Moderate:** 5-10x leverage — suitable for intraday trades with defined stops
+- **Aggressive:** 10-20x leverage — only for experienced traders with tight stops and small position sizes
+- **Extreme (20x+):** Essentially gambling unless combined with very tight risk controls
+
+<Callout type="info">
+Your effective leverage should be determined by your position size and stop-loss, not the leverage multiplier itself. Even at 20x leverage, if your position size is small relative to your account, your actual risk can be well-controlled.
+</Callout>
+
+## Emotional Discipline
+
+Technical risk management only works if you actually follow it. Emotional trading is the primary reason traders deviate from their plans.
+
+### Common Emotional Traps
+
+- **Revenge trading:** Immediately entering another trade after a loss to "win back" the money. This leads to impulsive, oversized positions.
+- **FOMO (Fear of Missing Out):** Entering a trade too late because the price has already moved, chasing the market.
+- **Moving stop-losses:** Widening your stop because you "believe" the trade will eventually work out.
+- **Overtrading:** Taking trades that do not meet your criteria simply because you want to be in the market.
+
+### How to Maintain Discipline
+
+- Trade with a written plan — entry, stop-loss, take-profit, and position size defined before you execute.
+- Set a daily loss limit. If you lose 3-5% of your account in a day, stop trading and walk away.
+- Keep a trading journal. Review your trades weekly to identify emotional patterns.
+
+<Callout type="tip">
+Paper trading on a platform like WalletLiquid is the ideal place to develop emotional discipline. The absence of real money allows you to focus on process over outcomes and build habits before live trading.
+</Callout>
+
+## Drawdown Management
+
+<KeyTerm term="Drawdown">The peak-to-trough decline in your account balance, measured as a percentage from the highest point to the lowest point before a new high is reached.</KeyTerm> is a natural part of trading. Managing it is about survival.
+
+### Drawdown Recovery Plan
+
+- **0-10% drawdown:** Normal. Continue trading your plan.
+- **10-20% drawdown:** Reduce position sizes by 50%. Review your recent trades for pattern errors.
+- **20-30% drawdown:** Stop live trading. Return to paper trading or take a break. Something in your strategy or execution needs fixing.
+- **30%+ drawdown:** Full stop. A drawdown this deep usually indicates a fundamental issue — either the strategy is broken or emotional discipline has collapsed.
+
+## Correlation Risk
+
+<KeyTerm term="Correlation risk">The risk that arises when multiple positions in your portfolio move in the same direction simultaneously, creating concentrated exposure to a single market move.</KeyTerm> is an often-overlooked danger in crypto futures trading.
+
+If you are long BTC, long ETH, and long SOL simultaneously, you might think you have three separate trades. In reality, during a market-wide sell-off, all three will drop together. You effectively have one highly concentrated bet on the crypto market going up.
+
+### Managing Correlation
+
+- Treat correlated positions as a single combined position for risk purposes.
+- If you are long BTC and long ETH, your total risk is not isolated — calculate your combined notional exposure.
+- Consider offsetting positions (one long, one short) on correlated assets to reduce net directional risk.
+
+<Callout type="warning">
+Crypto assets are highly correlated during sell-offs. Diversifying across multiple altcoin longs does not reduce risk the way diversifying across uncorrelated asset classes would.
+</Callout>
+
+## Key Takeaways
+
+Risk management is the only edge that every trader can control. Size positions conservatively using the 1-2% rule, always use stop-losses, maintain a minimum 1:2 risk-reward ratio, and respect drawdown limits. Emotional discipline and awareness of correlation risk are just as important as technical setups.
+
+<Quiz
+  question="If you have a $10,000 account and follow the 2% rule, what is the maximum amount you should risk on a single trade?"
+  answers={["$500", "$200", "$1,000"]}
+  correctIndex={1}
+/>

@@ -113,28 +113,50 @@ export function OrderPanel({ symbol, balance }: OrderPanelProps) {
       <div className="mb-5">
         <div className="flex items-center justify-between mb-2">
           <span className="text-text-secondary text-sm">Leverage</span>
-          <span className="font-numbers text-sm font-semibold text-accent">{leverage}x</span>
+          <div className="flex items-center gap-1">
+            <input
+              type="number"
+              min={1}
+              max={125}
+              value={leverage}
+              onChange={(e) => {
+                const v = parseInt(e.target.value)
+                if (!isNaN(v) && v >= 1 && v <= 125) setLeverage(v)
+              }}
+              className="w-12 bg-surface-overlay border border-border rounded-md px-1.5 py-0.5
+                font-numbers text-sm font-semibold text-accent text-right
+                focus:outline-none focus:border-accent/50
+                [appearance:textfield]
+                [&::-webkit-inner-spin-button]:appearance-none
+                [&::-webkit-outer-spin-button]:appearance-none"
+            />
+            <span className="font-numbers text-sm font-semibold text-accent">x</span>
+          </div>
         </div>
 
-        <input
-          type="range"
-          min={1}
-          max={125}
-          value={leverage}
-          onChange={(e) => setLeverage(parseInt(e.target.value))}
-          className="w-full h-1.5 rounded-full appearance-none bg-surface-overlay cursor-pointer
-            [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4
-            [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-accent
-            [&::-webkit-slider-thumb]:shadow-[0_0_8px_rgba(124,92,252,0.5)]
-            [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:transition-shadow
-            [&::-webkit-slider-thumb]:hover:shadow-[0_0_12px_rgba(124,92,252,0.7)]"
-        />
+        <div className="px-2">
+          <input
+            type="range"
+            min={1}
+            max={125}
+            step={1}
+            value={leverage}
+            onChange={(e) => setLeverage(parseInt(e.target.value))}
+            className="w-full h-1.5 rounded-full appearance-none bg-surface-overlay cursor-pointer
+              [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4
+              [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-accent
+              [&::-webkit-slider-thumb]:shadow-[0_0_8px_rgba(124,92,252,0.5)]
+              [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:transition-shadow
+              [&::-webkit-slider-thumb]:hover:shadow-[0_0_12px_rgba(124,92,252,0.7)]"
+          />
+        </div>
 
-        <div className="flex justify-between mt-2 gap-1">
+        <div className="flex mt-2 px-2" style={{ justifyContent: 'space-between' }}>
           {LEVERAGE_SNAPS.map((snap) => (
             <button
               key={snap}
               onClick={() => setLeverage(snap)}
+              style={{ left: `${((snap - 1) / 124) * 100}%` }}
               className={cn(
                 'font-numbers text-[10px] px-1.5 py-0.5 rounded transition-colors',
                 leverage === snap

@@ -1,0 +1,148 @@
+# Funding Rates
+
+<Callout type="info">
+In this chapter, you will learn what funding rates are, why they exist in perpetual futures, how funding is calculated, the difference between positive and negative funding, how funding affects your open positions, and how traders use funding rate arbitrage.
+</Callout>
+
+## What Are Funding Rates?
+
+<KeyTerm term="Funding rate">A periodic payment exchanged between long and short traders in perpetual futures contracts, designed to keep the perpetual contract price aligned with the underlying spot price.</KeyTerm> is the mechanism that makes perpetual futures work without an expiration date.
+
+Traditional futures contracts expire on a set date, and their price naturally converges with the spot price at expiration. Perpetual futures never expire, so they need a different mechanism to prevent the contract price from drifting too far from the actual spot market price. That mechanism is the funding rate.
+
+<Callout type="info">
+Funding is not a fee paid to the exchange. It is a peer-to-peer payment between long and short traders. The exchange simply facilitates the transfer.
+</Callout>
+
+## Why Funding Rates Exist
+
+Without funding rates, perpetual futures prices could disconnect significantly from the spot market. If everyone is bullish and buying longs, the perpetual price would rise above the spot price with no natural force pulling it back down.
+
+Funding rates solve this by creating a financial incentive:
+
+- When the perpetual price is **above** the spot price (premium), longs pay shorts. This discourages going long and encourages shorting, pushing the price back down.
+- When the perpetual price is **below** the spot price (discount), shorts pay longs. This discourages shorting and encourages going long, pushing the price back up.
+
+This creates a self-correcting mechanism that keeps the perpetual price close to the spot price at all times.
+
+## How Funding Is Calculated
+
+Funding rates are typically settled every **8 hours** — at 00:00, 08:00, and 16:00 UTC on most exchanges. Some exchanges like Drift or dYdX use hourly funding.
+
+The funding payment is calculated as:
+
+**Funding Payment = Position Value × Funding Rate**
+
+The funding rate itself is determined by two components:
+
+### Interest Rate Component
+
+A fixed baseline rate, usually 0.01% per 8-hour interval (approximately 0.03% per day). This reflects the cost-of-carry difference between holding the crypto asset and holding a USD-denominated contract.
+
+### Premium/Discount Component
+
+This is the variable part, based on the difference between the perpetual contract price and the spot index price. The larger the deviation, the larger this component.
+
+**Funding Rate = Interest Rate + Premium Index**
+
+<Callout type="tip">
+Most exchanges cap the funding rate at ±0.5% to ±1% per interval to prevent extreme payments during volatile periods. Always check the current funding rate before opening a position.
+</Callout>
+
+## Positive vs Negative Funding
+
+### Positive Funding Rate
+
+When the funding rate is positive, the perpetual price is trading above spot (at a premium). This typically occurs during bullish market conditions when demand for long positions is high.
+
+- **Longs pay shorts** — you pay a fee to maintain a long position
+- **Shorts receive payment** — you earn income by holding a short position
+
+### Negative Funding Rate
+
+When the funding rate is negative, the perpetual price is trading below spot (at a discount). This usually happens during bearish conditions when there is heavy shorting pressure.
+
+- **Shorts pay longs** — you pay a fee to maintain a short position
+- **Longs receive payment** — you earn income by holding a long position
+
+### Example
+
+The BTC funding rate is +0.03% (settled every 8 hours). You hold a long position worth $100,000.
+
+- Every 8 hours, you pay: $100,000 × 0.03% = **$30**
+- Over 24 hours (3 intervals): **$90**
+- Over 7 days: **$630**
+
+If the funding rate were -0.03%, you would instead **receive** $30 every 8 hours as a long holder.
+
+<Callout type="warning">
+During extreme bull markets, funding rates can spike to 0.1% or higher per 8-hour interval. At that rate, a long position would cost 0.3% per day or over 2% per week — enough to erase profits from a modest price increase.
+</Callout>
+
+## How Funding Affects Open Positions
+
+Funding payments are deducted from or added to your margin balance at each settlement interval. This has several important implications:
+
+### Margin Erosion
+
+If you are on the paying side of funding, your margin gradually decreases. This means your effective leverage increases over time, and your liquidation price moves closer to the current price.
+
+For example, you open a long position with $1,000 margin at 10x leverage. After paying $50 in funding over several days, your effective margin is now $950, and your liquidation price has shifted closer to the market price.
+
+### Compounding Effect
+
+Funding payments are based on your position's notional value, which changes as the underlying price moves. If BTC rises and you are long, your position value increases, and you pay more in funding per interval.
+
+### Holding Period Considerations
+
+Funding makes long-term position holding more expensive. A trade that is profitable over a few hours might become a net loss if held for days or weeks while paying high funding rates.
+
+<Callout type="info">
+Always calculate the total expected funding cost before holding a leveraged position for an extended period. If you plan to hold a long position for a week, multiply the current funding rate by 21 intervals (3 per day × 7 days) and apply it to your position size.
+</Callout>
+
+## Funding Rate Arbitrage
+
+<KeyTerm term="Funding rate arbitrage">A market-neutral strategy where a trader holds a spot position and an opposite perpetual futures position to collect funding payments while remaining hedged against price movement.</KeyTerm> is one of the most popular low-risk strategies in crypto trading.
+
+### How It Works
+
+1. Buy 1 BTC on the spot market at $50,000.
+2. Open a 1 BTC short perpetual futures position at $50,000.
+3. Your net market exposure is zero — price movements are hedged.
+4. If the funding rate is positive, shorts receive funding. You collect payments every 8 hours.
+
+### The Math
+
+Assume a consistent funding rate of +0.03% per 8 hours:
+
+- Daily income: $50,000 × 0.03% × 3 = **$45**
+- Monthly income: **$1,350**
+- Annualized yield: approximately **32.85%**
+
+This yield comes with minimal directional risk since your spot and futures positions offset each other.
+
+### Risks of Funding Arbitrage
+
+<Callout type="warning">
+Funding rate arbitrage is not risk-free. The funding rate can flip negative, your short futures position still requires margin and faces liquidation risk during sharp upward moves, and exchange counterparty risk always exists.
+</Callout>
+
+- **Funding rate reversal:** If the rate turns negative, you start paying instead of receiving.
+- **Liquidation risk on the short:** If BTC pumps hard, your short position could approach liquidation even though your spot position offsets the loss. You may need to add margin.
+- **Capital inefficiency:** You need capital for both the spot purchase and the futures margin.
+- **Exchange risk:** Keeping funds on an exchange carries counterparty risk.
+
+<Callout type="tip">
+Monitor funding rate trends rather than reacting to a single interval. A consistently positive funding rate above 0.01% is generally favorable for the short side of an arbitrage position. Use funding rate dashboards to compare rates across exchanges and assets.
+</Callout>
+
+## Key Takeaways
+
+Funding rates are the invisible hand that keeps perpetual futures prices anchored to spot markets. They create ongoing costs or income for position holders, erode margin over time, and can significantly impact the profitability of longer-duration trades. Understanding whether you are on the paying or receiving side of funding is essential for any perpetual futures strategy.
+
+<Quiz
+  question="When the funding rate is positive, who pays whom?"
+  answers={["Shorts pay longs", "The exchange pays both sides", "Longs pay shorts"]}
+  correctIndex={2}
+/>
