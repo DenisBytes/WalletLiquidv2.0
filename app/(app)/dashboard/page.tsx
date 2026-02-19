@@ -1,15 +1,18 @@
 import { getBalance } from '@/lib/actions/user'
 import { getOpenPositions, getTradeHistory } from '@/lib/actions/history'
+import { getPortfolioAnalytics } from '@/lib/actions/analytics'
 import { PortfolioCard } from '@/components/dashboard/portfolio-card'
 import { PositionsList } from '@/components/dashboard/positions-list'
 import { RecentTrades } from '@/components/dashboard/recent-trades'
 import { AllocationChart } from '@/components/dashboard/allocation-chart'
+import { AnalyticsCards } from '@/components/dashboard/analytics-cards'
 
 export default async function DashboardPage() {
-  const [balance, positions, trades] = await Promise.all([
+  const [balance, positions, trades, analytics] = await Promise.all([
     getBalance(),
     getOpenPositions(),
     getTradeHistory({ limit: 10 }),
+    getPortfolioAnalytics(),
   ])
 
   return (
@@ -22,6 +25,8 @@ export default async function DashboardPage() {
         </div>
         <AllocationChart positions={positions} balance={balance} />
       </div>
+
+      <AnalyticsCards analytics={analytics} />
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <PositionsList positions={positions} />

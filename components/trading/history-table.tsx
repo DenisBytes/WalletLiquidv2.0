@@ -13,6 +13,9 @@ const actionConfig = {
   CLOSE: { color: 'text-text-primary', bg: 'bg-surface-overlay' },
   LIQUIDATION: { color: 'text-danger', bg: 'bg-danger/15' },
   EXERCISE: { color: 'text-success', bg: 'bg-success/15' },
+  STOP_LOSS: { color: 'text-orange-400', bg: 'bg-orange-400/15' },
+  TAKE_PROFIT: { color: 'text-success', bg: 'bg-success/15' },
+  FUNDING: { color: 'text-[#3B82F6]', bg: 'bg-[#3B82F6]/15' },
 } as const
 
 function formatDate(date: Date): string {
