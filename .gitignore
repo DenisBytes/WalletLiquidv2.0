@@ -38,6 +38,10 @@ yarn-error.log*
 # worktrees
 .worktrees/
 
+# docs & editor
+docs/
+.vscode/
+
 # AI / vibe coding
 CLAUDE.md
 .claude/
