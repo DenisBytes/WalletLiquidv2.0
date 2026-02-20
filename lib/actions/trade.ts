@@ -244,6 +244,11 @@ export async function closeOptionsPosition(positionId: string, closePrice: numbe
       ? (closePrice - premium) * quantity
       : (premium - closePrice) * quantity
 
+  // BUY: we paid premium at open, now sell back at closePrice
+  // SELL: we received premium at open, now buy back at closePrice
+  const balanceDelta =
+    position.side === 'BUY' ? closePrice * quantity : -closePrice * quantity
+
   await db
     .update(optionsPositions)
     .set({ status: 'CLOSED', closedAt: new Date() })
@@ -251,7 +256,7 @@ export async function closeOptionsPosition(positionId: string, closePrice: numbe
 
   await db
     .update(users)
-    .set({ balance: sql`${users.balance}::numeric + ${pnl.toString()}::numeric` })
+    .set({ balance: sql`${users.balance}::numeric + ${balanceDelta.toString()}::numeric` })
     .where(eq(users.id, user.id))
 
   await db.insert(tradeHistory).values({
