@@ -37,13 +37,13 @@ export function AllocationChart({ positions, balance }: AllocationChartProps) {
 
     const result: Segment[] = []
     if (cash > 0) {
-      result.push({ label: 'Cash', value: cash, color: '#7C5CFC', bgClass: 'bg-accent' })
+      result.push({ label: 'Cash', value: cash, color: 'var(--color-accent)', bgClass: 'bg-accent' })
     }
     if (futuresMargin > 0) {
-      result.push({ label: 'Futures Margin', value: futuresMargin, color: '#22C55E', bgClass: 'bg-success' })
+      result.push({ label: 'Futures Margin', value: futuresMargin, color: 'var(--color-success)', bgClass: 'bg-success' })
     }
     if (optionsPremium > 0) {
-      result.push({ label: 'Options Premium', value: optionsPremium, color: '#3B82F6', bgClass: 'bg-[#3B82F6]' })
+      result.push({ label: 'Options Premium', value: optionsPremium, color: '#60A5FA', bgClass: 'bg-[#60A5FA]' })
     }
     return result
   }, [positions, balance])
@@ -92,7 +92,7 @@ export function AllocationChart({ positions, balance }: AllocationChartProps) {
                 cy="60"
                 r="50"
                 fill="none"
-                stroke="#2A2A3A"
+                stroke="var(--color-border)"
                 strokeWidth="10"
               />
             )}

@@ -71,7 +71,7 @@ export function Sidebar() {
       {/* Mobile overlay */}
       {sidebarOpen && (
         <div
-          className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm lg:hidden"
+          className="fixed inset-0 z-40 bg-surface/80 lg:hidden"
           onClick={() => setSidebarOpen(false)}
         />
       )}
@@ -79,7 +79,7 @@ export function Sidebar() {
       <aside
         className={cn(
           'fixed top-0 left-0 z-50 h-full w-[240px] flex flex-col',
-          'bg-[#0A0A0F]/80 backdrop-blur-xl border-r border-border',
+          'bg-surface border-r border-border',
           'transition-transform duration-300 ease-out',
           'lg:relative lg:translate-x-0',
           sidebarOpen ? 'translate-x-0' : '-translate-x-full'
@@ -87,12 +87,7 @@ export function Sidebar() {
       >
         {/* Logo */}
         <div className="flex items-center gap-3 px-5 h-16 border-b border-border-subtle shrink-0">
-          <div className="w-8 h-8 rounded-lg gradient-accent flex items-center justify-center">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M9 2L2 6v6l7 4 7-4V6L9 2z" stroke="white" strokeWidth="1.5" strokeLinejoin="round" />
-              <path d="M2 6l7 4m0 0l7-4m-7 4v7" stroke="white" strokeWidth="1.5" strokeLinejoin="round" />
-            </svg>
-          </div>
+          <img src="/logo.svg" alt="WalletLiquid" className="w-8 h-8" />
           <span className="text-text-primary font-semibold text-[15px] tracking-tight">
             WalletLiquid
           </span>
@@ -111,9 +106,9 @@ export function Sidebar() {
                 href={item.href}
                 onClick={() => setSidebarOpen(false)}
                 className={cn(
-                  'flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200',
+                  'flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors duration-200',
                   isActive
-                    ? 'bg-accent/15 text-white shadow-[0_0_20px_rgba(124,92,252,0.15)]'
+                    ? 'bg-accent-muted text-text-primary'
                     : 'text-text-secondary hover:bg-surface-overlay hover:text-text-primary'
                 )}
               >
@@ -133,7 +128,7 @@ export function Sidebar() {
 
         {/* Bottom section */}
         <div className="px-3 pb-4">
-          <div className="px-3 py-3 rounded-lg bg-surface-overlay/50 border border-border-subtle">
+          <div className="px-3 py-3 rounded-lg bg-surface-overlay border border-border-subtle">
             <p className="text-[11px] uppercase tracking-wider text-text-muted font-medium">
               Paper Trading
             </p>

@@ -1,16 +1,23 @@
 import type { Metadata } from 'next'
-import { Inter, JetBrains_Mono } from 'next/font/google'
+import { Playfair_Display, DM_Sans, JetBrains_Mono } from 'next/font/google'
 import { Auth0Provider } from '@auth0/nextjs-auth0/client'
+import { ThemeProvider } from '@/components/ui/theme-provider'
 import './globals.css'
 
-const inter = Inter({
+const playfair = Playfair_Display({
   subsets: ['latin'],
-  variable: '--font-inter',
+  variable: '--font-playfair',
+  style: ['normal', 'italic'],
+})
+
+const dmSans = DM_Sans({
+  subsets: ['latin'],
+  variable: '--font-dm-sans',
 })
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
-  variable: '--font-mono',
+  variable: '--font-jetbrains-mono',
 })
 
 export const metadata: Metadata = {
@@ -20,11 +27,17 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
-      <body className="bg-[#0A0A0F] text-gray-100 antialiased">
-        <Auth0Provider>
-          {children}
-        </Auth0Provider>
+    <html
+      lang="en"
+      className={`${playfair.variable} ${dmSans.variable} ${jetbrainsMono.variable}`}
+      suppressHydrationWarning
+    >
+      <body className="bg-surface text-text-primary antialiased">
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
+          <Auth0Provider>
+            {children}
+          </Auth0Provider>
+        </ThemeProvider>
       </body>
     </html>
   )

@@ -1,39 +1,67 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-mono), ui-monospace, monospace;
+  --font-serif: var(--font-playfair), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
 
-  --color-surface: #0A0A0F;
-  --color-surface-raised: #12121A;
-  --color-surface-overlay: #1A1A25;
-  --color-border: #2A2A3A;
-  --color-border-subtle: #1F1F2E;
+  /* Dark theme defaults — surfaces with subtle pink-purple undertone */
+  --color-surface: #0C0A12;
+  --color-surface-raised: #151320;
+  --color-surface-overlay: #1D1A28;
+  --color-border: #2C2838;
+  --color-border-subtle: #211E2B;
 
-  --color-accent: #7C5CFC;
-  --color-accent-hover: #9B7FFF;
-  --color-accent-muted: #7C5CFC33;
+  --color-accent: #C72893;
+  --color-accent-hover: #D93DA5;
+  --color-accent-muted: #C7289326;
+  --color-accent-fg: #FFFFFF;
 
-  --color-success: #22C55E;
-  --color-success-muted: #22C55E1A;
-  --color-danger: #EF4444;
-  --color-danger-muted: #EF44441A;
+  --color-success: #34D399;
+  --color-success-muted: #34D3991A;
+  --color-danger: #F87171;
+  --color-danger-muted: #F871711A;
 
-  --color-text-primary: #F1F1F4;
-  --color-text-secondary: #9CA3AF;
-  --color-text-muted: #6B7280;
+  --color-text-primary: #EDE9F0;
+  --color-text-secondary: #9E97A8;
+  --color-text-muted: #6B6578;
 }
 
-/* Glass card utility */
+/* Light theme overrides */
+:root.light {
+  --color-surface: #FBF9FD;
+  --color-surface-raised: #FFFFFF;
+  --color-surface-overlay: #F3EFF8;
+  --color-border: #DDD8E4;
+  --color-border-subtle: #EAE6F0;
+
+  --color-accent: #C72893;
+  --color-accent-hover: #A81F7C;
+  --color-accent-muted: #C728931A;
+  --color-accent-fg: #FFFFFF;
+
+  --color-success: #16A34A;
+  --color-success-muted: #16A34A1A;
+  --color-danger: #DC2626;
+  --color-danger-muted: #DC26261A;
+
+  --color-text-primary: #1A1420;
+  --color-text-secondary: #6B6578;
+  --color-text-muted: #9E97A8;
+}
+
+/* Card utility */
 .glass {
-  background: rgba(18, 18, 26, 0.8);
-  backdrop-filter: blur(12px);
+  background: var(--color-surface-raised);
   border: 1px solid var(--color-border);
 }
 
+.glass-hover {
+  transition: background-color 200ms, border-color 200ms;
+}
+
 .glass-hover:hover {
-  background: rgba(26, 26, 37, 0.9);
-  border-color: var(--color-accent-muted);
+  background: var(--color-surface-overlay);
 }
 
 /* Number styling — monospace for all financial data */
@@ -43,44 +71,36 @@
 }
 
 /* PnL colors */
-.pnl-positive {
-  color: var(--color-success);
-}
-
-.pnl-negative {
-  color: var(--color-danger);
-}
+.pnl-positive { color: var(--color-success); }
+.pnl-negative { color: var(--color-danger); }
 
 /* Gradient accent */
 .gradient-accent {
-  background: linear-gradient(135deg, #7C5CFC 0%, #3B82F6 100%);
+  background: linear-gradient(135deg, var(--color-accent-hover) 0%, var(--color-accent) 100%);
 }
 
 .gradient-accent-text {
-  background: linear-gradient(135deg, #7C5CFC 0%, #3B82F6 100%);
+  background: linear-gradient(135deg, var(--color-accent-hover) 0%, var(--color-accent) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* Scrollbar styling */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+/* Grain texture overlay */
+.grain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.5;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.05'/%3E%3C/svg%3E");
 }
 
-::-webkit-scrollbar-track {
-  background: var(--color-surface);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--color-border);
-  border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-text-muted);
-}
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--color-surface); }
+::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-text-muted); }
 
 /* Selection */
 ::selection {

@@ -52,7 +52,6 @@ export function HowItWorks() {
         }
       )
 
-      // Animate timeline line
       gsap.fromTo(
         lineRef.current,
         { scaleY: 0 },
@@ -67,7 +66,6 @@ export function HowItWorks() {
         }
       )
 
-      // Steps stagger
       stepsRef.current.filter(Boolean).forEach((step, i) => {
         gsap.fromTo(
           step,
@@ -93,20 +91,20 @@ export function HowItWorks() {
     <section ref={sectionRef} className="relative py-32 px-6">
       <div className="max-w-4xl mx-auto">
         <div ref={headingRef} className="text-center mb-20 opacity-0">
-          <span className="text-xs font-medium tracking-[0.2em] uppercase text-accent mb-4 block">
+          <span className="text-xs font-medium tracking-[0.25em] uppercase text-accent mb-4 block">
             How It Works
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-text-primary">
+          <h2 className="font-serif text-4xl md:text-5xl text-text-primary">
             From zero to trader
           </h2>
         </div>
 
         <div className="relative">
-          {/* Vertical line */}
+          {/* Timeline line */}
           <div
             ref={lineRef}
-            className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-accent via-accent/50 to-transparent origin-top"
-            style={{ transform: 'scaleY(0)' }}
+            className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-accent origin-top"
+            style={{ transform: 'scaleY(0)', opacity: 0.3 }}
           />
 
           <div className="space-y-16">
@@ -117,16 +115,16 @@ export function HowItWorks() {
                 className="relative flex items-start gap-8 opacity-0"
               >
                 {/* Dot on timeline */}
-                <div className="absolute left-8 md:left-1/2 -translate-x-1/2 w-4 h-4 rounded-full border-2 border-accent bg-surface shrink-0 z-10" />
+                <div className="absolute left-8 md:left-1/2 -translate-x-1/2 w-3 h-3 rounded-full border-2 border-accent bg-surface shrink-0 z-10" />
 
-                {/* Content — alternating sides on desktop */}
+                {/* Content */}
                 <div
                   className={`ml-16 md:ml-0 md:w-[calc(50%-2rem)] ${
                     i % 2 === 0 ? 'md:mr-auto md:pr-12 md:text-right' : 'md:ml-auto md:pl-12'
                   }`}
                 >
                   <span className="font-mono text-sm text-accent font-bold">{step.number}</span>
-                  <h3 className="text-xl font-semibold text-text-primary mt-1 mb-2">
+                  <h3 className="font-serif text-xl text-text-primary mt-1 mb-2 italic">
                     {step.title}
                   </h3>
                   <p className="text-text-secondary leading-relaxed">

@@ -69,8 +69,8 @@ export function PortfolioCard({ balance, positions }: PortfolioCardProps) {
 
   return (
     <div className="glass rounded-2xl p-6 h-full relative overflow-hidden">
-      {/* Gradient accent line at top */}
-      <div className="absolute top-0 left-0 right-0 h-px gradient-accent" />
+      {/* Gold accent line */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-accent" />
 
       <p className="text-text-secondary text-sm mb-1">Portfolio Value</p>
       <span
@@ -101,14 +101,14 @@ export function PortfolioCard({ balance, positions }: PortfolioCardProps) {
         >
           <defs>
             <linearGradient id="sparkline-gradient" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#7C5CFC" stopOpacity="0.3" />
-              <stop offset="100%" stopColor="#7C5CFC" stopOpacity="0" />
+              <stop offset="0%" stopColor="var(--color-accent)" stopOpacity="0.25" />
+              <stop offset="100%" stopColor="var(--color-accent)" stopOpacity="0" />
             </linearGradient>
           </defs>
           <path
             d="M0 48 Q50 40 80 32 T160 28 T240 20 T320 24 T400 16"
             fill="none"
-            stroke="#7C5CFC"
+            stroke="var(--color-accent)"
             strokeWidth="2"
           />
           <path

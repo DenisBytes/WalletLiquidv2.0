@@ -3,6 +3,7 @@
 import { usePathname } from 'next/navigation'
 import { useUser } from '@auth0/nextjs-auth0/client'
 import { useUIStore } from '@/lib/stores/ui-store'
+import { ThemeToggle } from '@/components/ui/theme-toggle'
 import { cn } from '@/lib/utils/cn'
 
 const pageTitles: Record<string, string> = {
@@ -36,14 +37,13 @@ export function Topbar() {
   const { toggleSidebar } = useUIStore()
   const title = getPageTitle(pathname)
 
-  // Paper trading starting balance
   const balance = 100_000
 
   return (
     <header
       className={cn(
         'h-16 shrink-0 flex items-center justify-between px-4 lg:px-6',
-        'bg-[#0A0A0F]/60 backdrop-blur-xl border-b border-border'
+        'bg-surface border-b border-border'
       )}
     >
       {/* Left: mobile menu + title */}
@@ -63,8 +63,13 @@ export function Topbar() {
         )}
       </div>
 
-      {/* Right: balance + avatar + logout */}
+      {/* Right: theme toggle + balance + avatar + logout */}
       <div className="flex items-center gap-4">
+        <ThemeToggle />
+
+        {/* Divider */}
+        <div className="hidden sm:block w-px h-8 bg-border" />
+
         {/* Balance */}
         <div className="hidden sm:flex flex-col items-end">
           <span className="text-[11px] uppercase tracking-wider text-text-muted leading-none mb-1">
@@ -95,7 +100,7 @@ export function Topbar() {
             </div>
           )}
 
-          {/* eslint-disable-next-line @next/next/no-html-link-for-pages -- Auth0 route requires full navigation */}
+          {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
           <a
             href="/auth/logout"
             className="p-2 rounded-lg text-text-muted hover:text-text-primary hover:bg-surface-overlay transition-colors"

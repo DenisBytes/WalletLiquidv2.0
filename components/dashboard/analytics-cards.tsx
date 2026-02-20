@@ -58,7 +58,7 @@ const cards = [
         : a.sharpeRatio > 1
           ? 'text-success'
           : a.sharpeRatio >= 0
-            ? 'text-orange-400'
+            ? 'text-[#FB923C]'
             : 'text-danger',
   },
 ]

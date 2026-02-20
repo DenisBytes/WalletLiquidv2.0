@@ -82,7 +82,7 @@ function FuturesPositionRow({
   return (
     <div className="glass-hover rounded-xl p-4 flex items-center justify-between transition-all cursor-default">
       <div className="flex items-center gap-3">
-        <span className="text-xs font-medium px-2 py-0.5 rounded bg-accent/15 text-accent">
+        <span className="text-xs font-medium px-2 py-0.5 rounded bg-accent-muted text-accent">
           FUTURES
         </span>
         <div>
@@ -137,7 +137,7 @@ function OptionsPositionRow({
   return (
     <div className="glass-hover rounded-xl p-4 flex items-center justify-between transition-all cursor-default">
       <div className="flex items-center gap-3">
-        <span className="text-xs font-medium px-2 py-0.5 rounded bg-[#3B82F6]/15 text-[#3B82F6]">
+        <span className="text-xs font-medium px-2 py-0.5 rounded bg-[#60A5FA]/15 text-[#60A5FA]">
           OPTIONS
         </span>
         <div>
