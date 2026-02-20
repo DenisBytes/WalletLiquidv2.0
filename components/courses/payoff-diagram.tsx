@@ -84,7 +84,7 @@ export function PayoffDiagram({
         </span>
         <span className={cn(
           'text-xs font-medium px-2 py-0.5 rounded',
-          side === 'buy' ? 'bg-success/15 text-success' : 'bg-danger/15 text-danger'
+          side === 'buy' ? 'bg-success-muted text-success' : 'bg-danger-muted text-danger'
         )}>
           {label}
         </span>
@@ -97,7 +97,7 @@ export function PayoffDiagram({
           y1={zeroY}
           x2={width - padding.right}
           y2={zeroY}
-          stroke="#2A2A3A"
+          stroke="var(--color-border)"
           strokeWidth="1"
           strokeDasharray="4 4"
         />
@@ -108,7 +108,7 @@ export function PayoffDiagram({
           y1={padding.top}
           x2={scaleX(strike)}
           y2={height - padding.bottom}
-          stroke="#7C5CFC"
+          stroke="var(--color-accent)"
           strokeWidth="1"
           strokeDasharray="4 4"
           opacity="0.5"
@@ -125,7 +125,7 @@ export function PayoffDiagram({
         )}
 
         {/* Payoff line */}
-        <path d={pathD} fill="none" stroke="#7C5CFC" strokeWidth="2" />
+        <path d={pathD} fill="none" stroke="var(--color-accent)" strokeWidth="2" />
 
         {/* Labels */}
         <text x={scaleX(strike)} y={height - 10} textAnchor="middle" fill="#6B7280" fontSize="10">

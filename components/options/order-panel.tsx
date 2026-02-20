@@ -128,7 +128,7 @@ export function OptionsOrderPanel({
           className={cn(
             'py-2.5 rounded-xl text-sm font-semibold transition-all',
             optionType === 'CALL'
-              ? 'bg-gradient-to-r from-green-600 to-emerald-500 text-white shadow-lg shadow-green-500/20'
+              ? 'bg-success text-white'
               : 'bg-surface-overlay text-text-secondary hover:text-text-primary'
           )}
         >
@@ -139,7 +139,7 @@ export function OptionsOrderPanel({
           className={cn(
             'py-2.5 rounded-xl text-sm font-semibold transition-all',
             optionType === 'PUT'
-              ? 'bg-gradient-to-r from-red-600 to-rose-500 text-white shadow-lg shadow-red-500/20'
+              ? 'bg-danger text-white'
               : 'bg-surface-overlay text-text-secondary hover:text-text-primary'
           )}
         >
@@ -154,7 +154,7 @@ export function OptionsOrderPanel({
           className={cn(
             'py-2 rounded-xl text-xs font-semibold transition-all',
             side === 'BUY'
-              ? 'bg-accent/20 text-accent border border-accent/30'
+              ? 'bg-accent-muted text-accent border border-accent-muted'
               : 'bg-surface-overlay text-text-secondary hover:text-text-primary'
           )}
         >
@@ -165,7 +165,7 @@ export function OptionsOrderPanel({
           className={cn(
             'py-2 rounded-xl text-xs font-semibold transition-all',
             side === 'SELL'
-              ? 'bg-accent/20 text-accent border border-accent/30'
+              ? 'bg-accent-muted text-accent border border-accent-muted'
               : 'bg-surface-overlay text-text-secondary hover:text-text-primary'
           )}
         >
@@ -284,9 +284,9 @@ export function OptionsOrderPanel({
           'mt-auto py-3 rounded-xl font-semibold text-sm transition-all disabled:opacity-40 disabled:cursor-not-allowed',
           side === 'BUY'
             ? optionType === 'CALL'
-              ? 'bg-gradient-to-r from-green-600 to-emerald-500 text-white shadow-lg shadow-green-500/20 hover:shadow-green-500/30'
-              : 'bg-gradient-to-r from-red-600 to-rose-500 text-white shadow-lg shadow-red-500/20 hover:shadow-red-500/30'
-            : 'gradient-accent text-white shadow-lg shadow-accent/20 hover:shadow-accent/30'
+              ? 'bg-success text-white hover:opacity-90'
+              : 'bg-danger text-white hover:opacity-90'
+            : 'gradient-accent text-white hover:opacity-90'
         )}
       >
         {isPending ? (

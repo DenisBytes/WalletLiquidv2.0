@@ -31,7 +31,7 @@ export function Quiz({ question, answers, correctIndex }: QuizProps) {
           const isSelected = selected === i
           const isCorrect = i === correctIndex
 
-          let borderClass = 'border-border hover:border-accent/50'
+          let borderClass = 'border-border hover:border-accent'
           if (answered) {
             if (isCorrect) borderClass = 'border-success'
             else if (isSelected) borderClass = 'border-danger'
@@ -55,9 +55,9 @@ export function Quiz({ question, answers, correctIndex }: QuizProps) {
                   className={cn(
                     'w-6 h-6 rounded-full border flex items-center justify-center text-xs font-medium shrink-0',
                     answered && isCorrect
-                      ? 'bg-success/20 border-success text-success'
+                      ? 'bg-success-muted border-success text-success'
                       : answered && isSelected
-                        ? 'bg-danger/20 border-danger text-danger'
+                        ? 'bg-danger-muted border-danger text-danger'
                         : 'border-border text-text-muted'
                   )}
                 >
@@ -80,7 +80,7 @@ export function Quiz({ question, answers, correctIndex }: QuizProps) {
         <div
           className={cn(
             'mt-4 px-4 py-3 rounded-lg text-sm',
-            correct ? 'bg-success/10 text-success' : 'bg-danger/10 text-danger'
+            correct ? 'bg-success-muted text-success' : 'bg-danger-muted text-danger'
           )}
         >
           {correct ? 'Correct!' : `Incorrect. The correct answer is: ${answers[correctIndex]}`}

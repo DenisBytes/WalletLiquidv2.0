@@ -87,7 +87,7 @@ export function OptionChain({
             className={cn(
               'px-3 py-1.5 rounded-lg text-xs font-medium transition-all whitespace-nowrap',
               i === selectedExpiry
-                ? 'gradient-accent text-white shadow-lg shadow-accent/20'
+                ? 'gradient-accent text-white shadow-lg shadow-accent-muted'
                 : 'text-text-secondary hover:text-text-primary hover:bg-surface-raised'
             )}
           >
@@ -138,7 +138,7 @@ export function OptionChain({
                       'py-2 pr-2 pl-3 font-numbers text-sm cursor-pointer transition-all',
                       row.call.itm && 'bg-success-muted/30',
                       isSelected(row.strike, 'CALL')
-                        ? 'bg-accent/20 text-accent font-semibold'
+                        ? 'bg-accent-muted text-accent font-semibold'
                         : 'text-text-primary hover:bg-surface-overlay/50'
                     )}
                   >
@@ -152,7 +152,7 @@ export function OptionChain({
                       'py-2 pr-2 text-right font-numbers text-xs cursor-pointer transition-all',
                       row.call.itm && 'bg-success-muted/30',
                       isSelected(row.strike, 'CALL')
-                        ? 'bg-accent/20'
+                        ? 'bg-accent-muted'
                         : 'hover:bg-surface-overlay/50'
                     )}
                   >
@@ -180,7 +180,7 @@ export function OptionChain({
                       'py-2 pl-2 font-numbers text-xs cursor-pointer transition-all',
                       row.put.itm && 'bg-danger-muted/30',
                       isSelected(row.strike, 'PUT')
-                        ? 'bg-accent/20'
+                        ? 'bg-accent-muted'
                         : 'hover:bg-surface-overlay/50'
                     )}
                   >
@@ -200,7 +200,7 @@ export function OptionChain({
                       'py-2 pl-2 pr-3 text-right font-numbers text-sm cursor-pointer transition-all',
                       row.put.itm && 'bg-danger-muted/30',
                       isSelected(row.strike, 'PUT')
-                        ? 'bg-accent/20 text-accent font-semibold'
+                        ? 'bg-accent-muted text-accent font-semibold'
                         : 'text-text-primary hover:bg-surface-overlay/50'
                     )}
                   >

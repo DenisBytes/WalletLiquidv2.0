@@ -114,7 +114,7 @@ export default async function LearnPage() {
             <Link
               key={course.id}
               href={course.firstChapter}
-              className="group glass rounded-2xl p-6 transition-all duration-300 hover:border-accent/40 hover:shadow-[0_0_30px_rgba(124,92,252,0.1)]"
+              className="group glass rounded-2xl p-6 transition-all duration-300 hover:border-accent-muted"
             >
               <div className="flex items-start gap-4">
                 <div className="shrink-0 w-12 h-12 rounded-xl gradient-accent flex items-center justify-center text-white">

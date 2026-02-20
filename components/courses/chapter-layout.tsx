@@ -88,7 +88,7 @@ export function ChapterLayout({
                 className={cn(
                   'flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm transition-all duration-200',
                   isCurrent
-                    ? 'bg-accent/15 text-white'
+                    ? 'bg-accent-muted text-text-primary'
                     : 'text-text-secondary hover:bg-surface-overlay hover:text-text-primary'
                 )}
               >
@@ -119,7 +119,7 @@ export function ChapterLayout({
                         stroke="currentColor"
                         strokeWidth="1"
                         className={
-                          isCurrent ? 'text-accent' : 'text-text-muted/40'
+                          isCurrent ? 'text-accent' : 'text-text-muted'
                         }
                       />
                     </svg>
@@ -154,7 +154,7 @@ export function ChapterLayout({
             </span>
           </div>
 
-          {/* MDX content */}
+          {/* Chapter content */}
           <article className="min-h-[50vh]">{children}</article>
 
           {/* Bottom navigation */}
@@ -174,7 +174,7 @@ export function ChapterLayout({
               </button>
             )}
             {isCurrentCompleted && (
-              <div className="w-full py-3 rounded-xl text-sm font-medium text-center text-success bg-success/10 border border-success/20">
+              <div className="w-full py-3 rounded-xl text-sm font-medium text-center text-success bg-success-muted border border-success">
                 Completed
               </div>
             )}
@@ -184,7 +184,7 @@ export function ChapterLayout({
               {prevChapter ? (
                 <Link
                   href={`${basePath}/${prevChapter.slug}`}
-                  className="flex-1 glass rounded-xl p-4 hover:border-accent/30 transition-colors group"
+                  className="flex-1 glass rounded-xl p-4 hover:border-accent-muted transition-colors group"
                 >
                   <span className="text-xs text-text-muted">Previous</span>
                   <p className="text-sm text-text-primary mt-0.5 group-hover:text-white transition-colors truncate">
@@ -197,7 +197,7 @@ export function ChapterLayout({
               {nextChapter ? (
                 <Link
                   href={`${basePath}/${nextChapter.slug}`}
-                  className="flex-1 glass rounded-xl p-4 hover:border-accent/30 transition-colors group text-right"
+                  className="flex-1 glass rounded-xl p-4 hover:border-accent-muted transition-colors group text-right"
                 >
                   <span className="text-xs text-text-muted">Next</span>
                   <p className="text-sm text-text-primary mt-0.5 group-hover:text-white transition-colors truncate">
@@ -217,7 +217,7 @@ export function ChapterLayout({
         <p className="text-xs font-semibold uppercase tracking-wider text-text-muted mb-3">
           On this page
         </p>
-        <p className="text-xs text-text-muted/60 italic">
+        <p className="text-xs text-text-muted italic">
           Auto-generated from headings
         </p>
       </aside>

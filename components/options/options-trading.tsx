@@ -146,7 +146,7 @@ export function OptionsTrading({ initialBalance, initialPositions, initialStrate
               className={cn(
                 'px-4 py-2 rounded-lg text-sm font-medium transition-all',
                 s === symbol
-                  ? 'gradient-accent text-white shadow-lg shadow-accent/20'
+                  ? 'gradient-accent text-white shadow-lg shadow-accent-muted'
                   : 'text-text-secondary hover:text-text-primary hover:bg-surface-overlay'
               )}
             >
@@ -176,7 +176,7 @@ export function OptionsTrading({ initialBalance, initialPositions, initialStrate
             className={cn(
               'px-4 py-2 rounded-lg text-sm font-medium transition-all',
               m === mode
-                ? 'gradient-accent text-white shadow-lg shadow-accent/20'
+                ? 'gradient-accent text-white shadow-lg shadow-accent-muted'
                 : 'text-text-secondary hover:text-text-primary hover:bg-surface-overlay'
             )}
           >
@@ -385,7 +385,7 @@ function OptionsPositionRow({ position }: { position: OptionsRow }) {
         <span className={cn(
           'font-numbers text-xs',
           daysLeft <= 1 ? 'text-danger font-semibold' :
-          daysLeft <= 7 ? 'text-orange-400' :
+          daysLeft <= 7 ? 'text-[#FB923C]' :
           'text-text-secondary'
         )}>
           {daysLeft}d left

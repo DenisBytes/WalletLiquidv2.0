@@ -167,7 +167,7 @@ function PositionRow({ position, orders: positionOrders }: { position: FuturesRo
 
       <td className={cn(
         'py-3 pr-4 font-numbers text-sm',
-        liqProximity ? 'text-orange-400 font-semibold' : 'text-text-secondary'
+        liqProximity ? 'text-[#FB923C] font-semibold' : 'text-text-secondary'
       )}>
         ${formatUsd(liqPrice)}
       </td>
@@ -328,7 +328,7 @@ function SlTpCell({
           <button
             onClick={handleSubmit}
             disabled={isPending}
-            className="text-[10px] font-medium px-2 py-1 rounded bg-accent/20 text-accent hover:bg-accent/30 disabled:opacity-40 transition-colors"
+            className="text-[10px] font-medium px-2 py-1 rounded bg-accent-muted text-accent hover:bg-accent/30 disabled:opacity-40 transition-colors"
           >
             {isPending ? '...' : 'Set'}
           </button>

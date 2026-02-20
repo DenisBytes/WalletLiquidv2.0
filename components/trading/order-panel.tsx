@@ -90,7 +90,7 @@ export function OrderPanel({ symbol, balance }: OrderPanelProps) {
           className={cn(
             'py-3 rounded-xl text-sm font-semibold transition-all',
             side === 'LONG'
-              ? 'bg-gradient-to-r from-green-600 to-emerald-500 text-white shadow-lg shadow-green-500/20'
+              ? 'bg-success text-white'
               : 'bg-surface-overlay text-text-secondary hover:text-text-primary'
           )}
         >
@@ -101,7 +101,7 @@ export function OrderPanel({ symbol, balance }: OrderPanelProps) {
           className={cn(
             'py-3 rounded-xl text-sm font-semibold transition-all',
             side === 'SHORT'
-              ? 'bg-gradient-to-r from-red-600 to-rose-500 text-white shadow-lg shadow-red-500/20'
+              ? 'bg-danger text-white'
               : 'bg-surface-overlay text-text-secondary hover:text-text-primary'
           )}
         >
@@ -145,9 +145,9 @@ export function OrderPanel({ symbol, balance }: OrderPanelProps) {
             className="w-full h-1.5 rounded-full appearance-none bg-surface-overlay cursor-pointer
               [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4
               [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-accent
-              [&::-webkit-slider-thumb]:shadow-[0_0_8px_rgba(124,92,252,0.5)]
+              [&::-webkit-slider-thumb]:shadow-[0_0_8px_rgba(199,40,147,0.4)]
               [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:transition-shadow
-              [&::-webkit-slider-thumb]:hover:shadow-[0_0_12px_rgba(124,92,252,0.7)]"
+              [&::-webkit-slider-thumb]:hover:shadow-[0_0_12px_rgba(199,40,147,0.6)]"
           />
         </div>
 
@@ -160,7 +160,7 @@ export function OrderPanel({ symbol, balance }: OrderPanelProps) {
               className={cn(
                 'font-numbers text-[10px] px-1.5 py-0.5 rounded transition-colors',
                 leverage === snap
-                  ? 'bg-accent/20 text-accent'
+                  ? 'bg-accent-muted text-accent'
                   : 'text-text-muted hover:text-text-secondary'
               )}
             >
@@ -240,8 +240,8 @@ export function OrderPanel({ symbol, balance }: OrderPanelProps) {
         className={cn(
           'mt-auto py-3.5 rounded-xl font-semibold text-sm transition-all disabled:opacity-40 disabled:cursor-not-allowed',
           side === 'LONG'
-            ? 'bg-gradient-to-r from-green-600 to-emerald-500 text-white shadow-lg shadow-green-500/20 hover:shadow-green-500/30'
-            : 'bg-gradient-to-r from-red-600 to-rose-500 text-white shadow-lg shadow-red-500/20 hover:shadow-red-500/30'
+            ? 'bg-success text-white hover:opacity-90'
+            : 'bg-danger text-white hover:opacity-90'
         )}
       >
         {isPending ? (
@@ -272,7 +272,7 @@ function InfoRow({
       <span
         className={cn(
           'font-numbers text-sm',
-          highlight ? 'text-orange-400' : 'text-text-primary'
+          highlight ? 'text-[#FB923C]' : 'text-text-primary'
         )}
       >
         {value}

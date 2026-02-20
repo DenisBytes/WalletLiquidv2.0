@@ -9,13 +9,13 @@ type SortKey = 'executedAt' | 'type' | 'action' | 'price' | 'quantity' | 'pnl'
 type SortDir = 'asc' | 'desc'
 
 const actionConfig = {
-  OPEN: { color: 'text-accent', bg: 'bg-accent/15' },
+  OPEN: { color: 'text-accent', bg: 'bg-accent-muted' },
   CLOSE: { color: 'text-text-primary', bg: 'bg-surface-overlay' },
-  LIQUIDATION: { color: 'text-danger', bg: 'bg-danger/15' },
-  EXERCISE: { color: 'text-success', bg: 'bg-success/15' },
-  STOP_LOSS: { color: 'text-orange-400', bg: 'bg-orange-400/15' },
-  TAKE_PROFIT: { color: 'text-success', bg: 'bg-success/15' },
-  FUNDING: { color: 'text-[#3B82F6]', bg: 'bg-[#3B82F6]/15' },
+  LIQUIDATION: { color: 'text-danger', bg: 'bg-danger-muted' },
+  EXERCISE: { color: 'text-success', bg: 'bg-success-muted' },
+  STOP_LOSS: { color: 'text-[#FB923C]', bg: 'bg-[#FB923C]/15' },
+  TAKE_PROFIT: { color: 'text-success', bg: 'bg-success-muted' },
+  FUNDING: { color: 'text-[#60A5FA]', bg: 'bg-[#60A5FA]/15' },
 } as const
 
 function formatDate(date: Date): string {
@@ -201,8 +201,8 @@ export function HistoryTable({ trades }: HistoryTableProps) {
                       className={cn(
                         'text-[10px] font-semibold px-2 py-0.5 rounded',
                         trade.type === 'FUTURES'
-                          ? 'bg-accent/10 text-accent'
-                          : 'bg-[#3B82F6]/10 text-[#3B82F6]'
+                          ? 'bg-accent-muted text-accent'
+                          : 'bg-[#60A5FA]/10 text-[#60A5FA]'
                       )}
                     >
                       {trade.type}

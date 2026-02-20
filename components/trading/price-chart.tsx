@@ -41,24 +41,24 @@ export function PriceChart({ symbol }: PriceChartProps) {
       width: container.clientWidth,
       height: container.clientHeight,
       layout: {
-        background: { color: '#0A0A0F' },
-        textColor: '#9CA3AF',
+        background: { color: 'var(--color-surface)' },
+        textColor: 'var(--color-text-secondary)',
         fontSize: 12,
       },
       grid: {
-        vertLines: { color: '#1A1A25' },
-        horzLines: { color: '#1A1A25' },
+        vertLines: { color: 'var(--color-border-subtle)' },
+        horzLines: { color: 'var(--color-border-subtle)' },
       },
       crosshair: {
-        vertLine: { color: '#7C5CFC', width: 1, style: 2, labelBackgroundColor: '#7C5CFC' },
-        horzLine: { color: '#7C5CFC', width: 1, style: 2, labelBackgroundColor: '#7C5CFC' },
+        vertLine: { color: 'var(--color-accent)', width: 1, style: 2, labelBackgroundColor: 'var(--color-accent)' },
+        horzLine: { color: 'var(--color-accent)', width: 1, style: 2, labelBackgroundColor: 'var(--color-accent)' },
       },
       rightPriceScale: {
-        borderColor: '#2A2A3A',
+        borderColor: 'var(--color-border)',
         scaleMargins: { top: 0.1, bottom: 0.1 },
       },
       timeScale: {
-        borderColor: '#2A2A3A',
+        borderColor: 'var(--color-border)',
         timeVisible: true,
         secondsVisible: false,
       },

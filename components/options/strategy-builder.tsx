@@ -131,7 +131,7 @@ export function StrategyBuilder({ symbol, spotPrice, balance, strategies }: Stra
                   'flex-shrink-0 rounded-xl px-4 py-3 text-left transition-all border',
                   'min-w-[160px]',
                   type === selectedStrategy
-                    ? 'border-accent/60 bg-accent/10 shadow-lg shadow-accent/10'
+                    ? 'border-accent bg-accent-muted shadow-lg shadow-accent-muted'
                     : 'border-border bg-surface-overlay hover:border-border hover:bg-surface-overlay/80'
                 )}
               >
@@ -161,7 +161,7 @@ export function StrategyBuilder({ symbol, spotPrice, balance, strategies }: Stra
               className={cn(
                 'px-4 py-2 rounded-lg text-sm font-medium transition-all',
                 i === selectedExpiry
-                  ? 'gradient-accent text-white shadow-lg shadow-accent/20'
+                  ? 'gradient-accent text-white shadow-lg shadow-accent-muted'
                   : 'text-text-secondary hover:text-text-primary hover:bg-surface-overlay'
               )}
             >
@@ -304,7 +304,7 @@ export function StrategyBuilder({ symbol, spotPrice, balance, strategies }: Stra
                 disabled={isPending || !canAfford || legs.length === 0}
                 className={cn(
                   'w-full mt-4 py-3 rounded-xl text-sm font-semibold transition-all',
-                  'gradient-accent text-white shadow-lg shadow-accent/20',
+                  'gradient-accent text-white shadow-lg shadow-accent-muted',
                   'disabled:opacity-40 disabled:cursor-not-allowed disabled:shadow-none'
                 )}
               >

@@ -45,7 +45,7 @@ export function PriceSimulator({
         </span>
         <span className={cn(
           'text-xs font-medium px-2 py-0.5 rounded',
-          type === 'call' ? 'bg-success/15 text-success' : 'bg-danger/15 text-danger'
+          type === 'call' ? 'bg-success-muted text-success' : 'bg-danger-muted text-danger'
         )}>
           {type === 'call' ? 'CALL' : 'PUT'}
         </span>

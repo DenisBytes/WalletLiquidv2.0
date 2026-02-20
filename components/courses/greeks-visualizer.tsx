@@ -85,8 +85,8 @@ export function GreeksVisualizer({
       format: (v: number) => v.toFixed(4),
       min: 0,
       max: 20,
-      color: '[#3B82F6]',
-      barColor: 'bg-[#3B82F6]',
+      color: '[#60A5FA]',
+      barColor: 'bg-[#60A5FA]',
     },
   ]
 
@@ -98,7 +98,7 @@ export function GreeksVisualizer({
         </span>
         <span className={cn(
           'text-xs font-medium px-2 py-0.5 rounded',
-          type === 'call' ? 'bg-success/15 text-success' : 'bg-danger/15 text-danger'
+          type === 'call' ? 'bg-success-muted text-success' : 'bg-danger-muted text-danger'
         )}>
           {type === 'call' ? 'CALL' : 'PUT'}
         </span>

@@ -71,8 +71,8 @@ export function FundingRateBadge({ symbol }: FundingRateBadgeProps) {
           className={cn(
             'text-xs font-semibold font-numbers',
             isNeutral && 'text-text-secondary',
-            isPositive && 'text-orange-400',
-            !isPositive && !isNeutral && 'text-emerald-400'
+            isPositive && 'text-[#FB923C]',
+            !isPositive && !isNeutral && 'text-success'
           )}
         >
           {isPositive ? '+' : ''}{ratePercent}%
