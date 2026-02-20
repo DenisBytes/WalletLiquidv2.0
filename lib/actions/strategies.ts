@@ -4,8 +4,12 @@ import { db } from '@/lib/db'
 import { users, optionsPositions, optionStrategies, tradeHistory } from '@/lib/db/schema'
 import { eq, and, sql } from 'drizzle-orm'
 import { getOrCreateUser } from './user'
+import { blackScholesCall, blackScholesPut } from '@/lib/engine/options'
 import type { StrategyType, StrategyLeg } from '@/lib/engine/strategies'
 import type { OptionType, OptionSide } from '@/lib/engine/types'
+
+const VOLATILITY = 0.6
+const RISK_FREE_RATE = 0.05
 
 export async function openStrategy(data: {
   symbol: string
@@ -98,7 +102,7 @@ export async function openStrategy(data: {
   return strategy
 }
 
-export async function closeStrategy(strategyId: string) {
+export async function closeStrategy(strategyId: string, spotPrice: number) {
   const user = await getOrCreateUser()
 
   const [strategy] = await db
@@ -123,6 +127,36 @@ export async function closeStrategy(strategyId: string) {
     quantity: number
   }[]
 
+  // Look up the expiration date from one of the linked option positions
+  const [firstPosition] = await db
+    .select({ expirationDate: optionsPositions.expirationDate })
+    .from(optionsPositions)
+    .where(eq(optionsPositions.id, legs[0].optionPositionId))
+
+  const expirationDate = firstPosition?.expirationDate ?? new Date()
+  const timeToExpiry = Math.max(
+    (expirationDate.getTime() - Date.now()) / (365 * 24 * 60 * 60 * 1000),
+    0.001
+  )
+
+  // Compute current value and settle each leg
+  let netSettlement = 0
+  let pnl = 0
+  for (const leg of legs) {
+    const closeValue =
+      leg.optionType === 'CALL'
+        ? blackScholesCall(spotPrice, leg.strike, timeToExpiry, RISK_FREE_RATE, VOLATILITY)
+        : blackScholesPut(spotPrice, leg.strike, timeToExpiry, RISK_FREE_RATE, VOLATILITY)
+
+    if (leg.side === 'BUY') {
+      netSettlement += closeValue * leg.quantity
+      pnl += (closeValue - leg.premium) * leg.quantity
+    } else {
+      netSettlement -= closeValue * leg.quantity
+      pnl += (leg.premium - closeValue) * leg.quantity
+    }
+  }
+
   // Close all linked option positions
   for (const leg of legs) {
     await db
@@ -137,6 +171,14 @@ export async function closeStrategy(strategyId: string) {
     .set({ status: 'CLOSED', closedAt: new Date() })
     .where(eq(optionStrategies.id, strategyId))
 
+  // Settle balance
+  if (netSettlement !== 0) {
+    await db
+      .update(users)
+      .set({ balance: sql`${users.balance}::numeric + ${netSettlement.toString()}::numeric` })
+      .where(eq(users.id, user.id))
+  }
+
   await db.insert(tradeHistory).values({
     userId: user.id,
     positionId: strategy.id,
@@ -144,6 +186,7 @@ export async function closeStrategy(strategyId: string) {
     action: 'CLOSE',
     price: Math.abs(parseFloat(strategy.totalPremium)).toString(),
     quantity: legs.length.toString(),
+    pnl: pnl.toString(),
   })
 
   return strategy

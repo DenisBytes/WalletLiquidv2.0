@@ -336,7 +336,7 @@ export function StrategyBuilder({ symbol, spotPrice, balance, strategies }: Stra
       </div>
 
       {/* Open Strategies Table */}
-      <OpenStrategiesTable strategies={strategies} />
+      <OpenStrategiesTable strategies={strategies} spotPrice={spotPrice} />
     </div>
   )
 }
@@ -589,7 +589,7 @@ function StrategyPayoffChart({
   )
 }
 
-function OpenStrategiesTable({ strategies }: { strategies: StrategyRow[] }) {
+function OpenStrategiesTable({ strategies, spotPrice }: { strategies: StrategyRow[]; spotPrice: number }) {
   return (
     <div className="glass rounded-2xl p-5">
       <div className="flex items-center gap-3 mb-4">
@@ -623,7 +623,7 @@ function OpenStrategiesTable({ strategies }: { strategies: StrategyRow[] }) {
             </thead>
             <tbody>
               {strategies.map((strategy) => (
-                <StrategyRow key={strategy.id} strategy={strategy} />
+                <StrategyRow key={strategy.id} strategy={strategy} spotPrice={spotPrice} />
               ))}
             </tbody>
           </table>
@@ -633,7 +633,7 @@ function OpenStrategiesTable({ strategies }: { strategies: StrategyRow[] }) {
   )
 }
 
-function StrategyRow({ strategy }: { strategy: StrategyRow }) {
+function StrategyRow({ strategy, spotPrice }: { strategy: StrategyRow; spotPrice: number }) {
   const router = useRouter()
   const [isPending, startTransition] = useTransition()
 
@@ -652,7 +652,7 @@ function StrategyRow({ strategy }: { strategy: StrategyRow }) {
   function handleClose() {
     startTransition(async () => {
       try {
-        await closeStrategy(strategy.id)
+        await closeStrategy(strategy.id, spotPrice)
         router.refresh()
       } catch {
         // Strategy may already be closed
