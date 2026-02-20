@@ -1,8 +1,6 @@
 import { notFound } from 'next/navigation'
-import { MDXRemote } from 'next-mdx-remote/rsc'
 import { getCourseProgress } from '@/lib/actions/progress'
 import { ChapterLayout } from '@/components/courses/chapter-layout'
-import { mdxComponents } from '@/components/courses/mdx-components'
 import optionsMeta from '@/content/courses/options/meta.json'
 import { optionsContent } from '@/content/courses/options'
 
@@ -16,8 +14,8 @@ export default async function OptionsChapterPage({ params }: PageProps) {
   const chapter = optionsMeta.chapters.find((c) => c.slug === slug)
   if (!chapter) notFound()
 
-  const source = optionsContent[slug]
-  if (!source) notFound()
+  const ChapterContent = optionsContent[slug]
+  if (!ChapterContent) notFound()
 
   const progress = await getCourseProgress('options')
   const chapterIndex = optionsMeta.chapters.findIndex((c) => c.slug === slug)
@@ -31,7 +29,7 @@ export default async function OptionsChapterPage({ params }: PageProps) {
       progress={progress}
       basePath="/learn/options"
     >
-      <MDXRemote source={source} components={mdxComponents} />
+      <ChapterContent />
     </ChapterLayout>
   )
 }

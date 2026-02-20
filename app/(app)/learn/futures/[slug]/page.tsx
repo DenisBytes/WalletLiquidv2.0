@@ -1,8 +1,6 @@
 import { notFound } from 'next/navigation'
-import { MDXRemote } from 'next-mdx-remote/rsc'
 import { getCourseProgress } from '@/lib/actions/progress'
 import { ChapterLayout } from '@/components/courses/chapter-layout'
-import { mdxComponents } from '@/components/courses/mdx-components'
 import futuresMeta from '@/content/courses/futures/meta.json'
 import { futuresContent } from '@/content/courses/futures'
 
@@ -16,8 +14,8 @@ export default async function FuturesChapterPage({ params }: PageProps) {
   const chapter = futuresMeta.chapters.find((c) => c.slug === slug)
   if (!chapter) notFound()
 
-  const source = futuresContent[slug]
-  if (!source) notFound()
+  const ChapterContent = futuresContent[slug]
+  if (!ChapterContent) notFound()
 
   const progress = await getCourseProgress('futures')
   const chapterIndex = futuresMeta.chapters.findIndex((c) => c.slug === slug)
@@ -31,7 +29,7 @@ export default async function FuturesChapterPage({ params }: PageProps) {
       progress={progress}
       basePath="/learn/futures"
     >
-      <MDXRemote source={source} components={mdxComponents} />
+      <ChapterContent />
     </ChapterLayout>
   )
 }
