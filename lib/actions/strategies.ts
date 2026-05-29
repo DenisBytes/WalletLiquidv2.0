@@ -127,13 +127,17 @@ export async function closeStrategy(strategyId: string, spotPrice: number) {
     quantity: number
   }[]
 
+  if (legs.length === 0) throw new Error('Strategy has no legs to settle')
+
   // Look up the expiration date from one of the linked option positions
   const [firstPosition] = await db
     .select({ expirationDate: optionsPositions.expirationDate })
     .from(optionsPositions)
     .where(eq(optionsPositions.id, legs[0].optionPositionId))
 
-  const expirationDate = firstPosition?.expirationDate ?? new Date()
+  if (!firstPosition) throw new Error('Strategy legs reference a missing option position')
+
+  const expirationDate = firstPosition.expirationDate
   const timeToExpiry = Math.max(
     (expirationDate.getTime() - Date.now()) / (365 * 24 * 60 * 60 * 1000),
     0.001

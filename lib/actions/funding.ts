@@ -25,7 +25,10 @@ async function fetchFundingRate(symbol: string): Promise<{ rate: number; nextFun
       rate: parseFloat(data.lastFundingRate),
       nextFundingTime: data.nextFundingTime,
     }
-  } catch {
+  } catch (err) {
+    // Don't fail the request — fall back to the default rate, but surface the
+    // failure so silent rate drift over many 8h intervals is observable.
+    console.warn(`Funding rate fetch failed for ${symbol}, using default rate:`, err)
     return { rate: DEFAULT_FUNDING_RATE, nextFundingTime: Date.now() + FUNDING_INTERVAL_MS }
   }
 }
