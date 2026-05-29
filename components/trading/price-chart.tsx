@@ -24,6 +24,45 @@ function formatPrice(price: number): string {
   return price.toLocaleString('en-US', { minimumFractionDigits: 6, maximumFractionDigits: 6 })
 }
 
+// Lightweight Charts renders to canvas, so it needs literal color strings —
+// CSS variables don't resolve there. Read the resolved theme tokens instead.
+function readVar(name: string): string {
+  return getComputedStyle(document.documentElement).getPropertyValue(name).trim()
+}
+
+function chartTheme() {
+  return {
+    layout: {
+      background: { color: readVar('--color-surface') },
+      textColor: readVar('--color-text-secondary'),
+      fontSize: 12,
+    },
+    grid: {
+      vertLines: { color: readVar('--color-border-subtle') },
+      horzLines: { color: readVar('--color-border-subtle') },
+    },
+    crosshair: {
+      vertLine: { color: readVar('--color-accent'), width: 1 as const, style: 2, labelBackgroundColor: readVar('--color-accent') },
+      horzLine: { color: readVar('--color-accent'), width: 1 as const, style: 2, labelBackgroundColor: readVar('--color-accent') },
+    },
+    rightPriceScale: { borderColor: readVar('--color-border') },
+    timeScale: { borderColor: readVar('--color-border') },
+  }
+}
+
+function candleColors() {
+  const up = readVar('--color-success')
+  const down = readVar('--color-danger')
+  return {
+    upColor: up,
+    downColor: down,
+    borderUpColor: up,
+    borderDownColor: down,
+    wickUpColor: up,
+    wickDownColor: down,
+  }
+}
+
 export function PriceChart({ symbol }: PriceChartProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const chartRef = useRef<IChartApi | null>(null)
@@ -37,28 +76,19 @@ export function PriceChart({ symbol }: PriceChartProps) {
 
     const container = containerRef.current
 
+    const theme = chartTheme()
     const chart = createChart(container, {
       width: container.clientWidth,
       height: container.clientHeight,
-      layout: {
-        background: { color: 'var(--color-surface)' },
-        textColor: 'var(--color-text-secondary)',
-        fontSize: 12,
-      },
-      grid: {
-        vertLines: { color: 'var(--color-border-subtle)' },
-        horzLines: { color: 'var(--color-border-subtle)' },
-      },
-      crosshair: {
-        vertLine: { color: 'var(--color-accent)', width: 1, style: 2, labelBackgroundColor: 'var(--color-accent)' },
-        horzLine: { color: 'var(--color-accent)', width: 1, style: 2, labelBackgroundColor: 'var(--color-accent)' },
-      },
+      layout: theme.layout,
+      grid: theme.grid,
+      crosshair: theme.crosshair,
       rightPriceScale: {
-        borderColor: 'var(--color-border)',
+        borderColor: theme.rightPriceScale.borderColor,
         scaleMargins: { top: 0.1, bottom: 0.1 },
       },
       timeScale: {
-        borderColor: 'var(--color-border)',
+        borderColor: theme.timeScale.borderColor,
         timeVisible: true,
         secondsVisible: false,
       },
@@ -66,16 +96,23 @@ export function PriceChart({ symbol }: PriceChartProps) {
 
     chartRef.current = chart
 
-    const series = chart.addSeries(CandlestickSeries, {
-      upColor: '#22C55E',
-      downColor: '#EF4444',
-      borderUpColor: '#22C55E',
-      borderDownColor: '#EF4444',
-      wickUpColor: '#22C55E',
-      wickDownColor: '#EF4444',
-    })
+    const series = chart.addSeries(CandlestickSeries, candleColors())
 
     seriesRef.current = series
+
+    // Re-resolve theme tokens when the user toggles light/dark
+    const themeObserver = new MutationObserver(() => {
+      const next = chartTheme()
+      chart.applyOptions({
+        layout: next.layout,
+        grid: next.grid,
+        crosshair: next.crosshair,
+        rightPriceScale: { borderColor: next.rightPriceScale.borderColor },
+        timeScale: { borderColor: next.timeScale.borderColor },
+      })
+      series.applyOptions(candleColors())
+    })
+    themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] })
 
     // Fetch historical klines
     fetch(`https://api.binance.com/api/v3/klines?symbol=${symbol}USDT&interval=1m&limit=200`)
@@ -142,6 +179,7 @@ export function PriceChart({ symbol }: PriceChartProps) {
 
     return () => {
       window.removeEventListener('resize', handleResize)
+      themeObserver.disconnect()
       ws.close()
       wsRef.current = null
       chart.remove()

@@ -116,25 +116,25 @@ export function PayoffDiagram({
 
         {/* Profit area */}
         {profitArea && (
-          <path d={profitArea} fill="#22C55E" opacity="0.1" />
+          <path d={profitArea} className="fill-success" opacity="0.1" />
         )}
 
         {/* Loss area */}
         {lossArea && (
-          <path d={lossArea} fill="#EF4444" opacity="0.1" />
+          <path d={lossArea} className="fill-danger" opacity="0.1" />
         )}
 
         {/* Payoff line */}
         <path d={pathD} fill="none" stroke="var(--color-accent)" strokeWidth="2" />
 
         {/* Labels */}
-        <text x={scaleX(strike)} y={height - 10} textAnchor="middle" fill="#6B7280" fontSize="10">
+        <text x={scaleX(strike)} y={height - 10} textAnchor="middle" className="fill-text-muted" fontSize="10">
           Strike ${strike}
         </text>
-        <text x={padding.left - 5} y={zeroY + 3} textAnchor="end" fill="#6B7280" fontSize="10">
+        <text x={padding.left - 5} y={zeroY + 3} textAnchor="end" className="fill-text-muted" fontSize="10">
           $0
         </text>
-        <text x={padding.left + 5} y={height - 10} fill="#6B7280" fontSize="10">
+        <text x={padding.left + 5} y={height - 10} className="fill-text-muted" fontSize="10">
           Price →
         </text>
       </svg>
