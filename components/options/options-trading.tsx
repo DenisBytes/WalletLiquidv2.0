@@ -135,7 +135,7 @@ export function OptionsTrading({ initialBalance, initialPositions, initialStrate
     <div className="flex flex-col gap-4 min-w-0">
       {/* Header: symbol selector + spot price */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-        <div className="flex items-center gap-1 p-1 rounded-xl bg-surface-raised w-fit">
+        <div className="flex items-center gap-1 p-1 rounded-xl bg-surface-raised w-fit overflow-x-auto">
           {SYMBOLS.map((s) => (
             <button
               key={s}
@@ -144,7 +144,7 @@ export function OptionsTrading({ initialBalance, initialPositions, initialStrate
                 setSelectedStrike(0)
               }}
               className={cn(
-                'px-4 py-2 rounded-lg text-sm font-medium transition-all',
+                'px-4 py-2 rounded-lg text-sm font-medium transition-all shrink-0',
                 s === symbol
                   ? 'gradient-accent text-white shadow-lg shadow-accent-muted'
                   : 'text-text-secondary hover:text-text-primary hover:bg-surface-overlay'
@@ -195,8 +195,8 @@ export function OptionsTrading({ initialBalance, initialPositions, initialStrate
       ) : (
       <>
       {/* Option Chain + Order Panel */}
-      <div className="grid grid-cols-1 xl:grid-cols-[1fr_340px] gap-4">
-        <div className="min-w-0 min-h-[420px]">
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-4">
+        <div className="min-w-0 min-h-[400px] lg:min-h-[480px]">
           <OptionChain
             spotPrice={spotPrice}
             strikes={strikes}
@@ -230,7 +230,7 @@ export function OptionsTrading({ initialBalance, initialPositions, initialStrate
       </div>
 
       {/* Payoff Diagram + Greeks */}
-      <div className="grid grid-cols-1 xl:grid-cols-[1fr_340px] gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-4">
         <PayoffDiagram
           optionType={optionType}
           side="BUY"
@@ -385,7 +385,7 @@ function OptionsPositionRow({ position }: { position: OptionsRow }) {
         <span className={cn(
           'font-numbers text-xs',
           daysLeft <= 1 ? 'text-danger font-semibold' :
-          daysLeft <= 7 ? 'text-[#FB923C]' :
+          daysLeft <= 7 ? 'text-warning' :
           'text-text-secondary'
         )}>
           {daysLeft}d left

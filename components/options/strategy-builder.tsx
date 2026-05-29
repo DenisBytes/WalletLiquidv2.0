@@ -172,7 +172,7 @@ export function StrategyBuilder({ symbol, spotPrice, balance, strategies }: Stra
       </div>
 
       {/* Legs Preview + Payoff + Summary */}
-      <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Left column: Legs + Summary */}
         <div className="flex flex-col gap-4">
           {/* Legs Preview */}
