@@ -272,7 +272,7 @@ function InfoRow({
       <span
         className={cn(
           'font-numbers text-sm',
-          highlight ? 'text-[#FB923C]' : 'text-text-primary'
+          highlight ? 'text-warning' : 'text-text-primary'
         )}
       >
         {value}

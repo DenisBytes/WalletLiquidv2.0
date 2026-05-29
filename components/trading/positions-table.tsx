@@ -167,7 +167,7 @@ function PositionRow({ position, orders: positionOrders }: { position: FuturesRo
 
       <td className={cn(
         'py-3 pr-4 font-numbers text-sm',
-        liqProximity ? 'text-[#FB923C] font-semibold' : 'text-text-secondary'
+        liqProximity ? 'text-warning font-semibold' : 'text-text-secondary'
       )}>
         ${formatUsd(liqPrice)}
       </td>

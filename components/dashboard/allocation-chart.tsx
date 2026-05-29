@@ -43,7 +43,7 @@ export function AllocationChart({ positions, balance }: AllocationChartProps) {
       result.push({ label: 'Futures Margin', value: futuresMargin, color: 'var(--color-success)', bgClass: 'bg-success' })
     }
     if (optionsPremium > 0) {
-      result.push({ label: 'Options Premium', value: optionsPremium, color: '#60A5FA', bgClass: 'bg-[#60A5FA]' })
+      result.push({ label: 'Options Premium', value: optionsPremium, color: 'var(--color-info)', bgClass: 'bg-info' })
     }
     return result
   }, [positions, balance])

@@ -28,8 +28,8 @@ const FEATURES = [
         <path d="M14 8V14L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
       </svg>
     ),
-    accent: 'text-[#A78BFA]',
-    bg: 'bg-[#A78BFA]/15',
+    accent: 'text-accent-purple',
+    bg: 'bg-accent-purple/15',
   },
   {
     title: 'Live Prices',
@@ -51,8 +51,8 @@ const FEATURES = [
         <path d="M9 11H17M9 15H14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
       </svg>
     ),
-    accent: 'text-[#F9A8D4]',
-    bg: 'bg-[#F9A8D4]/15',
+    accent: 'text-accent-pink',
+    bg: 'bg-accent-pink/15',
   },
 ]
 

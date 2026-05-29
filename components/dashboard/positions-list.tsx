@@ -137,7 +137,7 @@ function OptionsPositionRow({
   return (
     <div className="glass-hover rounded-xl p-4 flex items-center justify-between transition-all cursor-default">
       <div className="flex items-center gap-3">
-        <span className="text-xs font-medium px-2 py-0.5 rounded bg-[#60A5FA]/15 text-[#60A5FA]">
+        <span className="text-xs font-medium px-2 py-0.5 rounded bg-info/15 text-info">
           OPTIONS
         </span>
         <div>

@@ -13,9 +13,9 @@ const actionConfig = {
   CLOSE: { color: 'text-text-primary', bg: 'bg-surface-overlay' },
   LIQUIDATION: { color: 'text-danger', bg: 'bg-danger-muted' },
   EXERCISE: { color: 'text-success', bg: 'bg-success-muted' },
-  STOP_LOSS: { color: 'text-[#FB923C]', bg: 'bg-[#FB923C]/15' },
+  STOP_LOSS: { color: 'text-warning', bg: 'bg-warning/15' },
   TAKE_PROFIT: { color: 'text-success', bg: 'bg-success-muted' },
-  FUNDING: { color: 'text-[#60A5FA]', bg: 'bg-[#60A5FA]/15' },
+  FUNDING: { color: 'text-info', bg: 'bg-info/15' },
 } as const
 
 function formatDate(date: Date): string {
@@ -202,7 +202,7 @@ export function HistoryTable({ trades }: HistoryTableProps) {
                         'text-[10px] font-semibold px-2 py-0.5 rounded',
                         trade.type === 'FUTURES'
                           ? 'bg-accent-muted text-accent'
-                          : 'bg-[#60A5FA]/10 text-[#60A5FA]'
+                          : 'bg-info/10 text-info'
                       )}
                     >
                       {trade.type}

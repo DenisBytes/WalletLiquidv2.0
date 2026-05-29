@@ -85,8 +85,8 @@ export function GreeksVisualizer({
       format: (v: number) => v.toFixed(4),
       min: 0,
       max: 20,
-      color: '[#60A5FA]',
-      barColor: 'bg-[#60A5FA]',
+      color: 'info',
+      barColor: 'bg-info',
     },
   ]
 

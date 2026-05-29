@@ -30,9 +30,9 @@ const actionConfig = {
   CLOSE: { label: 'CLOSE', color: 'text-text-primary', bg: 'bg-surface-overlay' },
   LIQUIDATION: { label: 'LIQ', color: 'text-danger', bg: 'bg-danger-muted' },
   EXERCISE: { label: 'EXERCISE', color: 'text-success', bg: 'bg-success-muted' },
-  STOP_LOSS: { label: 'SL', color: 'text-[#FB923C]', bg: 'bg-[#FB923C]/15' },
+  STOP_LOSS: { label: 'SL', color: 'text-warning', bg: 'bg-warning/15' },
   TAKE_PROFIT: { label: 'TP', color: 'text-success', bg: 'bg-success-muted' },
-  FUNDING: { label: 'FUND', color: 'text-[#60A5FA]', bg: 'bg-[#60A5FA]/15' },
+  FUNDING: { label: 'FUND', color: 'text-info', bg: 'bg-info/15' },
 } as const
 
 interface RecentTradesProps {
@@ -70,9 +70,9 @@ export function RecentTrades({ trades }: RecentTradesProps) {
                         : trade.action === 'OPEN'
                           ? 'bg-accent'
                           : trade.action === 'FUNDING'
-                            ? 'bg-[#60A5FA]'
+                            ? 'bg-info'
                             : trade.action === 'STOP_LOSS'
-                              ? 'bg-[#FB923C]'
+                              ? 'bg-warning'
                               : 'bg-text-muted'
                     )}
                   />
@@ -96,7 +96,7 @@ export function RecentTrades({ trades }: RecentTradesProps) {
                           'text-[10px] px-1.5 py-0.5 rounded shrink-0',
                           trade.type === 'FUTURES'
                             ? 'bg-accent-muted text-accent'
-                            : 'bg-[#60A5FA]/10 text-[#60A5FA]'
+                            : 'bg-info/10 text-info'
                         )}
                       >
                         {trade.type}
