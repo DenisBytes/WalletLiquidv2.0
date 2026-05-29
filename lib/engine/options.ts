@@ -28,6 +28,13 @@ function d1d2(
   riskFreeRate: number,
   volatility: number
 ): { d1: number; d2: number } {
+  // Guard against NaN/Infinity from log(spot/strike) or a zero denominator.
+  // Non-positive inputs only occur for expired or malformed options, where
+  // pricing/Greeks are meaningless anyway — callers should use intrinsic value.
+  if (spot <= 0 || strike <= 0 || timeToExpiry <= 0 || volatility <= 0) {
+    return { d1: 0, d2: 0 }
+  }
+
   const sqrtT = Math.sqrt(timeToExpiry)
   const d1 =
     (Math.log(spot / strike) +
@@ -88,9 +95,12 @@ export function calculateGamma(
   riskFreeRate: number,
   volatility: number
 ): number {
+  const denominator = spot * volatility * Math.sqrt(timeToExpiry)
+  if (denominator <= 0) return 0
+
   const { d1 } = d1d2(spot, strike, timeToExpiry, riskFreeRate, volatility)
 
-  return normalPDF(d1) / (spot * volatility * Math.sqrt(timeToExpiry))
+  return normalPDF(d1) / denominator
 }
 
 export function calculateTheta(
@@ -101,6 +111,8 @@ export function calculateTheta(
   volatility: number,
   optionType: OptionType
 ): number {
+  if (timeToExpiry <= 0) return 0
+
   const { d1, d2 } = d1d2(spot, strike, timeToExpiry, riskFreeRate, volatility)
   const sqrtT = Math.sqrt(timeToExpiry)
   const discount = Math.exp(-riskFreeRate * timeToExpiry)
@@ -122,8 +134,11 @@ export function calculateVega(
   riskFreeRate: number,
   volatility: number
 ): number {
+  if (spot <= 0 || timeToExpiry <= 0) return 0
+
   const { d1 } = d1d2(spot, strike, timeToExpiry, riskFreeRate, volatility)
 
+  // Divided by 100 to express vega per 1% change in volatility (the usual quote convention)
   return (spot * normalPDF(d1) * Math.sqrt(timeToExpiry)) / 100
 }
 
